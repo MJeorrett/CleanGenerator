@@ -21,15 +21,7 @@ static void CopyFilesRecursively(string sourcePath, string targetPath, string pr
     //Now Create all of the directories
     foreach (string dirPath in Directory.GetDirectories(sourcePath, "*", SearchOption.AllDirectories))
     {
-        if (dirPath.Contains("\\bin\\") ||
-            dirPath.Contains("\\obj\\") ||
-            dirPath.Contains("\\.vs\\") ||
-            dirPath.Contains("\\.git\\") ||
-            dirPath.Contains("\\test-output\\") ||
-            dirPath.EndsWith(".vs") ||
-            dirPath.EndsWith(".git") ||
-            dirPath.EndsWith("test-output") ||
-            dirPath.Contains("Blahem.Infrastructure\\Persistence\\Migrations"))
+        if (IsPathExcluded(dirPath))
         {
             continue;
         }
@@ -44,15 +36,7 @@ static void CopyFilesRecursively(string sourcePath, string targetPath, string pr
     //Copy all the files & Replaces any files with the same name
     foreach (string newPath in Directory.GetFiles(sourcePath, "*.*", SearchOption.AllDirectories))
     {
-        if (newPath.Contains("\\bin\\") ||
-            newPath.Contains("\\obj\\") ||
-            newPath.Contains("\\.vs\\") ||
-            newPath.Contains("\\.git\\") ||
-            newPath.Contains("\\test-output\\") ||
-            newPath.EndsWith(".vs") ||
-            newPath.EndsWith(".git") ||
-            newPath.EndsWith("test-output") ||
-            newPath.Contains("Blahem.Infrastructure\\Persistence\\Migrations"))
+        if (IsPathExcluded(newPath))
         {
             continue;
         }
@@ -69,6 +53,21 @@ static void CopyFilesRecursively(string sourcePath, string targetPath, string pr
                 .Replace("blahem", projectName.ToLower()),
             updatedContents);
     }
+}
+
+static bool IsPathExcluded(string path)
+{
+    return path.Contains("\\bin\\") ||
+        path.Contains("\\obj\\") ||
+        path.Contains("\\.vs\\") ||
+        path.Contains("\\.git\\") ||
+        path.Contains("\\test-output\\") ||
+        path.Contains("\\CleanGenerator\\") ||
+        path.EndsWith(".vs") ||
+        path.EndsWith(".git") ||
+        path.EndsWith("test-output") ||
+        path.EndsWith("CleanGenerator") ||
+        path.Contains("Blahem.Infrastructure\\Persistence\\Migrations");
 }
 
 static void GenerateTemplate()
