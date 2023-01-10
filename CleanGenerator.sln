@@ -3,20 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33209.295
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanGenerator", "CleanGenerator\CleanGenerator.csproj", "{D4308345-D118-4171-A0C1-D26008618101}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanGenerator", "CleanGenerator\CleanGenerator.csproj", "{D4308345-D118-4171-A0C1-D26008618101}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blahem.WebApi", "Blahem.WebApi\Blahem.WebApi.csproj", "{7A23FA45-2153-46A9-931E-E7106459C8BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blahem.WebApi", "Blahem.WebApi\Blahem.WebApi.csproj", "{7A23FA45-2153-46A9-931E-E7106459C8BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blahem.Infrastructure", "Blahem.Infrastructure\Blahem.Infrastructure.csproj", "{6DF40C85-45F6-4AF8-9958-46B9781354DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blahem.Infrastructure", "Blahem.Infrastructure\Blahem.Infrastructure.csproj", "{6DF40C85-45F6-4AF8-9958-46B9781354DC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2BA2945B-2FE1-4355-9050-CD9FF6B4D0D2}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		.gitignore = .gitignore
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blahem.Core", "Blahem.Core\Blahem.Core.csproj", "{E055696F-8CB7-4D2E-9D2A-5EEC323146A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blahem.Core", "Blahem.Core\Blahem.Core.csproj", "{E055696F-8CB7-4D2E-9D2A-5EEC323146A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blahem.Application", "Blahem.Application\Blahem.Application.csproj", "{7EFA50D0-AA46-4A83-A40E-9C79FDC929C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blahem.Application", "Blahem.Application\Blahem.Application.csproj", "{7EFA50D0-AA46-4A83-A40E-9C79FDC929C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
