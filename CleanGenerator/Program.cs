@@ -14,20 +14,7 @@ if (Directory.EnumerateFileSystemEntries(outputDirectory).Any())
     throw new InvalidOperationException("Output directory is not empty.");
 }
 
-var applicationDirectory = Path.Join(outputDirectory, $"{projectName}.Application");
-var coreDirectory = Path.Join(outputDirectory, $"{projectName}.Core");
-var infrastructureDirectory = Path.Join(outputDirectory, $"{projectName}.Infrastructure");
-var webApiDirectory = Path.Join(outputDirectory, $"{projectName}.WebApi");
-
-Directory.CreateDirectory(applicationDirectory);
-Directory.CreateDirectory(coreDirectory);
-Directory.CreateDirectory(infrastructureDirectory);
-Directory.CreateDirectory(webApiDirectory);
-
-CopyFilesRecursively(Path.Join(inputDirectory, "Blahem.Application"), applicationDirectory, projectName);
-CopyFilesRecursively(Path.Join(inputDirectory, "Blahem.Core"), coreDirectory, projectName);
-CopyFilesRecursively(Path.Join(inputDirectory, "Blahem.Infrastructure"), infrastructureDirectory, projectName);
-CopyFilesRecursively(Path.Join(inputDirectory, "Blahem.WebApi"), webApiDirectory, projectName);
+CopyFilesRecursively(inputDirectory, outputDirectory, projectName);
 
 static void CopyFilesRecursively(string sourcePath, string targetPath, string projectName)
 {
@@ -36,12 +23,22 @@ static void CopyFilesRecursively(string sourcePath, string targetPath, string pr
     {
         if (dirPath.Contains("\\bin\\") ||
             dirPath.Contains("\\obj\\") ||
+            dirPath.Contains("\\.vs\\") ||
+            dirPath.Contains("\\.git\\") ||
+            dirPath.Contains("\\test-output\\") ||
+            dirPath.EndsWith(".vs") ||
+            dirPath.EndsWith(".git") ||
+            dirPath.EndsWith("test-output") ||
             dirPath.Contains("Blahem.Infrastructure\\Persistence\\Migrations"))
         {
             continue;
         }
 
-        Directory.CreateDirectory(dirPath.Replace(sourcePath, targetPath).Replace("Blahem", projectName));
+        Directory.CreateDirectory(
+            dirPath
+                .Replace(sourcePath, targetPath)
+                .Replace("Blahem", projectName)
+                .Replace("blahem", projectName.ToLower()));
     }
 
     //Copy all the files & Replaces any files with the same name
@@ -49,14 +46,28 @@ static void CopyFilesRecursively(string sourcePath, string targetPath, string pr
     {
         if (newPath.Contains("\\bin\\") ||
             newPath.Contains("\\obj\\") ||
+            newPath.Contains("\\.vs\\") ||
+            newPath.Contains("\\.git\\") ||
+            newPath.Contains("\\test-output\\") ||
+            newPath.EndsWith(".vs") ||
+            newPath.EndsWith(".git") ||
+            newPath.EndsWith("test-output") ||
             newPath.Contains("Blahem.Infrastructure\\Persistence\\Migrations"))
         {
             continue;
         }
 
         var contents = File.ReadAllText(newPath);
-        var updatedContents = contents.Replace("Blahem", projectName);
-        File.WriteAllText(newPath.Replace(sourcePath, targetPath).Replace("Blahem", projectName), updatedContents);
+        var updatedContents = contents
+            .Replace("Blahem", projectName)
+            .Replace("blahem", projectName.ToLower());
+
+        File.WriteAllText(
+            newPath
+                .Replace(sourcePath, targetPath)
+                .Replace("Blahem", projectName)
+                .Replace("blahem", projectName.ToLower()),
+            updatedContents);
     }
 }
 
