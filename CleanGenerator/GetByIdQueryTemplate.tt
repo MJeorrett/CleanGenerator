@@ -1,0 +1,40 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+using <#= _model.ProjectName #>.Application.<#= _model.EntityTypeName #>s.Dtos;
+using <#= _model.ProjectName #>.Application.Common.AppRequests;
+using <#= _model.ProjectName #>.Application.Common.Interfaces;
+using Microsoft.EntityFrameworkCore;
+namespace <#= _model.ProjectName #>.Application.<#= _model.EntityTypeName #>s.Queries.GetById;
+
+public record Get<#= _model.EntityTypeName #>ByIdQuery
+{
+    public int <#= _model.EntityTypeName #>Id { get; init; }
+}
+
+public class Get<#= _model.EntityTypeName #>ByIdQueryHandler : IRequestHandler<Get<#= _model.EntityTypeName #>ByIdQuery, <#= _model.EntityTypeName #>Dto>
+{
+    private readonly I<#= _model.ProjectName #>DbContext _dbContext;
+
+    public Get<#= _model.EntityTypeName #>ByIdQueryHandler(I<#= _model.ProjectName #>DbContext dbContext)
+    {
+        _dbContext = dbContext;
+    }
+
+    public async Task<AppResponse<<#= _model.EntityTypeName #>Dto>> Handle(
+        Get<#= _model.EntityTypeName #>ByIdQuery query,
+        CancellationToken cancellationToken)
+    {
+        var entity = await _dbContext.<#= _model.EntityTypeName #>s
+            .FirstOrDefaultAsync(_ => _.Id == query.<#= _model.EntityTypeName #>Id, cancellationToken);
+
+        if (entity == null)
+        {
+            return new(404);
+        }
+
+        return new(200, <#= _model.EntityTypeName #>Dto.MapFromEntity(entity));
+    }
+}

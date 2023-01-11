@@ -3,6 +3,11 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
+namespace <#= _model.ProjectName #>.Core.Entities;
 
-class <#= m_testData #>Test {
+public class <#= _model.EntityTypeName #>Entity
+{
+    public int Id { get; set; }
+
+    public string Title { get; set; } = null!;
 }

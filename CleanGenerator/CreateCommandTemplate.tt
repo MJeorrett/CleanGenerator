@@ -1,0 +1,41 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+using <#= _model.ProjectName #>.Application.Common.AppRequests;
+using <#= _model.ProjectName #>.Application.Common.Interfaces;
+using <#= _model.ProjectName #>.Core.Entities;
+
+namespace <#= _model.ProjectName #>.Application.<#= _model.EntityTypeName #>s.Commands.Create;
+
+public class Create<#= _model.EntityTypeName #>Command
+{
+    public string Title { get; init; } = null!;
+}
+
+public class Create<#= _model.EntityTypeName #>CommandHandler : IRequestHandler<Create<#= _model.EntityTypeName #>Command, int>
+{
+    private readonly I<#= _model.ProjectName #>DbContext _dbContext;
+
+    public Create<#= _model.EntityTypeName #>CommandHandler(I<#= _model.ProjectName #>DbContext dbContext)
+    {
+        _dbContext = dbContext;
+    }
+
+    public async Task<AppResponse<int>> Handle(
+        Create<#= _model.EntityTypeName #>Command command,
+        CancellationToken cancellationToken)
+    {
+        var entity = new <#= _model.EntityTypeName #>Entity
+        {
+            Title = command.Title,
+        };
+
+        _dbContext.<#= _model.EntityTypeName #>s.Add(entity);
+
+        await _dbContext.SaveChangesAsync(cancellationToken);
+
+        return new(201, entity.Id);
+    }
+}

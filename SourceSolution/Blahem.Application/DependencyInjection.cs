@@ -1,6 +1,5 @@
 ﻿using Blahem.Application.Blahems.Commands.Create;
 using Blahem.Application.Common.AppRequests;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Blahem.Application;

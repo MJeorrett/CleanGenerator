@@ -1,0 +1,24 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+using <#= _model.ProjectName #>.Core.Entities;
+
+namespace <#= _model.ProjectName #>.Application.<#= _model.EntityTypeName #>s.Dtos;
+
+public record <#= _model.EntityTypeName #>Dto
+{
+    public int Id { get; init; }
+
+    public string Title { get; init; } = "";
+
+    public static <#= _model.EntityTypeName #>Dto MapFromEntity(<#= _model.EntityTypeName #>Entity entity)
+    {
+        return new()
+        {
+            Id = entity.Id,
+            Title = entity.Title,
+        };
+    }
+}

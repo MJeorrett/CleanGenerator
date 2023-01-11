@@ -1,0 +1,63 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+using <#= _model.ProjectName #>.Application.<#= _model.EntityTypeName #>s.Commands.Create;
+using <#= _model.ProjectName #>.Application.<#= _model.EntityTypeName #>s.Commands.Update;
+using <#= _model.ProjectName #>.Application.<#= _model.EntityTypeName #>s.Dtos;
+using <#= _model.ProjectName #>.Application.<#= _model.EntityTypeName #>s.Queries.GetById;
+using <#= _model.ProjectName #>.Application.<#= _model.EntityTypeName #>s.Queries.List;
+using <#= _model.ProjectName #>.Application.Common.AppRequests;
+using <#= _model.ProjectName #>.WebApi.Extensions;
+using Microsoft.AspNetCore.Mvc;
+
+namespace <#= _model.ProjectName #>.WebApi.Controllers;
+
+[ApiController]
+public class <#= _model.EntityTypeName #>Controller : ControllerBase
+{
+    [HttpPost("api/<#= _model.ApiBasePath #>")]
+    public async Task<ActionResult<AppResponse<int>>> Create<#= _model.EntityTypeName #>(
+        [FromBody] Create<#= _model.EntityTypeName #>Command command,
+        [FromServices] Create<#= _model.EntityTypeName #>CommandHandler handler,
+        CancellationToken cancellationToken)
+    {
+        var appResponse = await handler.Handle(command, cancellationToken);
+
+        return appResponse.ToActionResult();
+    }
+
+    [HttpGet("api/<#= _model.ApiBasePath #>")]
+    public async Task<ActionResult<AppResponse<List<<#= _model.EntityTypeName #>Dto>>>> List<#= _model.EntityTypeName #>s(
+        [FromServices] List<#= _model.EntityTypeName #>sQueryHandler handler,
+        CancellationToken cancellationToken)
+    {
+        var appResponse = await handler.Handle(new(), cancellationToken);
+
+        return appResponse.ToActionResult();
+    }
+
+    [HttpGet("api/<#= _model.ApiBasePath #>/{<#= _model.EntityVariableName #>Id}")]
+    public async Task<ActionResult<AppResponse<<#= _model.EntityTypeName #>Dto>>> List<#= _model.EntityTypeName #>s(
+        [FromRoute] int <#= _model.EntityVariableName #>Id,
+        [FromServices] Get<#= _model.EntityTypeName #>ByIdQueryHandler handler,
+        CancellationToken cancellationToken)
+    {
+        var appResponse = await handler.Handle(new() { <#= _model.EntityTypeName #>Id = <#= _model.EntityVariableName #>Id }, cancellationToken);
+
+        return appResponse.ToActionResult();
+    }
+
+    [HttpPut("api/<#= _model.ApiBasePath #>/{<#= _model.EntityVariableName #>Id}")]
+    public async Task<ActionResult<AppResponse>> Update<#= _model.EntityTypeName #>(
+        [FromRoute] int <#= _model.EntityVariableName #>Id,
+        [FromBody] Update<#= _model.EntityTypeName #>Command command,
+        [FromServices] Update<#= _model.EntityTypeName #>CommandHandler handler,
+        CancellationToken cancellationToken)
+    {
+        var appResponse = await handler.Handle(command with { <#= _model.EntityTypeName #>Id = <#= _model.EntityVariableName #>Id }, cancellationToken);
+
+        return appResponse.ToActionResult();
+    }
+}

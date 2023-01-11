@@ -18,9 +18,9 @@ namespace CleanGenerator
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\CommandHandler.tt"
+    #line 1 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\ListQueryTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
-    public partial class CommandHandler : CommandHandlerBase
+    public partial class ListQueryTemplate : ListQueryTemplateBase
     {
 #line hidden
         /// <summary>
@@ -28,14 +28,130 @@ namespace CleanGenerator
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("\r\nclass ");
+            this.Write("using ");
             
-            #line 7 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\CommandHandler.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(m_testData));
+            #line 6 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\ListQueryTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.ProjectName));
             
             #line default
             #line hidden
-            this.Write("Test {\r\n}");
+            this.Write(".Application.");
+            
+            #line 6 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\ListQueryTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
+            
+            #line default
+            #line hidden
+            this.Write("s.Dtos;\r\nusing ");
+            
+            #line 7 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\ListQueryTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.ProjectName));
+            
+            #line default
+            #line hidden
+            this.Write(".Application.Common.AppRequests;\r\nusing ");
+            
+            #line 8 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\ListQueryTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.ProjectName));
+            
+            #line default
+            #line hidden
+            this.Write(".Application.Common.Interfaces;\r\nusing Microsoft.EntityFrameworkCore;\r\n\r\nnamespac" +
+                    "e ");
+            
+            #line 11 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\ListQueryTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.ProjectName));
+            
+            #line default
+            #line hidden
+            this.Write(".Application.");
+            
+            #line 11 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\ListQueryTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
+            
+            #line default
+            #line hidden
+            this.Write("s.Queries.List;\r\n\r\npublic record List");
+            
+            #line 13 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\ListQueryTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
+            
+            #line default
+            #line hidden
+            this.Write("sQuery\r\n{\r\n\r\n}\r\n\r\npublic class List");
+            
+            #line 18 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\ListQueryTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
+            
+            #line default
+            #line hidden
+            this.Write("sQueryHandler : IRequestHandler<List");
+            
+            #line 18 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\ListQueryTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
+            
+            #line default
+            #line hidden
+            this.Write("sQuery, List<");
+            
+            #line 18 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\ListQueryTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
+            
+            #line default
+            #line hidden
+            this.Write("Dto>>\r\n{\r\n    private readonly I");
+            
+            #line 20 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\ListQueryTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.ProjectName));
+            
+            #line default
+            #line hidden
+            this.Write("DbContext _dbContext;\r\n\r\n    public List");
+            
+            #line 22 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\ListQueryTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
+            
+            #line default
+            #line hidden
+            this.Write("sQueryHandler(I");
+            
+            #line 22 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\ListQueryTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.ProjectName));
+            
+            #line default
+            #line hidden
+            this.Write("DbContext dbContext)\r\n    {\r\n        _dbContext = dbContext;\r\n    }\r\n\r\n    public" +
+                    " async Task<AppResponse<List<");
+            
+            #line 27 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\ListQueryTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
+            
+            #line default
+            #line hidden
+            this.Write("Dto>>> Handle(\r\n        List");
+            
+            #line 28 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\ListQueryTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
+            
+            #line default
+            #line hidden
+            this.Write("sQuery query,\r\n        CancellationToken cancellationToken)\r\n    {\r\n        var d" +
+                    "tos = await _dbContext.");
+            
+            #line 31 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\ListQueryTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
+            
+            #line default
+            #line hidden
+            this.Write("s\r\n            .Select(_ => ");
+            
+            #line 32 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\ListQueryTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
+            
+            #line default
+            #line hidden
+            this.Write("Dto.MapFromEntity(_))\r\n            .ToListAsync(cancellationToken);\r\n\r\n        re" +
+                    "turn new(200, dtos);\r\n    }\r\n}\r\n");
             return this.GenerationEnvironment.ToString();
         }
     }
@@ -47,7 +163,7 @@ namespace CleanGenerator
     /// Base class for this transformation
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
-    public class CommandHandlerBase
+    public class ListQueryTemplateBase
     {
         #region Fields
         private global::System.Text.StringBuilder generationEnvironmentField;
