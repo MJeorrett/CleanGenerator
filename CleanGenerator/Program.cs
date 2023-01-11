@@ -18,7 +18,6 @@ var templateModel = new TemplateModel
 {
     ProjectName = projectName,
     EntityTypeName = "Cat",
-    EntityVariableName = "cat",
     ApiBasePath = "cats",
 };
 
