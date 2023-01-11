@@ -6,7 +6,7 @@ using System.Diagnostics;
 Console.WriteLine("Hello, World!");
 
 const string projectName = "Todo";
-const string inputDirectory = "C:/git/github/mjeorrett/CleanGenerator";
+const string inputDirectory = "C:/git/github/mjeorrett/CleanGenerator/SourceSolution";
 const string outputDirectory = "C:/git/github/mjeorrett/CleanGenerator/test-output";
 
 if (Directory.EnumerateFileSystemEntries(outputDirectory).Any())
