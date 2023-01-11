@@ -1,11 +1,10 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using CleanGenerator;
-using System.Diagnostics;
 
 Console.WriteLine("Hello, World!");
 
-const string projectName = "Todo";
+const string projectName = "MicahelDemo";
 const string inputDirectory = "C:/git/github/mjeorrett/CleanGenerator/SourceSolution";
 const string outputDirectory = "C:/git/github/mjeorrett/CleanGenerator/test-output";
 
@@ -16,9 +15,25 @@ if (Directory.EnumerateFileSystemEntries(outputDirectory).Any())
 
 CopyFilesRecursively(inputDirectory, outputDirectory, projectName);
 
+RunCmd($"dotnet ef migrations add InitialCreate --startup-project {Path.Join(outputDirectory, projectName)}.WebApi --project {Path.Join(outputDirectory, projectName)}.Infrastructure");
+RunCmd($"dotnet ef database update --startup-project {Path.Join(outputDirectory, projectName)}.WebApi --project {Path.Join(outputDirectory, projectName)}.Infrastructure");
+
+static void RunCmd(string command)
+{
+    System.Diagnostics.Process process = new System.Diagnostics.Process();
+    System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
+    startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+    startInfo.FileName = "cmd.exe";
+    startInfo.Arguments = $"/C {command}";
+    process.StartInfo = startInfo;
+    process.Start();
+    process.WaitForExit();
+}
+
+
 static void CopyFilesRecursively(string sourcePath, string targetPath, string projectName)
 {
-    //Now Create all of the directories
+    // Create directories
     foreach (string dirPath in Directory.GetDirectories(sourcePath, "*", SearchOption.AllDirectories))
     {
         if (IsPathExcluded(dirPath))
@@ -33,7 +48,7 @@ static void CopyFilesRecursively(string sourcePath, string targetPath, string pr
                 .Replace("blahem", projectName.ToLower()));
     }
 
-    //Copy all the files & Replaces any files with the same name
+    // Copy files
     foreach (string newPath in Directory.GetFiles(sourcePath, "*.*", SearchOption.AllDirectories))
     {
         if (IsPathExcluded(newPath))
