@@ -11,3 +11,4 @@ Scaffolding tools for clean architecture project in dotnet.
 - Validator
 - e2e test
 - Allow specifying what properties appeear on detail and summary dtos.
+- FK relationships
