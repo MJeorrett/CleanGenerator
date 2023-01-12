@@ -17,11 +17,13 @@ var entityNameOption = new Option<string>("--entity", "Name of the new entity e.
 };
 
 var rootCommand = new RootCommand("App for scaffolding clean architecture projects.");
-rootCommand.AddOption(outputDirectoryOption);
-rootCommand.AddOption(projectNameOption);
-rootCommand.AddOption(entityNameOption);
 
-rootCommand.SetHandler((outputDirectory, projectName, entityName) =>
+var initCommand = new Command("init", "Initialise a clean architecture project.")
+{
+    outputDirectoryOption, projectNameOption, entityNameOption,
+};
+
+initCommand.SetHandler((outputDirectory, projectName, entityName) =>
 {
     var args = new CommandArgs
     {
@@ -30,13 +32,33 @@ rootCommand.SetHandler((outputDirectory, projectName, entityName) =>
         EntityName = entityName,
     };
 
-    Run(args);
-},
-outputDirectoryOption, projectNameOption, entityNameOption);
+    RunInit(args);
+}, outputDirectoryOption, projectNameOption, entityNameOption);
+
+rootCommand.AddCommand(initCommand);
+
+var addEntityCommand = new Command("add", "Add entity to existing clean architecture project.")
+{
+    outputDirectoryOption, projectNameOption, entityNameOption,
+};
+
+addEntityCommand.SetHandler((outputDirectory, projectName, entityName) =>
+{
+    var args = new CommandArgs
+    {
+        OutputDirectory = outputDirectory,
+        ProjectName = projectName,
+        EntityName = entityName,
+    };
+
+    RunAddEntity(args);
+}, outputDirectoryOption, projectNameOption, entityNameOption);
+
+rootCommand.AddCommand(addEntityCommand);
 
 rootCommand.Invoke(args);
 
-static void Run(CommandArgs args)
+static void RunInit(CommandArgs args)
 {
     const string inputDirectory = "C:/git/github/mjeorrett/CleanGenerator/SourceSolution";
 
@@ -45,15 +67,17 @@ static void Run(CommandArgs args)
         throw new InvalidOperationException("Output directory is not empty.");
     }
 
+    CopyFilesRecursively(inputDirectory, args);
+}
 
+static void RunAddEntity(CommandArgs args)
+{
     var templateModel = new TemplateModel
     {
         ProjectName = args.ProjectName,
         EntityTypeName = args.EntityName,
         ApiBasePath = args.EntityName.ToLower(),
     };
-
-    CopyFilesRecursively(inputDirectory, args);
 
     CreateCrud(templateModel, args);
 }
