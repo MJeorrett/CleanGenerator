@@ -7,6 +7,7 @@ using CleanGenerator.Templates.GetByIdQuery;
 using CleanGenerator.Templates.ListQuery;
 using CleanGenerator.Templates.UpdateCommand;
 using System.CommandLine;
+using System.Reflection;
 
 var outputDirectoryOption = new Option<string>("--output", "Root output path of scaffolded project.")
 {
@@ -67,7 +68,9 @@ rootCommand.Invoke(args);
 
 static void RunInit(CommandArgs args)
 {
-    const string inputDirectory = "C:/git/github/mjeorrett/CleanGenerator/SourceSolution";
+    string inputDirectory = ResolveInputDirectory();
+
+    Console.WriteLine("Loading template from " + inputDirectory);
 
     if (Directory.EnumerateFileSystemEntries(args.OutputDirectory).Any())
     {
@@ -75,6 +78,8 @@ static void RunInit(CommandArgs args)
     }
 
     CopyFilesRecursively(inputDirectory, args);
+
+    CreateMigration(args, "InitialCreate");
 }
 
 static void RunAddEntity(CommandArgs args)
@@ -101,8 +106,11 @@ static void CreateCrud(TemplateModel templateModel, CommandArgs args)
 
     UpdateDbContextInterface(templateModel, args);
     UpdateDbContext(templateModel, args);
-
-    RunCmd($"dotnet ef migrations add Add{args.EntityName}Table --startup-project {Path.Join(args.OutputDirectory, args.ProjectName)}.WebApi --project {Path.Join(args.OutputDirectory, args.ProjectName)}.Infrastructure");
+    CreateMigration(args, $"Add{ args.EntityName}Table");
+}
+static void CreateMigration(CommandArgs args, string migrationName)
+{
+    RunCmd($"dotnet ef migrations add {migrationName} --startup-project {Path.Join(args.OutputDirectory, args.ProjectName)}.WebApi --project {Path.Join(args.OutputDirectory, args.ProjectName)}.Infrastructure");
     RunCmd($"dotnet ef database update --startup-project {Path.Join(args.OutputDirectory, args.ProjectName)}.WebApi --project {Path.Join(args.OutputDirectory, args.ProjectName)}.Infrastructure");
 }
 
@@ -124,7 +132,7 @@ static void CopyFilesRecursively(string sourcePath, CommandArgs args)
     // Create directories
     foreach (string dirPath in Directory.GetDirectories(sourcePath, "*", SearchOption.AllDirectories))
     {
-        if (IsPathExcluded(dirPath))
+        if (IsPathExcluded(sourcePath, dirPath))
         {
             continue;
         }
@@ -139,7 +147,7 @@ static void CopyFilesRecursively(string sourcePath, CommandArgs args)
     // Copy files
     foreach (string newPath in Directory.GetFiles(sourcePath, "*.*", SearchOption.AllDirectories))
     {
-        if (IsPathExcluded(newPath))
+        if (IsPathExcluded(sourcePath, newPath))
         {
             continue;
         }
@@ -158,19 +166,17 @@ static void CopyFilesRecursively(string sourcePath, CommandArgs args)
     }
 }
 
-static bool IsPathExcluded(string path)
+static bool IsPathExcluded(string inputDirectory, string path)
 {
-    return path.Contains("\\bin\\") ||
-        path.Contains("\\obj\\") ||
-        path.Contains("\\.vs\\") ||
-        path.Contains("\\.git\\") ||
-        path.Contains("\\test-output\\") ||
-        path.Contains("\\CleanGenerator\\") ||
-        path.EndsWith(".vs") ||
-        path.EndsWith(".git") ||
-        path.EndsWith("test-output") ||
-        path.EndsWith("CleanGenerator") ||
-        path.Contains("Blahem.Infrastructure\\Persistence\\Migrations");
+    var relativePath = path.Substring(inputDirectory.Length);
+
+    return relativePath.Contains("\\bin\\") ||
+        relativePath.Contains("\\obj\\") ||
+        relativePath.Contains("\\.vs\\") ||
+        relativePath.Contains("\\.git\\") ||
+        relativePath.EndsWith(".vs") ||
+        relativePath.EndsWith(".git") ||
+        relativePath.Contains("Blahem.Infrastructure\\Persistence\\Migrations");
 }
 
 static void GenerateAndWriteCreateCommandFile(TemplateModel model, CommandArgs args)
@@ -284,4 +290,25 @@ static void UpdateDbContext(TemplateModel model, CommandArgs args)
     lines.Insert(lastDbSetLineNumber, $"    public DbSet<{model.EntityTypeName}Entity> {model.EntityTypeName}s {{ get; init; }} = null!;");
 
     File.WriteAllLines(path, lines);
+}
+
+static string ResolveInputDirectory()
+{
+
+    if (Environment.GetEnvironmentVariable("isDev") == "true")
+    {
+        return new FileInfo(Assembly.GetExecutingAssembly().Location).Directory + "/SourceSolution";
+    }
+    else
+    {
+        var contentDirectory = new FileInfo(Assembly.GetExecutingAssembly().Location).Directory?.Parent?.Parent?.Parent;
+
+        if (contentDirectory is null)
+        {
+            throw new Exception("Failed to locate content directory.");
+        }
+
+        return Path.Join(contentDirectory.FullName, "SourceSolution");
+    }
+
 }

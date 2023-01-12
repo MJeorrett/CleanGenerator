@@ -1,97 +1,113 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-	<PackAsTool>true</PackAsTool>
-	<ToolCommandName>cleangen</ToolCommandName>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net7.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-	<PackageOutputPath>./nupkg</PackageOutputPath>
-	<Version>0.0.1</Version>
-  </PropertyGroup>
+	<PropertyGroup>
+		<PackAsTool>true</PackAsTool>
+		<ToolCommandName>cleangen</ToolCommandName>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net7.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<PackageOutputPath>./nupkg</PackageOutputPath>
+		<Version>0.0.1</Version>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="System.CodeDom" Version="7.0.0" />
-    <PackageReference Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="System.CodeDom" Version="7.0.0" />
+		<PackageReference Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
-  </ItemGroup>
+	<ItemGroup>
+		<Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="Command.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Command.tt</DependentUpon>
-    </Compile>
-    <Compile Update="Templates\Controller\ControllerTemplate.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>ControllerTemplate.tt</DependentUpon>
-    </Compile>
-    <Compile Update="Templates\CreateCommand\CreateCommandTemplate.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>CreateCommandTemplate.tt</DependentUpon>
-    </Compile>
-    <Compile Update="Templates\Dto\DtoTemplate.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>DtoTemplate.tt</DependentUpon>
-    </Compile>
-    <Compile Update="Templates\Entity\EntityTemplate.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>EntityTemplate.tt</DependentUpon>
-    </Compile>
-    <Compile Update="Templates\GetByIdQuery\GetByIdQueryTemplate.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>GetByIdQueryTemplate.tt</DependentUpon>
-    </Compile>
-    <Compile Update="Templates\ListQuery\ListQueryTemplate.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>ListQueryTemplate.tt</DependentUpon>
-    </Compile>
-    <Compile Update="Templates\UpdateCommand\UpdateCommandTemplate.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>UpdateCommandTemplate.tt</DependentUpon>
-    </Compile>
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Update="Command.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Command.tt</DependentUpon>
+		</Compile>
+		<Compile Update="Templates\Controller\ControllerTemplate.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>ControllerTemplate.tt</DependentUpon>
+		</Compile>
+		<Compile Update="Templates\CreateCommand\CreateCommandTemplate.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>CreateCommandTemplate.tt</DependentUpon>
+		</Compile>
+		<Compile Update="Templates\Dto\DtoTemplate.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>DtoTemplate.tt</DependentUpon>
+		</Compile>
+		<Compile Update="Templates\Entity\EntityTemplate.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>EntityTemplate.tt</DependentUpon>
+		</Compile>
+		<Compile Update="Templates\GetByIdQuery\GetByIdQueryTemplate.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>GetByIdQueryTemplate.tt</DependentUpon>
+		</Compile>
+		<Compile Update="Templates\ListQuery\ListQueryTemplate.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>ListQueryTemplate.tt</DependentUpon>
+		</Compile>
+		<Compile Update="Templates\UpdateCommand\UpdateCommandTemplate.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>UpdateCommandTemplate.tt</DependentUpon>
+		</Compile>
+	</ItemGroup>
 
-  <ItemGroup>
-    <None Update="Templates\Controller\ControllerTemplate.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>ControllerTemplate.cs</LastGenOutput>
-    </None>
-    <None Update="Templates\CreateCommand\CreateCommandTemplate.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>CreateCommandTemplate.cs</LastGenOutput>
-    </None>
-    <None Update="Templates\Dto\DtoTemplate.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>DtoTemplate.cs</LastGenOutput>
-    </None>
-    <None Update="Templates\Entity\EntityTemplate.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>EntityTemplate.cs</LastGenOutput>
-    </None>
-    <None Update="Templates\GetByIdQuery\GetByIdQueryTemplate.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>GetByIdQueryTemplate.cs</LastGenOutput>
-    </None>
-    <None Update="Templates\ListQuery\ListQueryTemplate.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>ListQueryTemplate.cs</LastGenOutput>
-    </None>
-    <None Update="Templates\UpdateCommand\UpdateCommandTemplate.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>UpdateCommandTemplate.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
+		<None Update="..\SourceSolution\**\*">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Templates\Controller\ControllerTemplate.tt">
+			<Generator>TextTemplatingFilePreprocessor</Generator>
+			<LastGenOutput>ControllerTemplate.cs</LastGenOutput>
+		</None>
+		<None Update="Templates\CreateCommand\CreateCommandTemplate.tt">
+			<Generator>TextTemplatingFilePreprocessor</Generator>
+			<LastGenOutput>CreateCommandTemplate.cs</LastGenOutput>
+		</None>
+		<None Update="Templates\Dto\DtoTemplate.tt">
+			<Generator>TextTemplatingFilePreprocessor</Generator>
+			<LastGenOutput>DtoTemplate.cs</LastGenOutput>
+		</None>
+		<None Update="Templates\Entity\EntityTemplate.tt">
+			<Generator>TextTemplatingFilePreprocessor</Generator>
+			<LastGenOutput>EntityTemplate.cs</LastGenOutput>
+		</None>
+		<None Update="Templates\GetByIdQuery\GetByIdQueryTemplate.tt">
+			<Generator>TextTemplatingFilePreprocessor</Generator>
+			<LastGenOutput>GetByIdQueryTemplate.cs</LastGenOutput>
+		</None>
+		<None Update="Templates\ListQuery\ListQueryTemplate.tt">
+			<Generator>TextTemplatingFilePreprocessor</Generator>
+			<LastGenOutput>ListQueryTemplate.cs</LastGenOutput>
+		</None>
+		<None Update="Templates\UpdateCommand\UpdateCommandTemplate.tt">
+			<Generator>TextTemplatingFilePreprocessor</Generator>
+			<LastGenOutput>UpdateCommandTemplate.cs</LastGenOutput>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="$(SolutionDir)init-template\**">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="..\init-template\SourceSolution\**\*">
+			<Pack>true</Pack>
+			<PackagePath>SourceSolution\</PackagePath>
+		</Content>
+	</ItemGroup>
 
 </Project>
