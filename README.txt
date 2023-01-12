@@ -5,10 +5,12 @@
 Scaffolding tools for clean architecture project in dotnet.
 
 ## TODO
-- Install dotnet ef tool locally
-- Wrap in tool
-- Allow passing in properties and types
-- Validator
-- e2e test
-- Allow specifying what properties appeear on detail and summary dtos.
-- FK relationships
+- [x] Wrap in tool.
+- [ ] Separate commands for scaffold project and CRU endpoint.
+- [ ] Allow specifying what properties appeear on detail and summary dtos.
+- [ ] Add delete command.
+- [ ] Install dotnet ef tool locally.
+- [ ] Allow passing in properties and types.
+- [ ] Scaffold calidation.
+- [ ] Scaffold e2e tests.
+- [ ] FK relationships.
