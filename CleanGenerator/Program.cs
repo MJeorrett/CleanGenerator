@@ -1,45 +1,71 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using CleanGenerator;
+using System.CommandLine;
 
-using CleanGenerator;
-
-Console.WriteLine("Hello, World!");
-
-const string projectName = "MicahelDemo";
-const string inputDirectory = "C:/git/github/mjeorrett/CleanGenerator/SourceSolution";
-const string outputDirectory = "C:/git/github/mjeorrett/CleanGenerator/test-output";
-
-if (Directory.EnumerateFileSystemEntries(outputDirectory).Any())
+var outputDirectoryOption = new Option<string>("--output", "Root output path of scaffolded project.")
 {
-    throw new InvalidOperationException("Output directory is not empty.");
-}
-
-
-var templateModel = new TemplateModel
-{
-    ProjectName = projectName,
-    EntityTypeName = "Cat",
-    ApiBasePath = "cats",
+    IsRequired = true,
 };
 
-CopyFilesRecursively(inputDirectory, outputDirectory, projectName);
-
-CreateCrud(templateModel, outputDirectory);
-
-static void CreateCrud(TemplateModel templateModel, string outputBasePath)
+var projectNameOption = new Option<string>("--name", "Name of the project e.g. \"Todo\".")
 {
-    GenerateAndWriteCreateCommandFile(templateModel, outputDirectory);
-    GenerateAndWriteUpdateCommandFile(templateModel, outputDirectory);
-    GenerateAndWriteGetByIdQueryFile(templateModel, outputDirectory);
-    GenerateAndWriteListQueryFile(templateModel, outputDirectory);
-    GenerateAndWriteDtoFile(templateModel, outputDirectory);
-    GenerateAndWriteEntityFile(templateModel, outputDirectory);
-    GenerateAndWriteControllerFile(templateModel, outputDirectory);
+    IsRequired = true,
+};
 
-    UpdateDbContextInterface(templateModel, outputDirectory);
-    UpdateDbContext(templateModel, outputDirectory);
+var rootCommand = new RootCommand("App for scaffolding clean architecture projects.");
+rootCommand.AddOption(outputDirectoryOption);
+rootCommand.AddOption(projectNameOption);
 
-    RunCmd($"dotnet ef migrations add InitialCreate --startup-project {Path.Join(outputDirectory, projectName)}.WebApi --project {Path.Join(outputDirectory, projectName)}.Infrastructure");
-    RunCmd($"dotnet ef database update --startup-project {Path.Join(outputDirectory, projectName)}.WebApi --project {Path.Join(outputDirectory, projectName)}.Infrastructure");
+rootCommand.SetHandler((outputDirectory, projectName) =>
+{
+    var args = new CommandArgs
+    {
+        OutputDirectory = outputDirectory,
+        ProjectName = projectName,
+    };
+
+    Run(args);
+},
+outputDirectoryOption, projectNameOption);
+
+rootCommand.Invoke(args);
+
+static void Run(CommandArgs args)
+{
+    const string inputDirectory = "C:/git/github/mjeorrett/CleanGenerator/SourceSolution";
+
+    if (Directory.EnumerateFileSystemEntries(args.OutputDirectory).Any())
+    {
+        throw new InvalidOperationException("Output directory is not empty.");
+    }
+
+
+    var templateModel = new TemplateModel
+    {
+        ProjectName = args.ProjectName,
+        EntityTypeName = "Cat",
+        ApiBasePath = "cats",
+    };
+
+    CopyFilesRecursively(inputDirectory, args);
+
+    CreateCrud(templateModel, args);
+}
+
+static void CreateCrud(TemplateModel templateModel, CommandArgs args)
+{
+    GenerateAndWriteCreateCommandFile(templateModel, args);
+    GenerateAndWriteUpdateCommandFile(templateModel, args);
+    GenerateAndWriteGetByIdQueryFile(templateModel, args);
+    GenerateAndWriteListQueryFile(templateModel, args);
+    GenerateAndWriteDtoFile(templateModel, args);
+    GenerateAndWriteEntityFile(templateModel, args);
+    GenerateAndWriteControllerFile(templateModel, args);
+
+    UpdateDbContextInterface(templateModel, args);
+    UpdateDbContext(templateModel, args);
+
+    RunCmd($"dotnet ef migrations add InitialCreate --startup-project {Path.Join(args.OutputDirectory, args.ProjectName)}.WebApi --project {Path.Join(args.OutputDirectory, args.ProjectName)}.Infrastructure");
+    RunCmd($"dotnet ef database update --startup-project {Path.Join(args.OutputDirectory, args.ProjectName)}.WebApi --project {Path.Join(args.OutputDirectory, args.ProjectName)}.Infrastructure");
 }
 
 static void RunCmd(string command)
@@ -55,7 +81,7 @@ static void RunCmd(string command)
 }
 
 
-static void CopyFilesRecursively(string sourcePath, string targetPath, string projectName)
+static void CopyFilesRecursively(string sourcePath, CommandArgs args)
 {
     // Create directories
     foreach (string dirPath in Directory.GetDirectories(sourcePath, "*", SearchOption.AllDirectories))
@@ -67,9 +93,9 @@ static void CopyFilesRecursively(string sourcePath, string targetPath, string pr
 
         Directory.CreateDirectory(
             dirPath
-                .Replace(sourcePath, targetPath)
-                .Replace("Blahem", projectName)
-                .Replace("blahem", projectName.ToLower()));
+                .Replace(sourcePath, args.OutputDirectory)
+                .Replace("Blahem", args.ProjectName)
+                .Replace("blahem", args.ProjectName.ToLower()));
     }
 
     // Copy files
@@ -82,14 +108,14 @@ static void CopyFilesRecursively(string sourcePath, string targetPath, string pr
 
         var contents = File.ReadAllText(newPath);
         var updatedContents = contents
-            .Replace("Blahem", projectName)
-            .Replace("blahem", projectName.ToLower());
+            .Replace("Blahem", args.ProjectName)
+            .Replace("blahem", args.ProjectName.ToLower());
 
         File.WriteAllText(
             newPath
-                .Replace(sourcePath, targetPath)
-                .Replace("Blahem", projectName)
-                .Replace("blahem", projectName.ToLower()),
+                .Replace(sourcePath, args.OutputDirectory)
+                .Replace("Blahem", args.ProjectName)
+                .Replace("blahem", args.ProjectName.ToLower()),
             updatedContents);
     }
 }
@@ -109,96 +135,96 @@ static bool IsPathExcluded(string path)
         path.Contains("Blahem.Infrastructure\\Persistence\\Migrations");
 }
 
-static void GenerateAndWriteCreateCommandFile(TemplateModel model, string outputBasePath)
+static void GenerateAndWriteCreateCommandFile(TemplateModel model, CommandArgs args)
 {
     var test = new CreateCommandTemplate(model);
 
     var text = test.TransformText();
 
-    var commandOutputDirectory = Path.Join(outputBasePath, $"{projectName}.Application", model.EntityTypeName, "Commands", "Create");
+    var commandOutputDirectory = Path.Join(args.OutputDirectory, $"{args.ProjectName}.Application", model.EntityTypeName, "Commands", "Create");
 
     Directory.CreateDirectory(commandOutputDirectory);
 
     File.WriteAllText(Path.Join(commandOutputDirectory, $"Create{model.EntityTypeName}Command.cs"), text);
 }
 
-static void GenerateAndWriteUpdateCommandFile(TemplateModel model, string outputBasePath)
+static void GenerateAndWriteUpdateCommandFile(TemplateModel model, CommandArgs args)
 {
     var test = new UpdateCommandTemplate(model);
 
     var text = test.TransformText();
 
-    var commandOutputDirectory = Path.Join(outputBasePath, $"{projectName}.Application", model.EntityTypeName, "Commands", "Update");
+    var commandOutputDirectory = Path.Join(args.OutputDirectory, $"{args.ProjectName}.Application", model.EntityTypeName, "Commands", "Update");
 
     Directory.CreateDirectory(commandOutputDirectory);
 
     File.WriteAllText(Path.Join(commandOutputDirectory, $"Update{model.EntityTypeName}Command.cs"), text);
 }
 
-static void GenerateAndWriteGetByIdQueryFile(TemplateModel model, string outputBasePath)
+static void GenerateAndWriteGetByIdQueryFile(TemplateModel model, CommandArgs args)
 {
     var test = new GetByIdQueryTemplate(model);
 
     var text = test.TransformText();
 
-    var commandOutputDirectory = Path.Join(outputBasePath, $"{projectName}.Application", model.EntityTypeName, "Queries", "GetById");
+    var commandOutputDirectory = Path.Join(args.OutputDirectory, $"{args.ProjectName}.Application", model.EntityTypeName, "Queries", "GetById");
 
     Directory.CreateDirectory(commandOutputDirectory);
 
     File.WriteAllText(Path.Join(commandOutputDirectory, $"Get{model.EntityTypeName}ByIdQuery.cs"), text);
 }
 
-static void GenerateAndWriteListQueryFile(TemplateModel model, string outputBasePath)
+static void GenerateAndWriteListQueryFile(TemplateModel model, CommandArgs args)
 {
     var test = new ListQueryTemplate(model);
 
     var text = test.TransformText();
 
-    var commandOutputDirectory = Path.Join(outputBasePath, $"{projectName}.Application", model.EntityTypeName, "Queries", "List");
+    var commandOutputDirectory = Path.Join(args.OutputDirectory, $"{args.ProjectName}.Application", model.EntityTypeName, "Queries", "List");
 
     Directory.CreateDirectory(commandOutputDirectory);
 
     File.WriteAllText(Path.Join(commandOutputDirectory, $"List{model.EntityTypeName}sQuery.cs"), text);
 }
 
-static void GenerateAndWriteDtoFile(TemplateModel model, string outputBasePath)
+static void GenerateAndWriteDtoFile(TemplateModel model, CommandArgs args)
 {
     var test = new DtoTemplate(model);
 
     var text = test.TransformText();
 
-    var commandOutputDirectory = Path.Join(outputBasePath, $"{projectName}.Application", model.EntityTypeName, "Dtos");
+    var commandOutputDirectory = Path.Join(args.OutputDirectory, $"{args.ProjectName}.Application", model.EntityTypeName, "Dtos");
 
     Directory.CreateDirectory(commandOutputDirectory);
 
     File.WriteAllText(Path.Join(commandOutputDirectory, $"{model.EntityTypeName}Dto.cs"), text);
 }
 
-static void GenerateAndWriteEntityFile(TemplateModel model, string outputBasePath)
+static void GenerateAndWriteEntityFile(TemplateModel model, CommandArgs args)
 {
     var test = new EntityTemplate(model);
 
     var text = test.TransformText();
 
-    var commandOutputDirectory = Path.Join(outputBasePath, $"{projectName}.Core", "Entities");
+    var commandOutputDirectory = Path.Join(args.OutputDirectory, $"{args.ProjectName}.Core", "Entities");
 
     File.WriteAllText(Path.Join(commandOutputDirectory, $"{model.EntityTypeName}Entity.cs"), text);
 }
 
-static void GenerateAndWriteControllerFile(TemplateModel model, string outputBasePath)
+static void GenerateAndWriteControllerFile(TemplateModel model, CommandArgs args)
 {
     var test = new ControllerTemplate(model);
 
     var text = test.TransformText();
 
-    var commandOutputDirectory = Path.Join(outputBasePath, $"{projectName}.WebApi", "Controllers");
+    var commandOutputDirectory = Path.Join(args.OutputDirectory, $"{args.ProjectName}.WebApi", "Controllers");
 
     File.WriteAllText(Path.Join(commandOutputDirectory, $"{model.EntityTypeName}sController.cs"), text);
 }
 
-static void UpdateDbContextInterface(TemplateModel model, string outputBasePath)
+static void UpdateDbContextInterface(TemplateModel model, CommandArgs args)
 {
-    var path = Path.Join(outputBasePath, $"{model.ProjectName}.Application", "Common", "Interfaces", $"I{model.ProjectName}DbContext.cs");
+    var path = Path.Join(args.OutputDirectory, $"{model.ProjectName}.Application", "Common", "Interfaces", $"I{model.ProjectName}DbContext.cs");
 
     var lines = File.ReadAllLines(path).ToList();
     var lastDbSetLine = lines.Last(_ => _.Contains("DbSet<"));
@@ -209,9 +235,9 @@ static void UpdateDbContextInterface(TemplateModel model, string outputBasePath)
     File.WriteAllLines(path, lines);
 }
 
-static void UpdateDbContext(TemplateModel model, string outputBasePath)
+static void UpdateDbContext(TemplateModel model, CommandArgs args)
 {
-    var path = Path.Join(outputBasePath, $"{model.ProjectName}.Infrastructure", "Persistence", $"{model.ProjectName}DbContext.cs");
+    var path = Path.Join(args.OutputDirectory, $"{model.ProjectName}.Infrastructure", "Persistence", $"{model.ProjectName}DbContext.cs");
 
     var lines = File.ReadAllLines(path).ToList();
     var lastDbSetLine = lines.Last(_ => _.Contains("DbSet<"));

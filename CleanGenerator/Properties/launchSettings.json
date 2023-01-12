@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "CleanGenerator": {
+      "commandName": "Project",
+      "commandLineArgs": "--output=\"C:/git/github/mjeorrett/CleanGenerator/test-output\" --name=\"MJDemo\""
+    }
+  }
+}
