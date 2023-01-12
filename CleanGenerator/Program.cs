@@ -6,7 +6,12 @@ var outputDirectoryOption = new Option<string>("--output", "Root output path of 
     IsRequired = true,
 };
 
-var projectNameOption = new Option<string>("--name", "Name of the project e.g. \"Todo\".")
+var projectNameOption = new Option<string>("--name", "Name of the project e.g. \"TodoApp\".")
+{
+    IsRequired = true,
+};
+
+var entityNameOption = new Option<string>("--entity", "Name of the new entity e.g. \"Todo\".")
 {
     IsRequired = true,
 };
@@ -14,18 +19,20 @@ var projectNameOption = new Option<string>("--name", "Name of the project e.g. \
 var rootCommand = new RootCommand("App for scaffolding clean architecture projects.");
 rootCommand.AddOption(outputDirectoryOption);
 rootCommand.AddOption(projectNameOption);
+rootCommand.AddOption(entityNameOption);
 
-rootCommand.SetHandler((outputDirectory, projectName) =>
+rootCommand.SetHandler((outputDirectory, projectName, entityName) =>
 {
     var args = new CommandArgs
     {
         OutputDirectory = outputDirectory,
         ProjectName = projectName,
+        EntityName = entityName,
     };
 
     Run(args);
 },
-outputDirectoryOption, projectNameOption);
+outputDirectoryOption, projectNameOption, entityNameOption);
 
 rootCommand.Invoke(args);
 
@@ -42,8 +49,8 @@ static void Run(CommandArgs args)
     var templateModel = new TemplateModel
     {
         ProjectName = args.ProjectName,
-        EntityTypeName = "Cat",
-        ApiBasePath = "cats",
+        EntityTypeName = args.EntityName,
+        ApiBasePath = args.EntityName.ToLower(),
     };
 
     CopyFilesRecursively(inputDirectory, args);
