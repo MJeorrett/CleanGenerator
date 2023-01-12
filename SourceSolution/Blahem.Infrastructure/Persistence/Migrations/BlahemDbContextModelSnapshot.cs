@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Blahem.Infrastructure.Persistence.Migrations
 {
-    [DbContext(typeof(BlahemDbContext))]
+    [DbContext(typeof(ApplicationDbContext))]
     partial class BlahemDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

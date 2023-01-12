@@ -16,11 +16,11 @@ public static class DependencyInjection
 
     private static void AddPersistence(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddDbContext<BlahemDbContext>(options =>
+        services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(
                 configuration.GetConnectionString("SqlServer"),
-                builder => builder.MigrationsAssembly(typeof(BlahemDbContext).Assembly.FullName)));
+                builder => builder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
 
-        services.AddScoped<IBlahemDbContext>(provider => provider.GetRequiredService<BlahemDbContext>());
+        services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
     }
 }

@@ -20,9 +20,9 @@ public record Update<#= _model.EntityTypeName #>Command
 
 public class Update<#= _model.EntityTypeName #>CommandHandler : IRequestHandler<Update<#= _model.EntityTypeName #>Command>
 {
-    private readonly I<#= _model.ProjectName #>DbContext _dbContext;
+    private readonly IApplicationDbContext _dbContext;
 
-    public Update<#= _model.EntityTypeName #>CommandHandler(I<#= _model.ProjectName #>DbContext dbContext)
+    public Update<#= _model.EntityTypeName #>CommandHandler(IApplicationDbContext dbContext)
     {
         _dbContext = dbContext;
     }

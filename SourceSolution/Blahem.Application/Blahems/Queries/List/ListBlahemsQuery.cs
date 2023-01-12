@@ -12,9 +12,9 @@ public record ListBlahemsQuery
 
 public class ListBlahemsQueryHandler : IRequestHandler<ListBlahemsQuery, List<BlahemDto>>
 {
-    private readonly IBlahemDbContext _dbContext;
+    private readonly IApplicationDbContext _dbContext;
 
-    public ListBlahemsQueryHandler(IBlahemDbContext dbContext)
+    public ListBlahemsQueryHandler(IApplicationDbContext dbContext)
     {
         _dbContext = dbContext;
     }

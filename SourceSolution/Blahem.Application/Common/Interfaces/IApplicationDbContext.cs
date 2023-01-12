@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Blahem.Application.Common.Interfaces;
 
-public interface IBlahemDbContext
+public interface IApplicationDbContext
 {
     public DbSet<BlahemEntity> Blahems { get; }
 

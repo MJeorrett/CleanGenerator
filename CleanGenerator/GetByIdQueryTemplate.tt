@@ -16,9 +16,9 @@ public record Get<#= _model.EntityTypeName #>ByIdQuery
 
 public class Get<#= _model.EntityTypeName #>ByIdQueryHandler : IRequestHandler<Get<#= _model.EntityTypeName #>ByIdQuery, <#= _model.EntityTypeName #>Dto>
 {
-    private readonly I<#= _model.ProjectName #>DbContext _dbContext;
+    private readonly IApplicationDbContext _dbContext;
 
-    public Get<#= _model.EntityTypeName #>ByIdQueryHandler(I<#= _model.ProjectName #>DbContext dbContext)
+    public Get<#= _model.EntityTypeName #>ByIdQueryHandler(IApplicationDbContext dbContext)
     {
         _dbContext = dbContext;
     }

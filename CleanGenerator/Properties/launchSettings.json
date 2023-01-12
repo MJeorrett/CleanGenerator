@@ -2,7 +2,7 @@
   "profiles": {
     "CleanGenerator": {
       "commandName": "Project",
-      "commandLineArgs": "--output=\"C:/git/github/mjeorrett/CleanGenerator/test-output\" --name=\"MJDemo\""
+      "commandLineArgs": "--output=\"C:/git/github/mjeorrett/CleanGenerator/test-output\" --name=\"MJDemo\" --entity=\"NewEntity\""
     }
   }
 }

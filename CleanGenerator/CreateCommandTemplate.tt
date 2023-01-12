@@ -16,9 +16,9 @@ public class Create<#= _model.EntityTypeName #>Command
 
 public class Create<#= _model.EntityTypeName #>CommandHandler : IRequestHandler<Create<#= _model.EntityTypeName #>Command, int>
 {
-    private readonly I<#= _model.ProjectName #>DbContext _dbContext;
+    private readonly IApplicationDbContext _dbContext;
 
-    public Create<#= _model.EntityTypeName #>CommandHandler(I<#= _model.ProjectName #>DbContext dbContext)
+    public Create<#= _model.EntityTypeName #>CommandHandler(IApplicationDbContext dbContext)
     {
         _dbContext = dbContext;
     }

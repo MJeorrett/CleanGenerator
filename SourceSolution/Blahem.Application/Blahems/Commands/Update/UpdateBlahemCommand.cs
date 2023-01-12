@@ -15,9 +15,9 @@ public record UpdateBlahemCommand
 
 public class UpdateBlahemCommandHandler : IRequestHandler<UpdateBlahemCommand>
 {
-    private readonly IBlahemDbContext _dbContext;
+    private readonly IApplicationDbContext _dbContext;
 
-    public UpdateBlahemCommandHandler(IBlahemDbContext dbContext)
+    public UpdateBlahemCommandHandler(IApplicationDbContext dbContext)
     {
         _dbContext = dbContext;
     }

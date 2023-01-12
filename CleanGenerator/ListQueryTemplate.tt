@@ -17,9 +17,9 @@ public record List<#= _model.EntityTypeName #>sQuery
 
 public class List<#= _model.EntityTypeName #>sQueryHandler : IRequestHandler<List<#= _model.EntityTypeName #>sQuery, List<<#= _model.EntityTypeName #>Dto>>
 {
-    private readonly I<#= _model.ProjectName #>DbContext _dbContext;
+    private readonly IApplicationDbContext _dbContext;
 
-    public List<#= _model.EntityTypeName #>sQueryHandler(I<#= _model.ProjectName #>DbContext dbContext)
+    public List<#= _model.EntityTypeName #>sQueryHandler(IApplicationDbContext dbContext)
     {
         _dbContext = dbContext;
     }

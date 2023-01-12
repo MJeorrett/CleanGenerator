@@ -12,9 +12,9 @@ public record GetBlahemByIdQuery
 
 public class GetBlahemByIdQueryHandler : IRequestHandler<GetBlahemByIdQuery, BlahemDto>
 {
-    private readonly IBlahemDbContext _dbContext;
+    private readonly IApplicationDbContext _dbContext;
 
-    public GetBlahemByIdQueryHandler(IBlahemDbContext dbContext)
+    public GetBlahemByIdQueryHandler(IApplicationDbContext dbContext)
     {
         _dbContext = dbContext;
     }

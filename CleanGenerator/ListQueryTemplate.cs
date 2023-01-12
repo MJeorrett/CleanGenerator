@@ -99,29 +99,16 @@ namespace CleanGenerator
             
             #line default
             #line hidden
-            this.Write("Dto>>\r\n{\r\n    private readonly I");
-            
-            #line 20 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\ListQueryTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_model.ProjectName));
-            
-            #line default
-            #line hidden
-            this.Write("DbContext _dbContext;\r\n\r\n    public List");
+            this.Write("Dto>>\r\n{\r\n    private readonly IApplicationDbContext _dbContext;\r\n\r\n    public Li" +
+                    "st");
             
             #line 22 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\ListQueryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
-            this.Write("sQueryHandler(I");
-            
-            #line 22 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\ListQueryTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_model.ProjectName));
-            
-            #line default
-            #line hidden
-            this.Write("DbContext dbContext)\r\n    {\r\n        _dbContext = dbContext;\r\n    }\r\n\r\n    public" +
-                    " async Task<AppResponse<List<");
+            this.Write("sQueryHandler(IApplicationDbContext dbContext)\r\n    {\r\n        _dbContext = dbCon" +
+                    "text;\r\n    }\r\n\r\n    public async Task<AppResponse<List<");
             
             #line 27 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\ListQueryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));

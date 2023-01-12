@@ -5,11 +5,11 @@ using System.Reflection;
 
 namespace Blahem.Infrastructure.Persistence;
 
-public class BlahemDbContext : DbContext, IBlahemDbContext
+public class ApplicationDbContext : DbContext, IApplicationDbContext
 {
     public DbSet<BlahemEntity> Blahems { get; init; }
 
-    public BlahemDbContext(DbContextOptions<BlahemDbContext> options)
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
     {
 

@@ -106,29 +106,16 @@ namespace CleanGenerator
             
             #line default
             #line hidden
-            this.Write("Dto>\r\n{\r\n    private readonly I");
-            
-            #line 19 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\GetByIdQueryTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_model.ProjectName));
-            
-            #line default
-            #line hidden
-            this.Write("DbContext _dbContext;\r\n\r\n    public Get");
+            this.Write("Dto>\r\n{\r\n    private readonly IApplicationDbContext _dbContext;\r\n\r\n    public Get" +
+                    "");
             
             #line 21 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\GetByIdQueryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
-            this.Write("ByIdQueryHandler(I");
-            
-            #line 21 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\GetByIdQueryTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_model.ProjectName));
-            
-            #line default
-            #line hidden
-            this.Write("DbContext dbContext)\r\n    {\r\n        _dbContext = dbContext;\r\n    }\r\n\r\n    public" +
-                    " async Task<AppResponse<");
+            this.Write("ByIdQueryHandler(IApplicationDbContext dbContext)\r\n    {\r\n        _dbContext = db" +
+                    "Context;\r\n    }\r\n\r\n    public async Task<AppResponse<");
             
             #line 26 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\GetByIdQueryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));

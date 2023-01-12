@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Blahem.Infrastructure.Persistence.Migrations
 {
-    [DbContext(typeof(BlahemDbContext))]
+    [DbContext(typeof(ApplicationDbContext))]
     [Migration("20230110215147_InitialCreate")]
     partial class InitialCreate
     {

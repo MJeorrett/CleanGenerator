@@ -11,9 +11,9 @@ public class CreateBlahemCommand
 
 public class CreateBlahemCommandHandler : IRequestHandler<CreateBlahemCommand, int>
 {
-    private readonly IBlahemDbContext _dbContext;
+    private readonly IApplicationDbContext _dbContext;
 
-    public CreateBlahemCommandHandler(IBlahemDbContext dbContext)
+    public CreateBlahemCommandHandler(IApplicationDbContext dbContext)
     {
         _dbContext = dbContext;
     }

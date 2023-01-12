@@ -71,7 +71,7 @@ static void CreateCrud(TemplateModel templateModel, CommandArgs args)
     UpdateDbContextInterface(templateModel, args);
     UpdateDbContext(templateModel, args);
 
-    RunCmd($"dotnet ef migrations add InitialCreate --startup-project {Path.Join(args.OutputDirectory, args.ProjectName)}.WebApi --project {Path.Join(args.OutputDirectory, args.ProjectName)}.Infrastructure");
+    RunCmd($"dotnet ef migrations add Add{args.EntityName}Table --startup-project {Path.Join(args.OutputDirectory, args.ProjectName)}.WebApi --project {Path.Join(args.OutputDirectory, args.ProjectName)}.Infrastructure");
     RunCmd($"dotnet ef database update --startup-project {Path.Join(args.OutputDirectory, args.ProjectName)}.WebApi --project {Path.Join(args.OutputDirectory, args.ProjectName)}.Infrastructure");
 }
 
@@ -231,7 +231,7 @@ static void GenerateAndWriteControllerFile(TemplateModel model, CommandArgs args
 
 static void UpdateDbContextInterface(TemplateModel model, CommandArgs args)
 {
-    var path = Path.Join(args.OutputDirectory, $"{model.ProjectName}.Application", "Common", "Interfaces", $"I{model.ProjectName}DbContext.cs");
+    var path = Path.Join(args.OutputDirectory, $"{model.ProjectName}.Application", "Common", "Interfaces", "IApplicationDbContext.cs");
 
     var lines = File.ReadAllLines(path).ToList();
     var lastDbSetLine = lines.Last(_ => _.Contains("DbSet<"));
@@ -244,7 +244,7 @@ static void UpdateDbContextInterface(TemplateModel model, CommandArgs args)
 
 static void UpdateDbContext(TemplateModel model, CommandArgs args)
 {
-    var path = Path.Join(args.OutputDirectory, $"{model.ProjectName}.Infrastructure", "Persistence", $"{model.ProjectName}DbContext.cs");
+    var path = Path.Join(args.OutputDirectory, $"{model.ProjectName}.Infrastructure", "Persistence", "ApplicationDbContext.cs");
 
     var lines = File.ReadAllLines(path).ToList();
     var lastDbSetLine = lines.Last(_ => _.Contains("DbSet<"));

@@ -85,29 +85,17 @@ namespace CleanGenerator
             
             #line default
             #line hidden
-            this.Write("Command, int>\r\n{\r\n    private readonly I");
-            
-            #line 19 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\CreateCommandTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_model.ProjectName));
-            
-            #line default
-            #line hidden
-            this.Write("DbContext _dbContext;\r\n\r\n    public Create");
+            this.Write("Command, int>\r\n{\r\n    private readonly IApplicationDbContext _dbContext;\r\n\r\n    p" +
+                    "ublic Create");
             
             #line 21 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\CreateCommandTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
-            this.Write("CommandHandler(I");
-            
-            #line 21 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\CreateCommandTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_model.ProjectName));
-            
-            #line default
-            #line hidden
-            this.Write("DbContext dbContext)\r\n    {\r\n        _dbContext = dbContext;\r\n    }\r\n\r\n    public" +
-                    " async Task<AppResponse<int>> Handle(\r\n        Create");
+            this.Write("CommandHandler(IApplicationDbContext dbContext)\r\n    {\r\n        _dbContext = dbCo" +
+                    "ntext;\r\n    }\r\n\r\n    public async Task<AppResponse<int>> Handle(\r\n        Create" +
+                    "");
             
             #line 27 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\CreateCommandTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
