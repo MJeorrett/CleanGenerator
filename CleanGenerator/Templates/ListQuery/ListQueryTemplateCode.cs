@@ -1,4 +1,4 @@
-﻿namespace CleanGenerator;
+﻿namespace CleanGenerator.Templates.ListQuery;
 
 public partial class ListQueryTemplate
 {

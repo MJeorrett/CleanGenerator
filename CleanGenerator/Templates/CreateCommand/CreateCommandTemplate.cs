@@ -7,7 +7,7 @@
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace CleanGenerator
+namespace CleanGenerator.Templates.CreateCommand
 {
     using System.Linq;
     using System.Text;
@@ -18,9 +18,9 @@ namespace CleanGenerator
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\DtoTemplate.tt"
+    #line 1 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\CreateCommand\CreateCommandTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
-    public partial class DtoTemplate : DtoTemplateBase
+    public partial class CreateCommandTemplate : CreateCommandTemplateBase
     {
 #line hidden
         /// <summary>
@@ -30,49 +30,96 @@ namespace CleanGenerator
         {
             this.Write("using ");
             
-            #line 6 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\DtoTemplate.tt"
+            #line 6 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\CreateCommand\CreateCommandTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.ProjectName));
+            
+            #line default
+            #line hidden
+            this.Write(".Application.Common.AppRequests;\r\nusing ");
+            
+            #line 7 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\CreateCommand\CreateCommandTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.ProjectName));
+            
+            #line default
+            #line hidden
+            this.Write(".Application.Common.Interfaces;\r\nusing ");
+            
+            #line 8 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\CreateCommand\CreateCommandTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.ProjectName));
             
             #line default
             #line hidden
             this.Write(".Core.Entities;\r\n\r\nnamespace ");
             
-            #line 8 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\DtoTemplate.tt"
+            #line 10 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\CreateCommand\CreateCommandTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.ProjectName));
             
             #line default
             #line hidden
             this.Write(".Application.");
             
-            #line 8 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\DtoTemplate.tt"
+            #line 10 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\CreateCommand\CreateCommandTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
-            this.Write("s.Dtos;\r\n\r\npublic record ");
+            this.Write("s.Commands.Create;\r\n\r\npublic class Create");
             
-            #line 10 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\DtoTemplate.tt"
+            #line 12 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\CreateCommand\CreateCommandTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
-            this.Write("Dto\r\n{\r\n    public int Id { get; init; }\r\n\r\n    public string Title { get; init; " +
-                    "} = \"\";\r\n\r\n    public static ");
+            this.Write("Command\r\n{\r\n    public string Title { get; init; } = null!;\r\n}\r\n\r\npublic class Cr" +
+                    "eate");
             
-            #line 16 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\DtoTemplate.tt"
+            #line 17 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\CreateCommand\CreateCommandTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
-            this.Write("Dto MapFromEntity(");
+            this.Write("CommandHandler : IRequestHandler<Create");
             
-            #line 16 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\DtoTemplate.tt"
+            #line 17 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\CreateCommand\CreateCommandTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
-            this.Write("Entity entity)\r\n    {\r\n        return new()\r\n        {\r\n            Id = entity.I" +
-                    "d,\r\n            Title = entity.Title,\r\n        };\r\n    }\r\n}\r\n");
+            this.Write("Command, int>\r\n{\r\n    private readonly IApplicationDbContext _dbContext;\r\n\r\n    p" +
+                    "ublic Create");
+            
+            #line 21 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\CreateCommand\CreateCommandTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
+            
+            #line default
+            #line hidden
+            this.Write("CommandHandler(IApplicationDbContext dbContext)\r\n    {\r\n        _dbContext = dbCo" +
+                    "ntext;\r\n    }\r\n\r\n    public async Task<AppResponse<int>> Handle(\r\n        Create" +
+                    "");
+            
+            #line 27 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\CreateCommand\CreateCommandTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
+            
+            #line default
+            #line hidden
+            this.Write("Command command,\r\n        CancellationToken cancellationToken)\r\n    {\r\n        va" +
+                    "r entity = new ");
+            
+            #line 30 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\CreateCommand\CreateCommandTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
+            
+            #line default
+            #line hidden
+            this.Write("Entity\r\n        {\r\n            Title = command.Title,\r\n        };\r\n\r\n        _dbC" +
+                    "ontext.");
+            
+            #line 35 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\CreateCommand\CreateCommandTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
+            
+            #line default
+            #line hidden
+            this.Write("s.Add(entity);\r\n\r\n        await _dbContext.SaveChangesAsync(cancellationToken);\r\n" +
+                    "\r\n        return new(201, entity.Id);\r\n    }\r\n}");
             return this.GenerationEnvironment.ToString();
         }
     }
@@ -84,7 +131,7 @@ namespace CleanGenerator
     /// Base class for this transformation
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
-    public class DtoTemplateBase
+    public class CreateCommandTemplateBase
     {
         #region Fields
         private global::System.Text.StringBuilder generationEnvironmentField;

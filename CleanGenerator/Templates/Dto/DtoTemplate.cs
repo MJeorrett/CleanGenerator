@@ -7,7 +7,7 @@
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace CleanGenerator
+namespace CleanGenerator.Templates.Dto
 {
     using System.Linq;
     using System.Text;
@@ -18,9 +18,9 @@ namespace CleanGenerator
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\EntityTemplate.tt"
+    #line 1 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Dto\DtoTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
-    public partial class EntityTemplate : EntityTemplateBase
+    public partial class DtoTemplate : DtoTemplateBase
     {
 #line hidden
         /// <summary>
@@ -28,22 +28,51 @@ namespace CleanGenerator
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("namespace ");
+            this.Write("using ");
             
-            #line 6 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\EntityTemplate.tt"
+            #line 6 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Dto\DtoTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.ProjectName));
             
             #line default
             #line hidden
-            this.Write(".Core.Entities;\r\n\r\npublic class ");
+            this.Write(".Core.Entities;\r\n\r\nnamespace ");
             
-            #line 8 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\EntityTemplate.tt"
+            #line 8 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Dto\DtoTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.ProjectName));
+            
+            #line default
+            #line hidden
+            this.Write(".Application.");
+            
+            #line 8 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Dto\DtoTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
-            this.Write("Entity\r\n{\r\n    public int Id { get; set; }\r\n\r\n    public string Title { get; set;" +
-                    " } = null!;\r\n}\r\n");
+            this.Write("s.Dtos;\r\n\r\npublic record ");
+            
+            #line 10 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Dto\DtoTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
+            
+            #line default
+            #line hidden
+            this.Write("Dto\r\n{\r\n    public int Id { get; init; }\r\n\r\n    public string Title { get; init; " +
+                    "} = \"\";\r\n\r\n    public static ");
+            
+            #line 16 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Dto\DtoTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
+            
+            #line default
+            #line hidden
+            this.Write("Dto MapFromEntity(");
+            
+            #line 16 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Dto\DtoTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
+            
+            #line default
+            #line hidden
+            this.Write("Entity entity)\r\n    {\r\n        return new()\r\n        {\r\n            Id = entity.I" +
+                    "d,\r\n            Title = entity.Title,\r\n        };\r\n    }\r\n}\r\n");
             return this.GenerationEnvironment.ToString();
         }
     }
@@ -55,7 +84,7 @@ namespace CleanGenerator
     /// Base class for this transformation
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
-    public class EntityTemplateBase
+    public class DtoTemplateBase
     {
         #region Fields
         private global::System.Text.StringBuilder generationEnvironmentField;

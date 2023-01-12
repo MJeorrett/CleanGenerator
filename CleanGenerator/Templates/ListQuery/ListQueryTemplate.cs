@@ -7,7 +7,7 @@
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace CleanGenerator
+namespace CleanGenerator.Templates.ListQuery
 {
     using System.Linq;
     using System.Text;
@@ -18,9 +18,9 @@ namespace CleanGenerator
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\UpdateCommandTemplate.tt"
+    #line 1 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
-    public partial class UpdateCommandTemplate : UpdateCommandTemplateBase
+    public partial class ListQueryTemplate : ListQueryTemplateBase
     {
 #line hidden
         /// <summary>
@@ -30,97 +30,115 @@ namespace CleanGenerator
         {
             this.Write("using ");
             
-            #line 6 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\UpdateCommandTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_model.ProjectName));
-            
-            #line default
-            #line hidden
-            this.Write(".Application.Common.AppRequests;\r\nusing ");
-            
-            #line 7 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\UpdateCommandTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_model.ProjectName));
-            
-            #line default
-            #line hidden
-            this.Write(".Application.Common.Interfaces;\r\nusing Microsoft.EntityFrameworkCore;\r\nusing Syst" +
-                    "em.Text.Json.Serialization;\r\n\r\nnamespace ");
-            
-            #line 11 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\UpdateCommandTemplate.tt"
+            #line 6 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.ProjectName));
             
             #line default
             #line hidden
             this.Write(".Application.");
             
-            #line 11 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\UpdateCommandTemplate.tt"
+            #line 6 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
-            this.Write("s.Commands.Update;\r\n\r\npublic record Update");
+            this.Write("s.Dtos;\r\nusing ");
             
-            #line 13 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\UpdateCommandTemplate.tt"
+            #line 7 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.ProjectName));
+            
+            #line default
+            #line hidden
+            this.Write(".Application.Common.AppRequests;\r\nusing ");
+            
+            #line 8 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.ProjectName));
+            
+            #line default
+            #line hidden
+            this.Write(".Application.Common.Interfaces;\r\nusing Microsoft.EntityFrameworkCore;\r\n\r\nnamespac" +
+                    "e ");
+            
+            #line 11 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.ProjectName));
+            
+            #line default
+            #line hidden
+            this.Write(".Application.");
+            
+            #line 11 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
-            this.Write("Command\r\n{\r\n    [JsonIgnore]\r\n    public int ");
+            this.Write("s.Queries.List;\r\n\r\npublic record List");
             
-            #line 16 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\UpdateCommandTemplate.tt"
+            #line 13 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
-            this.Write("Id { get; init; }\r\n\r\n    public string Title { get; init; } = \"\";\r\n}\r\n\r\npublic cl" +
-                    "ass Update");
+            this.Write("sQuery\r\n{\r\n\r\n}\r\n\r\npublic class List");
             
-            #line 21 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\UpdateCommandTemplate.tt"
+            #line 18 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
-            this.Write("CommandHandler : IRequestHandler<Update");
+            this.Write("sQueryHandler : IRequestHandler<List");
             
-            #line 21 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\UpdateCommandTemplate.tt"
+            #line 18 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
-            this.Write("Command>\r\n{\r\n    private readonly IApplicationDbContext _dbContext;\r\n\r\n    public" +
-                    " Update");
+            this.Write("sQuery, List<");
             
-            #line 25 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\UpdateCommandTemplate.tt"
+            #line 18 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
-            this.Write("CommandHandler(IApplicationDbContext dbContext)\r\n    {\r\n        _dbContext = dbCo" +
-                    "ntext;\r\n    }\r\n\r\n    public async Task<AppResponse> Handle(\r\n        Update");
+            this.Write("Dto>>\r\n{\r\n    private readonly IApplicationDbContext _dbContext;\r\n\r\n    public Li" +
+                    "st");
             
-            #line 31 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\UpdateCommandTemplate.tt"
+            #line 22 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
-            this.Write("Command command,\r\n        CancellationToken cancellationToken)\r\n    {\r\n        va" +
-                    "r entity = await _dbContext.");
+            this.Write("sQueryHandler(IApplicationDbContext dbContext)\r\n    {\r\n        _dbContext = dbCon" +
+                    "text;\r\n    }\r\n\r\n    public async Task<AppResponse<List<");
             
-            #line 34 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\UpdateCommandTemplate.tt"
+            #line 27 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
-            this.Write("s\r\n            .FirstOrDefaultAsync(_ => _.Id == command.");
+            this.Write("Dto>>> Handle(\r\n        List");
             
-            #line 35 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\UpdateCommandTemplate.tt"
+            #line 28 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
-            this.Write("Id, cancellationToken);\r\n\r\n        if (entity == null)\r\n        {\r\n            re" +
-                    "turn new(404);\r\n        }\r\n\r\n        entity.Title = command.Title;\r\n\r\n        aw" +
-                    "ait _dbContext.SaveChangesAsync(cancellationToken);\r\n\r\n        return new(200);\r" +
-                    "\n    }\r\n}");
+            this.Write("sQuery query,\r\n        CancellationToken cancellationToken)\r\n    {\r\n        var d" +
+                    "tos = await _dbContext.");
+            
+            #line 31 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
+            
+            #line default
+            #line hidden
+            this.Write("s\r\n            .Select(_ => ");
+            
+            #line 32 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
+            
+            #line default
+            #line hidden
+            this.Write("Dto.MapFromEntity(_))\r\n            .ToListAsync(cancellationToken);\r\n\r\n        re" +
+                    "turn new(200, dtos);\r\n    }\r\n}\r\n");
             return this.GenerationEnvironment.ToString();
         }
     }
@@ -132,7 +150,7 @@ namespace CleanGenerator
     /// Base class for this transformation
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
-    public class UpdateCommandTemplateBase
+    public class ListQueryTemplateBase
     {
         #region Fields
         private global::System.Text.StringBuilder generationEnvironmentField;

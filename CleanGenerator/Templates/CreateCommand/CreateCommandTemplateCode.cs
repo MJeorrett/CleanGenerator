@@ -1,4 +1,4 @@
-﻿namespace CleanGenerator;
+﻿namespace CleanGenerator.Templates.CreateCommand;
 
 public partial class CreateCommandTemplate
 {

@@ -26,37 +26,37 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Command.tt</DependentUpon>
     </Compile>
-    <Compile Update="ControllerTemplate.cs">
+    <Compile Update="Templates\Controller\ControllerTemplate.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>ControllerTemplate.tt</DependentUpon>
     </Compile>
-    <Compile Update="CreateCommandTemplate.cs">
+    <Compile Update="Templates\CreateCommand\CreateCommandTemplate.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>CreateCommandTemplate.tt</DependentUpon>
     </Compile>
-    <Compile Update="DtoTemplate.cs">
+    <Compile Update="Templates\Dto\DtoTemplate.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>DtoTemplate.tt</DependentUpon>
     </Compile>
-    <Compile Update="EntityTemplate.cs">
+    <Compile Update="Templates\Entity\EntityTemplate.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>EntityTemplate.tt</DependentUpon>
     </Compile>
-    <Compile Update="GetByIdQueryTemplate.cs">
+    <Compile Update="Templates\GetByIdQuery\GetByIdQueryTemplate.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>GetByIdQueryTemplate.tt</DependentUpon>
     </Compile>
-    <Compile Update="ListQueryTemplate.cs">
+    <Compile Update="Templates\ListQuery\ListQueryTemplate.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>ListQueryTemplate.tt</DependentUpon>
     </Compile>
-    <Compile Update="UpdateCommandTemplate.cs">
+    <Compile Update="Templates\UpdateCommand\UpdateCommandTemplate.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>UpdateCommandTemplate.tt</DependentUpon>
@@ -64,31 +64,31 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="ControllerTemplate.tt">
+    <None Update="Templates\Controller\ControllerTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>ControllerTemplate.cs</LastGenOutput>
     </None>
-    <None Update="CreateCommandTemplate.tt">
+    <None Update="Templates\CreateCommand\CreateCommandTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>CreateCommandTemplate.cs</LastGenOutput>
     </None>
-    <None Update="DtoTemplate.tt">
+    <None Update="Templates\Dto\DtoTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>DtoTemplate.cs</LastGenOutput>
     </None>
-    <None Update="EntityTemplate.tt">
+    <None Update="Templates\Entity\EntityTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>EntityTemplate.cs</LastGenOutput>
     </None>
-    <None Update="GetByIdQueryTemplate.tt">
+    <None Update="Templates\GetByIdQuery\GetByIdQueryTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>GetByIdQueryTemplate.cs</LastGenOutput>
     </None>
-    <None Update="ListQueryTemplate.tt">
+    <None Update="Templates\ListQuery\ListQueryTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>ListQueryTemplate.cs</LastGenOutput>
     </None>
-    <None Update="UpdateCommandTemplate.tt">
+    <None Update="Templates\UpdateCommand\UpdateCommandTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>UpdateCommandTemplate.cs</LastGenOutput>
     </None>

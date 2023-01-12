@@ -1,4 +1,4 @@
-﻿namespace CleanGenerator;
+﻿namespace CleanGenerator.Templates.Entity;
 
 public partial class EntityTemplate
 {

@@ -1,4 +1,4 @@
-﻿namespace CleanGenerator;
+﻿namespace CleanGenerator.Templates.UpdateCommand;
 
 public partial class UpdateCommandTemplate
 {

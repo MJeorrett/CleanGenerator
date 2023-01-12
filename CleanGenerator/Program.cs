@@ -1,4 +1,11 @@
 ﻿using CleanGenerator;
+using CleanGenerator.Templates.Controller;
+using CleanGenerator.Templates.CreateCommand;
+using CleanGenerator.Templates.Dto;
+using CleanGenerator.Templates.Entity;
+using CleanGenerator.Templates.GetByIdQuery;
+using CleanGenerator.Templates.ListQuery;
+using CleanGenerator.Templates.UpdateCommand;
 using System.CommandLine;
 
 var outputDirectoryOption = new Option<string>("--output", "Root output path of scaffolded project.")

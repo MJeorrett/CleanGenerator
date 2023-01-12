@@ -1,4 +1,4 @@
-﻿namespace CleanGenerator;
+﻿namespace CleanGenerator.Templates.Controller;
 
 public partial class ControllerTemplate
 {

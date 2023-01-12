@@ -5,9 +5,6 @@
 Scaffolding tools for clean architecture project in dotnet.
 
 ## TODO
-- [x] Wrap in tool.
-- [x] Separate commands for scaffold project and CRU endpoint.
-- [ ] Refactor templates into their own folder.
 - [ ] Dynamically resolve input directory (to tool root).
 - [ ] Dynamically resolve project name e.g. from <ProjectName.WebApi.
 - [ ] Allow specifying the initial entity name when running init.
@@ -18,3 +15,6 @@ Scaffolding tools for clean architecture project in dotnet.
 - [ ] Scaffold calidation.
 - [ ] Scaffold e2e tests.
 - [ ] FK relationships.
+- [x] Refactor templates into their own folder.
+- [x] Separate commands for scaffold project and CRU endpoint.
+- [x] Wrap in tool.

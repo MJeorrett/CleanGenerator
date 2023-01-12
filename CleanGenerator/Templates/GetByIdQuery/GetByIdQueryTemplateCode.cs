@@ -1,4 +1,4 @@
-﻿namespace CleanGenerator;
+﻿namespace CleanGenerator.Templates.GetByIdQuery;
 
 public partial class GetByIdQueryTemplate
 {
