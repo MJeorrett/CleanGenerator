@@ -6,7 +6,9 @@ using CleanGenerator.Templates.Entity;
 using CleanGenerator.Templates.GetByIdQuery;
 using CleanGenerator.Templates.ListQuery;
 using CleanGenerator.Templates.UpdateCommand;
+using Microsoft.Extensions.Configuration;
 using System.CommandLine;
+using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 
 var outputDirectoryOption = new Option<string>("--output", "Root output path of scaffolded project.")
@@ -20,6 +22,11 @@ var projectNameOption = new Option<string>("--name", "Name of the project e.g. \
 };
 
 var entityNameOption = new Option<string>("--entity", "Name of the new entity e.g. \"Todo\".")
+{
+    IsRequired = true,
+};
+
+var entityConfigOption = new Option<string>("--entity-config", "Path to the entity configuration file.")
 {
     IsRequired = true,
 };
@@ -47,22 +54,24 @@ rootCommand.AddCommand(initCommand);
 
 var addEntityCommand = new Command("add", "Add entity to existing clean architecture project.")
 {
-    outputDirectoryOption, entityNameOption,
+    outputDirectoryOption, entityConfigOption
 };
 
-addEntityCommand.SetHandler((outputDirectory, entityName) =>
+addEntityCommand.SetHandler((Action<string, string>)((outputDirectory, entityConfigurationPath) =>
 {
     string projectName = GetProjectName(outputDirectory);
+
+    var entityConfig = LoadAndValidateEntityConfiguration(entityConfigurationPath);
 
     var args = new CommandArgs
     {
         OutputDirectory = outputDirectory,
         ProjectName = projectName,
-        EntityName = entityName,
+        EntityName = entityConfig.EntityName,
     };
 
     RunAddEntity(args);
-}, outputDirectoryOption, entityNameOption);
+}), outputDirectoryOption, entityConfigOption);
 
 rootCommand.AddCommand(addEntityCommand);
 
@@ -334,4 +343,24 @@ static string GetProjectName(string outputDirectory)
     {
         throw new Exception("Failed to resolve project name.", exception);
     }
+}
+
+static EntityConfiguration LoadAndValidateEntityConfiguration(string entityConfigurationPath)
+{
+    var config = new ConfigurationBuilder()
+            .AddJsonFile(entityConfigurationPath)
+            .Build();
+
+    var entityConfig = new EntityConfiguration();
+    config.Bind(entityConfig);
+
+    var validator = new EntityConfigurationValidator();
+    var validationResult = validator.Validate(entityConfig);
+
+    if (!validationResult.IsValid)
+    {
+        throw new Exception("Entity configuraiton is invalid:\n" + string.Join("\n", validationResult.Errors.Select(_ => "  - " + _.ToString())));
+    }
+
+    return entityConfig;
 }

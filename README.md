@@ -21,14 +21,14 @@ To build and install the tool globally on your local machine
 Then you can use it anywhere by running `cleangen ...`.
 
 ## TODO
-- [ ] Allow specifying what properties appear on detail and summary dtos.
-- [ ] Eliminate warnings when running dotnet pack.
+- [ ] Allow passing in entity properties and types.
 - [ ] Add delete command.
-- [ ] Install dotnet ef tool locally.
-- [ ] Allow passing in properties and types.
 - [ ] Scaffold validation.
 - [ ] Scaffold e2e tests.
 - [ ] FK relationships.
+- [ ] Allow specifying what properties appear on detail and summary dtos.
+- [ ] Eliminate warnings when running dotnet pack.
+- [ ] Install dotnet ef tool locally.
 - [ ] Ensure that tool works cross platform, particularly path separators might need attention.
 - [x] Dynamically resolve project name e.g. from <ProjectName>.WebApi.
 - [x] Allow specifying the initial entity name when running init.

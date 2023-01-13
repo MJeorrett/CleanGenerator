@@ -1,0 +1,14 @@
+{
+  "EntityName": "Schedule1",
+  "Properties": [
+    {
+      "Name": "Day",
+      "Type": "string",
+      "ColumnType": "nvarchar(50)"
+    },
+    {
+      "Name": "Count",
+      "Type": "int"
+    }
+  ]
+}
