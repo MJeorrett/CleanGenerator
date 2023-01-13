@@ -3,31 +3,31 @@ using Blahem.Application.Common.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
-namespace Blahem.Application.Blahems.Commands.Update;
+namespace Blahem.Application.Blaitems.Commands.Update;
 
-public record UpdateBlahemCommand
+public record UpdateBlaitemCommand
 {
     [JsonIgnore]
-    public int BlahemId { get; init; }
+    public int BlaitemId { get; init; }
 
     public string Title { get; init; } = "";
 }
 
-public class UpdateBlahemCommandHandler : IRequestHandler<UpdateBlahemCommand>
+public class UpdateBlaitemCommandHandler : IRequestHandler<UpdateBlaitemCommand>
 {
     private readonly IApplicationDbContext _dbContext;
 
-    public UpdateBlahemCommandHandler(IApplicationDbContext dbContext)
+    public UpdateBlaitemCommandHandler(IApplicationDbContext dbContext)
     {
         _dbContext = dbContext;
     }
 
     public async Task<AppResponse> Handle(
-        UpdateBlahemCommand command,
+        UpdateBlaitemCommand command,
         CancellationToken cancellationToken)
     {
-        var entity = await _dbContext.Blahems
-            .FirstOrDefaultAsync(_ => _.Id == command.BlahemId, cancellationToken);
+        var entity = await _dbContext.Blaitems
+            .FirstOrDefaultAsync(_ => _.Id == command.BlaitemId, cancellationToken);
 
         if (entity == null)
         {

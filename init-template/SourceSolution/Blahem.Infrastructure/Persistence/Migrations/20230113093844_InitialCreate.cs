@@ -11,16 +11,16 @@ namespace Blahem.Infrastructure.Persistence.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Blahem",
+                name: "Blaitem",
                 columns: table => new
                 {
-                    BlahemId = table.Column<int>(type: "int", nullable: false)
+                    BlaitemId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Blahem", x => x.BlahemId);
+                    table.PrimaryKey("PK_Blaitem", x => x.BlaitemId);
                 });
         }
 
@@ -28,7 +28,7 @@ namespace Blahem.Infrastructure.Persistence.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Blahem");
+                name: "Blaitem");
         }
     }
 }

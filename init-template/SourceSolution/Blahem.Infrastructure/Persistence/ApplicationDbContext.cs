@@ -7,7 +7,7 @@ namespace Blahem.Infrastructure.Persistence;
 
 public class ApplicationDbContext : DbContext, IApplicationDbContext
 {
-    public DbSet<BlahemEntity> Blahems { get; init; }
+    public DbSet<BlaitemEntity> Blaitems { get; init; }
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)

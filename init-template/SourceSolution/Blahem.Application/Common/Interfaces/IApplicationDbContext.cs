@@ -5,7 +5,7 @@ namespace Blahem.Application.Common.Interfaces;
 
 public interface IApplicationDbContext
 {
-    public DbSet<BlahemEntity> Blahems { get; }
+    public DbSet<BlaitemEntity> Blaitems { get; }
 
     public Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 }

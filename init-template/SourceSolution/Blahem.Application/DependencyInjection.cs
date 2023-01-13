@@ -1,4 +1,4 @@
-﻿using Blahem.Application.Blahems.Commands.Create;
+﻿using Blahem.Application.Blaitems.Commands.Create;
 using Blahem.Application.Common.AppRequests;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -17,12 +17,12 @@ public static class DependencyInjection
     {
         services.Scan(scan =>
         {
-            scan.FromAssemblyOf<CreateBlahemCommandHandler>()
+            scan.FromAssemblyOf<CreateBlaitemCommandHandler>()
                 .AddClasses(classes => classes.AssignableTo(typeof(IRequestHandler<,>)))
                 .AsSelf()
                 .WithScopedLifetime();
 
-            scan.FromAssemblyOf<CreateBlahemCommandHandler>()
+            scan.FromAssemblyOf<CreateBlaitemCommandHandler>()
                 .AddClasses(classes => classes.AssignableTo(typeof(IRequestHandler<>)))
                 .AsSelf()
                 .WithScopedLifetime();

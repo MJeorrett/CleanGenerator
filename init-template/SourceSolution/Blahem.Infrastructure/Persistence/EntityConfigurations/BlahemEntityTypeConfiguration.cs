@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Blahem.Infrastructure.Persistence.EntityConfigurations;
 
-public class BlahemEntityTypeConfiguration : IEntityTypeConfiguration<BlahemEntity>
+public class BlahemEntityTypeConfiguration : IEntityTypeConfiguration<BlaitemEntity>
 {
-    public void Configure(EntityTypeBuilder<BlahemEntity> builder)
+    public void Configure(EntityTypeBuilder<BlaitemEntity> builder)
     {
-        builder.ToTable("Blahem");
+        builder.ToTable("Blaitem");
 
         builder.Property(_ => _.Id)
-            .HasColumnName("BlahemId");
+            .HasColumnName("BlaitemId");
     }
 }

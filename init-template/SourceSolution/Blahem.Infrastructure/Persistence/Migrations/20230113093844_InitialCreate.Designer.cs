@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Blahem.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230110215147_InitialCreate")]
+    [Migration("20230113093844_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -24,12 +24,12 @@ namespace Blahem.Infrastructure.Persistence.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Blahem.Core.Entities.BlahemEntity", b =>
+            modelBuilder.Entity("Blahem.Core.Entities.BlaitemEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("BlahemId");
+                        .HasColumnName("BlaitemId");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
@@ -39,7 +39,7 @@ namespace Blahem.Infrastructure.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Blahem", (string)null);
+                    b.ToTable("Blaitem", (string)null);
                 });
 #pragma warning restore 612, 618
         }

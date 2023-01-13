@@ -2,32 +2,32 @@
 using Blahem.Application.Common.Interfaces;
 using Blahem.Core.Entities;
 
-namespace Blahem.Application.Blahems.Commands.Create;
+namespace Blahem.Application.Blaitems.Commands.Create;
 
-public class CreateBlahemCommand
+public class CreateBlaitemCommand
 {
     public string Title { get; init; } = null!;
 }
 
-public class CreateBlahemCommandHandler : IRequestHandler<CreateBlahemCommand, int>
+public class CreateBlaitemCommandHandler : IRequestHandler<CreateBlaitemCommand, int>
 {
     private readonly IApplicationDbContext _dbContext;
 
-    public CreateBlahemCommandHandler(IApplicationDbContext dbContext)
+    public CreateBlaitemCommandHandler(IApplicationDbContext dbContext)
     {
         _dbContext = dbContext;
     }
 
     public async Task<AppResponse<int>> Handle(
-        CreateBlahemCommand command,
+        CreateBlaitemCommand command,
         CancellationToken cancellationToken)
     {
-        var entity = new BlahemEntity
+        var entity = new BlaitemEntity
         {
             Title = command.Title,
         };
 
-        _dbContext.Blahems.Add(entity);
+        _dbContext.Blaitems.Add(entity);
 
         await _dbContext.SaveChangesAsync(cancellationToken);
 

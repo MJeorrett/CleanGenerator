@@ -1,6 +1,6 @@
 ﻿namespace Blahem.Core.Entities;
 
-public class BlahemEntity
+public class BlaitemEntity
 {
     public int Id { get; set; }
 

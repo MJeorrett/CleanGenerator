@@ -106,11 +106,11 @@ static void CreateCrud(TemplateModel templateModel, CommandArgs args)
 
     UpdateDbContextInterface(templateModel, args);
     UpdateDbContext(templateModel, args);
-    CreateMigration(args, $"Add{ args.EntityName}Table");
+    CreateMigration(args, $"Add{args.EntityName}Table");
 }
 static void CreateMigration(CommandArgs args, string migrationName)
 {
-    RunCmd($"dotnet ef migrations add {migrationName} --startup-project {Path.Join(args.OutputDirectory, args.ProjectName)}.WebApi --project {Path.Join(args.OutputDirectory, args.ProjectName)}.Infrastructure");
+    RunCmd($"dotnet ef migrations add {migrationName} --startup-project {Path.Join(args.OutputDirectory, args.ProjectName)}.WebApi --project {Path.Join(args.OutputDirectory, args.ProjectName)}.Infrastructure -o Persistence/Migrations");
     RunCmd($"dotnet ef database update --startup-project {Path.Join(args.OutputDirectory, args.ProjectName)}.WebApi --project {Path.Join(args.OutputDirectory, args.ProjectName)}.Infrastructure");
 }
 
@@ -141,7 +141,9 @@ static void CopyFilesRecursively(string sourcePath, CommandArgs args)
             dirPath
                 .Replace(sourcePath, args.OutputDirectory)
                 .Replace("Blahem", args.ProjectName)
-                .Replace("blahem", args.ProjectName.ToLower()));
+                .Replace("blahem", args.ProjectName.ToLower())
+                .Replace("Blaitem", args.EntityName)
+                .Replace("blaitem", args.EntityName.ToLower()));
     }
 
     // Copy files
@@ -155,13 +157,17 @@ static void CopyFilesRecursively(string sourcePath, CommandArgs args)
         var contents = File.ReadAllText(newPath);
         var updatedContents = contents
             .Replace("Blahem", args.ProjectName)
-            .Replace("blahem", args.ProjectName.ToLower());
+            .Replace("blahem", args.ProjectName.ToLower())
+            .Replace("Blaitem", args.EntityName)
+            .Replace("blaitem", args.EntityName.ToLower());
 
         File.WriteAllText(
             newPath
                 .Replace(sourcePath, args.OutputDirectory)
                 .Replace("Blahem", args.ProjectName)
-                .Replace("blahem", args.ProjectName.ToLower()),
+                .Replace("blahem", args.ProjectName.ToLower())
+                .Replace("Blaitem", args.EntityName)
+                .Replace("blaitem", args.EntityName.ToLower()),
             updatedContents);
     }
 }
@@ -176,7 +182,7 @@ static bool IsPathExcluded(string inputDirectory, string path)
         relativePath.Contains("\\.git\\") ||
         relativePath.EndsWith(".vs") ||
         relativePath.EndsWith(".git") ||
-        relativePath.Contains("Blahem.Infrastructure\\Persistence\\Migrations");
+        relativePath.Contains(".Infrastructure\\Persistence\\Migrations");
 }
 
 static void GenerateAndWriteCreateCommandFile(TemplateModel model, CommandArgs args)

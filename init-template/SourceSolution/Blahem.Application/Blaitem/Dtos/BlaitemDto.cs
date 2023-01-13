@@ -1,14 +1,14 @@
 ﻿using Blahem.Core.Entities;
 
-namespace Blahem.Application.Blahems.Dtos;
+namespace Blahem.Application.Blaitems.Dtos;
 
-public record BlahemDto
+public record BlaitemDto
 {
     public int Id { get; init; }
 
     public string Title { get; init; } = "";
 
-    public static BlahemDto MapFromEntity(BlahemEntity entity)
+    public static BlaitemDto MapFromEntity(BlaitemEntity entity)
     {
         return new()
         {
