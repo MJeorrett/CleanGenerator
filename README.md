@@ -1,5 +1,5 @@
 # Clean Generator
-Scaffolding tools for clean architecture project in dotnet.
+Scaffolding tool for clean architecture project in dotnet.
 
 **WORK IN PROGRESS!**
 
