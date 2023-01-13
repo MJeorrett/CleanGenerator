@@ -21,7 +21,6 @@ To build and install the tool globally on your local machine
 Then you can use it anywhere by running `cleangen ...`.
 
 ## TODO
-- [ ] Dynamically resolve project name e.g. from <ProjectName.WebApi.
 - [ ] Allow specifying what properties appear on detail and summary dtos.
 - [ ] Eliminate warnings when running dotnet pack.
 - [ ] Add delete command.
@@ -31,6 +30,7 @@ Then you can use it anywhere by running `cleangen ...`.
 - [ ] Scaffold e2e tests.
 - [ ] FK relationships.
 - [ ] Ensure that tool works cross platform, particularly path separators might need attention.
+- [x] Dynamically resolve project name e.g. from <ProjectName>.WebApi.
 - [x] Allow specifying the initial entity name when running init.
 - [x] Dynamically resolve input directory (to tool root).
 - [x] Refactor templates into their own folder.

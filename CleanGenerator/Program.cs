@@ -47,11 +47,13 @@ rootCommand.AddCommand(initCommand);
 
 var addEntityCommand = new Command("add", "Add entity to existing clean architecture project.")
 {
-    outputDirectoryOption, projectNameOption, entityNameOption,
+    outputDirectoryOption, entityNameOption,
 };
 
-addEntityCommand.SetHandler((outputDirectory, projectName, entityName) =>
+addEntityCommand.SetHandler((outputDirectory, entityName) =>
 {
+    string projectName = GetProjectName(outputDirectory);
+
     var args = new CommandArgs
     {
         OutputDirectory = outputDirectory,
@@ -60,7 +62,7 @@ addEntityCommand.SetHandler((outputDirectory, projectName, entityName) =>
     };
 
     RunAddEntity(args);
-}, outputDirectoryOption, projectNameOption, entityNameOption);
+}, outputDirectoryOption, entityNameOption);
 
 rootCommand.AddCommand(addEntityCommand);
 
@@ -317,4 +319,19 @@ static string ResolveInputDirectory()
         return Path.Join(contentDirectory.FullName, "SourceSolution");
     }
 
+}
+
+static string GetProjectName(string outputDirectory)
+{
+    try
+    {
+        var webApiDirectory = new DirectoryInfo(outputDirectory).GetDirectories().ToList()
+            .FirstOrDefault(_ => _.Name.Contains(".WebApi"));
+
+        return webApiDirectory!.Name.Split(".").First();
+    }
+    catch (Exception exception)
+    {
+        throw new Exception("Failed to resolve project name.", exception);
+    }
 }
