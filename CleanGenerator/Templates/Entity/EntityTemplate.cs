@@ -42,8 +42,40 @@ namespace CleanGenerator.Templates.Entity
             
             #line default
             #line hidden
-            this.Write("Entity\r\n{\r\n    public int Id { get; set; }\r\n\r\n    public string Title { get; set;" +
-                    " } = null!;\r\n}\r\n");
+            this.Write("Entity\r\n{\r\n    public int Id { get; set; }\r\n");
+            
+            #line 11 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Entity\EntityTemplate.tt"
+
+    foreach(var propertyConfig in _model.PropertyConfigs)
+    {
+
+            
+            #line default
+            #line hidden
+            this.Write("    public ");
+            
+            #line 15 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Entity\EntityTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(propertyConfig.Type));
+            
+            #line default
+            #line hidden
+            this.Write(" ");
+            
+            #line 15 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Entity\EntityTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(propertyConfig.Name));
+            
+            #line default
+            #line hidden
+            this.Write(" { get; set; } = default!;\r\n");
+            
+            #line 16 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Entity\EntityTemplate.tt"
+
+    }
+
+            
+            #line default
+            #line hidden
+            this.Write("}\r\n");
             return this.GenerationEnvironment.ToString();
         }
     }

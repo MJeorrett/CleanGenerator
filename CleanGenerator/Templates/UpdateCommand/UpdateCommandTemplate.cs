@@ -71,17 +71,56 @@ namespace CleanGenerator.Templates.UpdateCommand
             
             #line default
             #line hidden
-            this.Write("Id { get; init; }\r\n\r\n    public string Title { get; init; } = \"\";\r\n}\r\n\r\npublic cl" +
-                    "ass Update");
+            this.Write("Id { get; init; }\r\n");
+            
+            #line 17 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\UpdateCommand\UpdateCommandTemplate.tt"
+
+    foreach(var propertyConfig in _model.PropertyConfigs)
+    {
+
+            
+            #line default
+            #line hidden
+            this.Write("    public ");
             
             #line 21 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\UpdateCommand\UpdateCommandTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(propertyConfig.Type));
+            
+            #line default
+            #line hidden
+            this.Write(" ");
+            
+            #line 21 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\UpdateCommand\UpdateCommandTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(propertyConfig.Name));
+            
+            #line default
+            #line hidden
+            this.Write(" { get; init; } = ");
+            
+            #line 21 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\UpdateCommand\UpdateCommandTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(propertyConfig.DefaultValue));
+            
+            #line default
+            #line hidden
+            this.Write(";\r\n");
+            
+            #line 22 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\UpdateCommand\UpdateCommandTemplate.tt"
+
+    }
+
+            
+            #line default
+            #line hidden
+            this.Write("}\r\n\r\npublic class Update");
+            
+            #line 27 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\UpdateCommand\UpdateCommandTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("CommandHandler : IRequestHandler<Update");
             
-            #line 21 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\UpdateCommand\UpdateCommandTemplate.tt"
+            #line 27 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\UpdateCommand\UpdateCommandTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
@@ -89,7 +128,7 @@ namespace CleanGenerator.Templates.UpdateCommand
             this.Write("Command>\r\n{\r\n    private readonly IApplicationDbContext _dbContext;\r\n\r\n    public" +
                     " Update");
             
-            #line 25 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\UpdateCommand\UpdateCommandTemplate.tt"
+            #line 31 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\UpdateCommand\UpdateCommandTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
@@ -97,7 +136,7 @@ namespace CleanGenerator.Templates.UpdateCommand
             this.Write("CommandHandler(IApplicationDbContext dbContext)\r\n    {\r\n        _dbContext = dbCo" +
                     "ntext;\r\n    }\r\n\r\n    public async Task<AppResponse> Handle(\r\n        Update");
             
-            #line 31 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\UpdateCommand\UpdateCommandTemplate.tt"
+            #line 37 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\UpdateCommand\UpdateCommandTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
@@ -105,22 +144,54 @@ namespace CleanGenerator.Templates.UpdateCommand
             this.Write("Command command,\r\n        CancellationToken cancellationToken)\r\n    {\r\n        va" +
                     "r entity = await _dbContext.");
             
-            #line 34 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\UpdateCommand\UpdateCommandTemplate.tt"
+            #line 40 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\UpdateCommand\UpdateCommandTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("s\r\n            .FirstOrDefaultAsync(_ => _.Id == command.");
             
-            #line 35 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\UpdateCommand\UpdateCommandTemplate.tt"
+            #line 41 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\UpdateCommand\UpdateCommandTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("Id, cancellationToken);\r\n\r\n        if (entity == null)\r\n        {\r\n            re" +
-                    "turn new(404);\r\n        }\r\n\r\n        entity.Title = command.Title;\r\n\r\n        aw" +
-                    "ait _dbContext.SaveChangesAsync(cancellationToken);\r\n\r\n        return new(200);\r" +
-                    "\n    }\r\n}");
+                    "turn new(404);\r\n        }\r\n\r\n");
+            
+            #line 48 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\UpdateCommand\UpdateCommandTemplate.tt"
+
+    foreach(var propertyConfig in _model.PropertyConfigs)
+    {
+
+            
+            #line default
+            #line hidden
+            this.Write("        entity.");
+            
+            #line 52 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\UpdateCommand\UpdateCommandTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(propertyConfig.Name));
+            
+            #line default
+            #line hidden
+            this.Write(" = command.");
+            
+            #line 52 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\UpdateCommand\UpdateCommandTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(propertyConfig.Name));
+            
+            #line default
+            #line hidden
+            this.Write(";\r\n");
+            
+            #line 53 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\UpdateCommand\UpdateCommandTemplate.tt"
+
+    }
+
+            
+            #line default
+            #line hidden
+            this.Write("\r\n        await _dbContext.SaveChangesAsync(cancellationToken);\r\n\r\n        return" +
+                    " new(200);\r\n    }\r\n}");
             return this.GenerationEnvironment.ToString();
         }
     }

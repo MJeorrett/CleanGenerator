@@ -1,13 +1,13 @@
 {
-  "EntityName": "Schedule1",
+  "EntityName": "Location",
   "Properties": [
     {
-      "Name": "Day",
+      "Name": "Name",
       "Type": "string",
       "ColumnType": "nvarchar(50)"
     },
     {
-      "Name": "Count",
+      "Name": "TaxPercentage",
       "Type": "int"
     }
   ]

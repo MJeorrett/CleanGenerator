@@ -70,7 +70,7 @@ addEntityCommand.SetHandler((Action<string, string>)((outputDirectory, entityCon
         EntityName = entityConfig.EntityName,
     };
 
-    RunAddEntity(args);
+    RunAddEntity(args, entityConfig.Properties);
 }), outputDirectoryOption, entityConfigOption);
 
 rootCommand.AddCommand(addEntityCommand);
@@ -93,13 +93,14 @@ static void RunInit(CommandArgs args)
     CreateMigration(args, "InitialCreate");
 }
 
-static void RunAddEntity(CommandArgs args)
+static void RunAddEntity(CommandArgs args, List<EntityPropertyConfiguration> propertyConfigs)
 {
     var templateModel = new TemplateModel
     {
         ProjectName = args.ProjectName,
         EntityTypeName = args.EntityName,
         ApiBasePath = args.EntityName.ToLower(),
+        PropertyConfigs = propertyConfigs,
     };
 
     CreateCrud(templateModel, args);

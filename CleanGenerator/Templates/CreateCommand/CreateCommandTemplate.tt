@@ -11,7 +11,14 @@ namespace <#= _model.ProjectName #>.Application.<#= _model.EntityTypeName #>s.Co
 
 public class Create<#= _model.EntityTypeName #>Command
 {
-    public string Title { get; init; } = null!;
+<#
+    foreach(var propertyConfig in _model.PropertyConfigs)
+    {
+#>
+    public <#= propertyConfig.Type #> <#= propertyConfig.Name #> { get; init; } = <#= propertyConfig.DefaultValue #>;
+<#
+    }
+#>
 }
 
 public class Create<#= _model.EntityTypeName #>CommandHandler : IRequestHandler<Create<#= _model.EntityTypeName #>Command, int>
@@ -29,7 +36,14 @@ public class Create<#= _model.EntityTypeName #>CommandHandler : IRequestHandler<
     {
         var entity = new <#= _model.EntityTypeName #>Entity
         {
-            Title = command.Title,
+<#
+    foreach(var propertyConfig in _model.PropertyConfigs)
+    {
+#>
+            <#= propertyConfig.Name #> = command.<#= propertyConfig.Name #>,
+<#
+    }
+#>
         };
 
         _dbContext.<#= _model.EntityTypeName #>s.Add(entity);

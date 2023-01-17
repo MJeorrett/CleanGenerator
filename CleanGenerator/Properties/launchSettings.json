@@ -2,7 +2,7 @@
   "profiles": {
     "CleanGenerator": {
       "commandName": "Project",
-      "commandLineArgs": "init --output=\"C:/git/github/mjeorrett/CleanGenerator/test-output\" --name=\"TestProject\" --entity=\"NewEntity\"",
+      "commandLineArgs": "add --output=\"C:/git/github/mjeorrett/CleanGenerator/test-output\" --entity-config=\"C:/git/github/mjeorrett/CleanGenerator/CleanGenerator/cleangen-test.json\"",
       "environmentVariables": {
         "IsDev": "true"
       }

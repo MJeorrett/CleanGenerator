@@ -56,23 +56,88 @@ namespace CleanGenerator.Templates.Dto
             
             #line default
             #line hidden
-            this.Write("Dto\r\n{\r\n    public int Id { get; init; }\r\n\r\n    public string Title { get; init; " +
-                    "} = \"\";\r\n\r\n    public static ");
+            this.Write("Dto\r\n{\r\n    public int Id { get; init; }\r\n\r\n");
             
-            #line 16 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Dto\DtoTemplate.tt"
+            #line 14 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Dto\DtoTemplate.tt"
+
+    foreach(var propertyConfig in _model.PropertyConfigs)
+    {
+
+            
+            #line default
+            #line hidden
+            this.Write("    public ");
+            
+            #line 18 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Dto\DtoTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(propertyConfig.Type));
+            
+            #line default
+            #line hidden
+            this.Write(" ");
+            
+            #line 18 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Dto\DtoTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(propertyConfig.Name));
+            
+            #line default
+            #line hidden
+            this.Write(" { get; set; } = default!;\r\n");
+            
+            #line 19 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Dto\DtoTemplate.tt"
+
+    }
+
+            
+            #line default
+            #line hidden
+            this.Write("\r\n    public static ");
+            
+            #line 23 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Dto\DtoTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("Dto MapFromEntity(");
             
-            #line 16 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Dto\DtoTemplate.tt"
+            #line 23 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Dto\DtoTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("Entity entity)\r\n    {\r\n        return new()\r\n        {\r\n            Id = entity.I" +
-                    "d,\r\n            Title = entity.Title,\r\n        };\r\n    }\r\n}\r\n");
+                    "d,\r\n");
+            
+            #line 28 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Dto\DtoTemplate.tt"
+
+    foreach(var propertyConfig in _model.PropertyConfigs)
+    {
+
+            
+            #line default
+            #line hidden
+            this.Write("            ");
+            
+            #line 32 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Dto\DtoTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(propertyConfig.Name));
+            
+            #line default
+            #line hidden
+            this.Write(" = entity.");
+            
+            #line 32 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Dto\DtoTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(propertyConfig.Name));
+            
+            #line default
+            #line hidden
+            this.Write(",\r\n");
+            
+            #line 33 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Dto\DtoTemplate.tt"
+
+    }
+
+            
+            #line default
+            #line hidden
+            this.Write("        };\r\n    }\r\n}\r\n");
             return this.GenerationEnvironment.ToString();
         }
     }

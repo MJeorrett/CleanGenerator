@@ -6,6 +6,8 @@ public record TemplateModel
 
     public required string EntityTypeName { get; init; }
 
+    public required List<EntityPropertyConfiguration> PropertyConfigs { get; init; }
+
     public string EntityVariableName => FirstCharToLowerCase(EntityTypeName) ?? "";
 
     public required string ApiBasePath { get; init; }

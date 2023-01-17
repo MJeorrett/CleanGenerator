@@ -11,14 +11,28 @@ public record <#= _model.EntityTypeName #>Dto
 {
     public int Id { get; init; }
 
-    public string Title { get; init; } = "";
+<#
+    foreach(var propertyConfig in _model.PropertyConfigs)
+    {
+#>
+    public <#= propertyConfig.Type #> <#= propertyConfig.Name #> { get; set; } = default!;
+<#
+    }
+#>
 
     public static <#= _model.EntityTypeName #>Dto MapFromEntity(<#= _model.EntityTypeName #>Entity entity)
     {
         return new()
         {
             Id = entity.Id,
-            Title = entity.Title,
+<#
+    foreach(var propertyConfig in _model.PropertyConfigs)
+    {
+#>
+            <#= propertyConfig.Name #> = entity.<#= propertyConfig.Name #>,
+<#
+    }
+#>
         };
     }
 }

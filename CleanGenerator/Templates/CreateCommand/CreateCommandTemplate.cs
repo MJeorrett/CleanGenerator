@@ -70,17 +70,56 @@ namespace CleanGenerator.Templates.CreateCommand
             
             #line default
             #line hidden
-            this.Write("Command\r\n{\r\n    public string Title { get; init; } = null!;\r\n}\r\n\r\npublic class Cr" +
-                    "eate");
+            this.Write("Command\r\n{\r\n");
             
-            #line 17 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\CreateCommand\CreateCommandTemplate.tt"
+            #line 14 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\CreateCommand\CreateCommandTemplate.tt"
+
+    foreach(var propertyConfig in _model.PropertyConfigs)
+    {
+
+            
+            #line default
+            #line hidden
+            this.Write("    public ");
+            
+            #line 18 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\CreateCommand\CreateCommandTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(propertyConfig.Type));
+            
+            #line default
+            #line hidden
+            this.Write(" ");
+            
+            #line 18 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\CreateCommand\CreateCommandTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(propertyConfig.Name));
+            
+            #line default
+            #line hidden
+            this.Write(" { get; init; } = ");
+            
+            #line 18 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\CreateCommand\CreateCommandTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(propertyConfig.DefaultValue));
+            
+            #line default
+            #line hidden
+            this.Write(";\r\n");
+            
+            #line 19 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\CreateCommand\CreateCommandTemplate.tt"
+
+    }
+
+            
+            #line default
+            #line hidden
+            this.Write("}\r\n\r\npublic class Create");
+            
+            #line 24 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\CreateCommand\CreateCommandTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("CommandHandler : IRequestHandler<Create");
             
-            #line 17 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\CreateCommand\CreateCommandTemplate.tt"
+            #line 24 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\CreateCommand\CreateCommandTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
@@ -88,7 +127,7 @@ namespace CleanGenerator.Templates.CreateCommand
             this.Write("Command, int>\r\n{\r\n    private readonly IApplicationDbContext _dbContext;\r\n\r\n    p" +
                     "ublic Create");
             
-            #line 21 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\CreateCommand\CreateCommandTemplate.tt"
+            #line 28 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\CreateCommand\CreateCommandTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
@@ -97,7 +136,7 @@ namespace CleanGenerator.Templates.CreateCommand
                     "ntext;\r\n    }\r\n\r\n    public async Task<AppResponse<int>> Handle(\r\n        Create" +
                     "");
             
-            #line 27 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\CreateCommand\CreateCommandTemplate.tt"
+            #line 34 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\CreateCommand\CreateCommandTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
@@ -105,15 +144,47 @@ namespace CleanGenerator.Templates.CreateCommand
             this.Write("Command command,\r\n        CancellationToken cancellationToken)\r\n    {\r\n        va" +
                     "r entity = new ");
             
-            #line 30 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\CreateCommand\CreateCommandTemplate.tt"
+            #line 37 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\CreateCommand\CreateCommandTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
-            this.Write("Entity\r\n        {\r\n            Title = command.Title,\r\n        };\r\n\r\n        _dbC" +
-                    "ontext.");
+            this.Write("Entity\r\n        {\r\n");
             
-            #line 35 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\CreateCommand\CreateCommandTemplate.tt"
+            #line 39 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\CreateCommand\CreateCommandTemplate.tt"
+
+    foreach(var propertyConfig in _model.PropertyConfigs)
+    {
+
+            
+            #line default
+            #line hidden
+            this.Write("            ");
+            
+            #line 43 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\CreateCommand\CreateCommandTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(propertyConfig.Name));
+            
+            #line default
+            #line hidden
+            this.Write(" = command.");
+            
+            #line 43 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\CreateCommand\CreateCommandTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(propertyConfig.Name));
+            
+            #line default
+            #line hidden
+            this.Write(",\r\n");
+            
+            #line 44 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\CreateCommand\CreateCommandTemplate.tt"
+
+    }
+
+            
+            #line default
+            #line hidden
+            this.Write("        };\r\n\r\n        _dbContext.");
+            
+            #line 49 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\CreateCommand\CreateCommandTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
