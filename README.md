@@ -21,7 +21,6 @@ To build and install the tool globally on your local machine run this from ./Cle
 Then you can use it anywhere by running `cleangen ...`.
 
 ## TODO
-- [ ] Add delete command.
 - [ ] Scaffold validation.
 - [ ] Scaffold e2e tests.
 - [ ] Support `DateTime` and `bool` property types.
@@ -33,6 +32,7 @@ Then you can use it anywhere by running `cleangen ...`.
 - [ ] Eliminate warnings when running dotnet pack.
 - [ ] Install dotnet ef tool locally.
 - [ ] Ensure that tool works cross platform, particularly path separators might need attention.
+- [x] Add delete command.
 - [x] Allow passing in entity properties and types.
 	- [x] Allow specifying entity name.
 	- [x] Allow specifying properties and types.

@@ -1,3 +1,4 @@
+using Blahem.Application.Blaitem.Commands.Delete;
 using Blahem.Application.Blaitems.Commands.Create;
 using Blahem.Application.Blaitems.Commands.Update;
 using Blahem.Application.Blaitems.Dtos;
@@ -34,7 +35,7 @@ public class BlaitemController : ControllerBase
     }
 
     [HttpGet("api/blaitems/{blaitemId}")]
-    public async Task<ActionResult<AppResponse<BlaitemDto>>> ListBlaitems(
+    public async Task<ActionResult<AppResponse<BlaitemDto>>> GetBlaitemById(
         [FromRoute] int blaitemId,
         [FromServices] GetBlaitemByIdQueryHandler handler,
         CancellationToken cancellationToken)
@@ -52,6 +53,17 @@ public class BlaitemController : ControllerBase
         CancellationToken cancellationToken)
     {
         var appResponse = await handler.Handle(command with { BlaitemId = blaitemId }, cancellationToken);
+
+        return appResponse.ToActionResult();
+    }
+
+    [HttpDelete("api/blaitems/{blaitemId}")]
+    public async Task<ActionResult<AppResponse>> DeleteBlaitem(
+        [FromRoute] int blaitemId,
+        [FromServices] DeleteBlaitemCommandHandler handler,
+        CancellationToken cancellationToken)
+    {
+        var appResponse = await handler.Handle(new() { BlaitemId = blaitemId }, cancellationToken);
 
         return appResponse.ToActionResult();
     }

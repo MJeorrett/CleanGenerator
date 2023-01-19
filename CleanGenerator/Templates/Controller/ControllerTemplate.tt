@@ -4,6 +4,7 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 using <#= _model.ProjectName #>.Application.<#= _model.EntityTypeName #>s.Commands.Create;
+using <#= _model.ProjectName #>.Application.<#= _model.EntityTypeName #>s.Commands.Delete;
 using <#= _model.ProjectName #>.Application.<#= _model.EntityTypeName #>s.Commands.Update;
 using <#= _model.ProjectName #>.Application.<#= _model.EntityTypeName #>s.Dtos;
 using <#= _model.ProjectName #>.Application.<#= _model.EntityTypeName #>s.Queries.GetById;
@@ -39,7 +40,7 @@ public class <#= _model.EntityTypeName #>Controller : ControllerBase
     }
 
     [HttpGet("api/<#= _model.ApiBasePath #>/{<#= _model.EntityVariableName #>Id}")]
-    public async Task<ActionResult<AppResponse<<#= _model.EntityTypeName #>Dto>>> List<#= _model.EntityTypeName #>s(
+    public async Task<ActionResult<AppResponse<<#= _model.EntityTypeName #>Dto>>> Get<#= _model.EntityTypeName #>ById(
         [FromRoute] int <#= _model.EntityVariableName #>Id,
         [FromServices] Get<#= _model.EntityTypeName #>ByIdQueryHandler handler,
         CancellationToken cancellationToken)
@@ -57,6 +58,19 @@ public class <#= _model.EntityTypeName #>Controller : ControllerBase
         CancellationToken cancellationToken)
     {
         var appResponse = await handler.Handle(command with { <#= _model.EntityTypeName #>Id = <#= _model.EntityVariableName #>Id }, cancellationToken);
+
+        return appResponse.ToActionResult();
+    }
+
+    
+
+    [HttpDelete("api/<#= _model.ApiBasePath #>/{<#= _model.EntityVariableName #>Id}")]
+    public async Task<ActionResult<AppResponse>> Delete<#= _model.EntityTypeName #>(
+        [FromRoute] int <#= _model.EntityVariableName #>Id,
+        [FromServices] Delete<#= _model.EntityTypeName #>CommandHandler handler,
+        CancellationToken cancellationToken)
+    {
+        var appResponse = await handler.Handle(new() { <#= _model.EntityTypeName #>Id = <#= _model.EntityVariableName #>Id }, cancellationToken);
 
         return appResponse.ToActionResult();
     }

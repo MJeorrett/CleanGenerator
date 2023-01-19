@@ -40,6 +40,11 @@
 			<AutoGen>True</AutoGen>
 			<DependentUpon>CreateCommandTemplate.tt</DependentUpon>
 		</Compile>
+		<Compile Update="Templates\DeleteCommand\DeleteCommandTemplate.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>DeleteCommandTemplate.tt</DependentUpon>
+		</Compile>
 		<Compile Update="Templates\Dto\DtoTemplate.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
@@ -83,6 +88,10 @@
 		<None Update="Templates\CreateCommand\CreateCommandTemplate.tt">
 			<Generator>TextTemplatingFilePreprocessor</Generator>
 			<LastGenOutput>CreateCommandTemplate.cs</LastGenOutput>
+		</None>
+		<None Update="Templates\DeleteCommand\DeleteCommandTemplate.tt">
+		  <Generator>TextTemplatingFilePreprocessor</Generator>
+		  <LastGenOutput>DeleteCommandTemplate.cs</LastGenOutput>
 		</None>
 		<None Update="Templates\Dto\DtoTemplate.tt">
 			<Generator>TextTemplatingFilePreprocessor</Generator>

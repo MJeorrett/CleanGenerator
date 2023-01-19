@@ -56,7 +56,7 @@ namespace CleanGenerator.Templates.Controller
             
             #line default
             #line hidden
-            this.Write("s.Commands.Update;\r\nusing ");
+            this.Write("s.Commands.Delete;\r\nusing ");
             
             #line 8 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.ProjectName));
@@ -66,90 +66,104 @@ namespace CleanGenerator.Templates.Controller
             this.Write(".Application.");
             
             #line 8 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
+            
+            #line default
+            #line hidden
+            this.Write("s.Commands.Update;\r\nusing ");
+            
+            #line 9 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.ProjectName));
+            
+            #line default
+            #line hidden
+            this.Write(".Application.");
+            
+            #line 9 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("s.Dtos;\r\nusing ");
             
-            #line 9 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
+            #line 10 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.ProjectName));
             
             #line default
             #line hidden
             this.Write(".Application.");
             
-            #line 9 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
+            #line 10 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("s.Queries.GetById;\r\nusing ");
             
-            #line 10 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
+            #line 11 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.ProjectName));
             
             #line default
             #line hidden
             this.Write(".Application.");
             
-            #line 10 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
+            #line 11 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("s.Queries.List;\r\nusing ");
             
-            #line 11 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
+            #line 12 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.ProjectName));
             
             #line default
             #line hidden
             this.Write(".Application.Common.AppRequests;\r\nusing ");
             
-            #line 12 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
+            #line 13 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.ProjectName));
             
             #line default
             #line hidden
             this.Write(".WebApi.Extensions;\r\nusing Microsoft.AspNetCore.Mvc;\r\n\r\nnamespace ");
             
-            #line 15 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
+            #line 16 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.ProjectName));
             
             #line default
             #line hidden
             this.Write(".WebApi.Controllers;\r\n\r\n[ApiController]\r\npublic class ");
             
-            #line 18 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
+            #line 19 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("Controller : ControllerBase\r\n{\r\n    [HttpPost(\"api/");
             
-            #line 20 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
+            #line 21 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.ApiBasePath));
             
             #line default
             #line hidden
             this.Write("\")]\r\n    public async Task<ActionResult<AppResponse<int>>> Create");
             
-            #line 21 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
+            #line 22 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("(\r\n        [FromBody] Create");
             
-            #line 22 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
+            #line 23 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("Command command,\r\n        [FromServices] Create");
             
-            #line 23 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
+            #line 24 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
@@ -158,28 +172,28 @@ namespace CleanGenerator.Templates.Controller
                     "     var appResponse = await handler.Handle(command, cancellationToken);\r\n\r\n    " +
                     "    return appResponse.ToActionResult();\r\n    }\r\n\r\n    [HttpGet(\"api/");
             
-            #line 31 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
+            #line 32 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.ApiBasePath));
             
             #line default
             #line hidden
             this.Write("\")]\r\n    public async Task<ActionResult<AppResponse<List<");
             
-            #line 32 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
+            #line 33 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("Dto>>>> List");
             
-            #line 32 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
+            #line 33 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("s(\r\n        [FromServices] List");
             
-            #line 33 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
+            #line 34 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
@@ -188,42 +202,42 @@ namespace CleanGenerator.Templates.Controller
                     "    var appResponse = await handler.Handle(new(), cancellationToken);\r\n\r\n       " +
                     " return appResponse.ToActionResult();\r\n    }\r\n\r\n    [HttpGet(\"api/");
             
-            #line 41 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
+            #line 42 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.ApiBasePath));
             
             #line default
             #line hidden
             this.Write("/{");
             
-            #line 41 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
+            #line 42 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityVariableName));
             
             #line default
             #line hidden
             this.Write("Id}\")]\r\n    public async Task<ActionResult<AppResponse<");
             
-            #line 42 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
+            #line 43 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
-            this.Write("Dto>>> List");
-            
-            #line 42 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
-            
-            #line default
-            #line hidden
-            this.Write("s(\r\n        [FromRoute] int ");
+            this.Write("Dto>>> Get");
             
             #line 43 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
+            
+            #line default
+            #line hidden
+            this.Write("ById(\r\n        [FromRoute] int ");
+            
+            #line 44 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityVariableName));
             
             #line default
             #line hidden
             this.Write("Id,\r\n        [FromServices] Get");
             
-            #line 44 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
+            #line 45 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
@@ -231,14 +245,14 @@ namespace CleanGenerator.Templates.Controller
             this.Write("ByIdQueryHandler handler,\r\n        CancellationToken cancellationToken)\r\n    {\r\n " +
                     "       var appResponse = await handler.Handle(new() { ");
             
-            #line 47 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
+            #line 48 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("Id = ");
             
-            #line 47 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
+            #line 48 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityVariableName));
             
             #line default
@@ -246,42 +260,42 @@ namespace CleanGenerator.Templates.Controller
             this.Write("Id }, cancellationToken);\r\n\r\n        return appResponse.ToActionResult();\r\n    }\r" +
                     "\n\r\n    [HttpPut(\"api/");
             
-            #line 52 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
+            #line 53 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.ApiBasePath));
             
             #line default
             #line hidden
             this.Write("/{");
             
-            #line 52 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
+            #line 53 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityVariableName));
             
             #line default
             #line hidden
             this.Write("Id}\")]\r\n    public async Task<ActionResult<AppResponse>> Update");
             
-            #line 53 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
+            #line 54 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("(\r\n        [FromRoute] int ");
             
-            #line 54 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
+            #line 55 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityVariableName));
             
             #line default
             #line hidden
             this.Write("Id,\r\n        [FromBody] Update");
             
-            #line 55 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
+            #line 56 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("Command command,\r\n        [FromServices] Update");
             
-            #line 56 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
+            #line 57 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
@@ -289,14 +303,65 @@ namespace CleanGenerator.Templates.Controller
             this.Write("CommandHandler handler,\r\n        CancellationToken cancellationToken)\r\n    {\r\n   " +
                     "     var appResponse = await handler.Handle(command with { ");
             
-            #line 59 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
+            #line 60 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("Id = ");
             
-            #line 59 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
+            #line 60 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityVariableName));
+            
+            #line default
+            #line hidden
+            this.Write("Id }, cancellationToken);\r\n\r\n        return appResponse.ToActionResult();\r\n    }\r" +
+                    "\n\r\n    \r\n\r\n    [HttpDelete(\"api/");
+            
+            #line 67 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.ApiBasePath));
+            
+            #line default
+            #line hidden
+            this.Write("/{");
+            
+            #line 67 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityVariableName));
+            
+            #line default
+            #line hidden
+            this.Write("Id}\")]\r\n    public async Task<ActionResult<AppResponse>> Delete");
+            
+            #line 68 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
+            
+            #line default
+            #line hidden
+            this.Write("(\r\n        [FromRoute] int ");
+            
+            #line 69 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityVariableName));
+            
+            #line default
+            #line hidden
+            this.Write("Id,\r\n        [FromServices] Delete");
+            
+            #line 70 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
+            
+            #line default
+            #line hidden
+            this.Write("CommandHandler handler,\r\n        CancellationToken cancellationToken)\r\n    {\r\n   " +
+                    "     var appResponse = await handler.Handle(new() { ");
+            
+            #line 73 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
+            
+            #line default
+            #line hidden
+            this.Write("Id = ");
+            
+            #line 73 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Controller\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityVariableName));
             
             #line default

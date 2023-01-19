@@ -1,6 +1,7 @@
 ﻿using CleanGenerator;
 using CleanGenerator.Templates.Controller;
 using CleanGenerator.Templates.CreateCommand;
+using CleanGenerator.Templates.DeleteCommand;
 using CleanGenerator.Templates.Dto;
 using CleanGenerator.Templates.Entity;
 using CleanGenerator.Templates.EntityTypeConfiguration;
@@ -109,6 +110,7 @@ static void RunAddEntity(CommandArgs args, List<EntityPropertyConfiguration> pro
 static void CreateCrud(TemplateModel templateModel, CommandArgs args)
 {
     GenerateAndWriteCreateCommandFile(templateModel, args);
+    GenerateAndWriteDeleteCommandFile(templateModel, args);
     GenerateAndWriteUpdateCommandFile(templateModel, args);
     GenerateAndWriteGetByIdQueryFile(templateModel, args);
     GenerateAndWriteListQueryFile(templateModel, args);
@@ -209,6 +211,19 @@ static void GenerateAndWriteCreateCommandFile(TemplateModel model, CommandArgs a
     Directory.CreateDirectory(commandOutputDirectory);
 
     File.WriteAllText(Path.Join(commandOutputDirectory, $"Create{model.EntityTypeName}Command.cs"), text);
+}
+
+static void GenerateAndWriteDeleteCommandFile(TemplateModel model, CommandArgs args)
+{
+    var test = new DeleteCommandTemplate(model);
+
+    var text = test.TransformText();
+
+    var commandOutputDirectory = Path.Join(args.OutputDirectory, $"{args.ProjectName}.Application", model.EntityTypeName, "Commands", "Delete");
+
+    Directory.CreateDirectory(commandOutputDirectory);
+
+    File.WriteAllText(Path.Join(commandOutputDirectory, $"Delete{model.EntityTypeName}Command.cs"), text);
 }
 
 static void GenerateAndWriteUpdateCommandFile(TemplateModel model, CommandArgs args)
