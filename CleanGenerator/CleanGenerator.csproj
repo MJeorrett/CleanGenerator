@@ -45,6 +45,11 @@
 			<AutoGen>True</AutoGen>
 			<DependentUpon>DtoTemplate.tt</DependentUpon>
 		</Compile>
+		<Compile Update="Templates\EntityTypeConfiguration\EntityTypeConfigurationTemplate.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>EntityTypeConfigurationTemplate.tt</DependentUpon>
+		</Compile>
 		<Compile Update="Templates\Entity\EntityTemplate.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
@@ -82,6 +87,10 @@
 		<None Update="Templates\Dto\DtoTemplate.tt">
 			<Generator>TextTemplatingFilePreprocessor</Generator>
 			<LastGenOutput>DtoTemplate.cs</LastGenOutput>
+		</None>
+		<None Update="Templates\EntityTypeConfiguration\EntityTypeConfigurationTemplate.tt">
+		  <Generator>TextTemplatingFilePreprocessor</Generator>
+		  <LastGenOutput>EntityTypeConfigurationTemplate.cs</LastGenOutput>
 		</None>
 		<None Update="Templates\Entity\EntityTemplate.tt">
 			<Generator>TextTemplatingFilePreprocessor</Generator>

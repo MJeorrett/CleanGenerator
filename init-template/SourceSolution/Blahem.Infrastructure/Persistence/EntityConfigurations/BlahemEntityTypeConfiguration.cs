@@ -12,5 +12,8 @@ public class BlahemEntityTypeConfiguration : IEntityTypeConfiguration<BlaitemEnt
 
         builder.Property(_ => _.Id)
             .HasColumnName("BlaitemId");
+
+        builder.Property(_ => _.Title)
+            .HasColumnType("nvarchar(256)");
     }
 }

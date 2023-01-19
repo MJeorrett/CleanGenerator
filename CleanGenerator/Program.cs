@@ -3,6 +3,7 @@ using CleanGenerator.Templates.Controller;
 using CleanGenerator.Templates.CreateCommand;
 using CleanGenerator.Templates.Dto;
 using CleanGenerator.Templates.Entity;
+using CleanGenerator.Templates.EntityTypeConfiguration;
 using CleanGenerator.Templates.GetByIdQuery;
 using CleanGenerator.Templates.ListQuery;
 using CleanGenerator.Templates.UpdateCommand;
@@ -113,6 +114,7 @@ static void CreateCrud(TemplateModel templateModel, CommandArgs args)
     GenerateAndWriteListQueryFile(templateModel, args);
     GenerateAndWriteDtoFile(templateModel, args);
     GenerateAndWriteEntityFile(templateModel, args);
+    GenerateAndWriteEntityTypeConfigurationFile(templateModel, args);
     GenerateAndWriteControllerFile(templateModel, args);
 
     UpdateDbContextInterface(templateModel, args);
@@ -281,6 +283,17 @@ static void GenerateAndWriteControllerFile(TemplateModel model, CommandArgs args
     var commandOutputDirectory = Path.Join(args.OutputDirectory, $"{args.ProjectName}.WebApi", "Controllers");
 
     File.WriteAllText(Path.Join(commandOutputDirectory, $"{model.EntityTypeName}sController.cs"), text);
+}
+
+static void GenerateAndWriteEntityTypeConfigurationFile(TemplateModel model, CommandArgs args)
+{
+    var test = new EntityTypeConfigurationTemplate(model);
+
+    var text = test.TransformText();
+
+    var commandOutputDirectory = Path.Join(args.OutputDirectory, $"{args.ProjectName}.Infrastructure", "Persistence", "EntityConfigurations");
+
+    File.WriteAllText(Path.Join(commandOutputDirectory, $"{model.EntityTypeName}EntityTypeConfiguration.cs"), text);
 }
 
 static void UpdateDbContextInterface(TemplateModel model, CommandArgs args)

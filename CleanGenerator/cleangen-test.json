@@ -1,13 +1,17 @@
 {
-  "EntityName": "Location",
+  "EntityName": "Location3",
   "Properties": [
     {
-      "Name": "Name",
+      "Name": "Name3",
       "Type": "string",
       "ColumnType": "nvarchar(50)"
     },
     {
-      "Name": "TaxPercentage",
+      "Name": "NoConfigString3",
+      "Type": "string"
+    },
+    {
+      "Name": "TaxPercentage3",
       "Type": "int"
     }
   ]

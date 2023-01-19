@@ -1,0 +1,34 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+using <#= _model.ProjectName #>.Core.Entities;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+namespace <#= _model.ProjectName #>.Infrastructure.Persistence.EntityConfigurations;
+
+public class <#= _model.EntityTypeName #>EntityTypeConfiguration : IEntityTypeConfiguration<<#= _model.EntityTypeName #>Entity>
+{
+    public void Configure(EntityTypeBuilder<<#= _model.EntityTypeName #>Entity> builder)
+    {
+        builder.ToTable("<#= _model.EntityTypeName #>");
+
+        builder.Property(_ => _.Id)
+            .HasColumnName("<#= _model.EntityTypeName #>Id");
+
+<#
+    foreach(var propertyConfig in _model.PropertyConfigs)
+    {
+        if (!string.IsNullOrEmpty(propertyConfig.ColumnType))
+        {
+#>
+        builder.Property(_ => _.<#= propertyConfig.Name #>)
+            .HasColumnType("<#= propertyConfig.ColumnType #>");
+<#
+        }
+    }
+#>
+    }
+}

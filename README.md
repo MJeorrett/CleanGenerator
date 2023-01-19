@@ -21,11 +21,6 @@ To build and install the tool globally on your local machine run this from ./Cle
 Then you can use it anywhere by running `cleangen ...`.
 
 ## TODO
-- [ ] Allow passing in entity properties and types.
-	- [x] Allow specifying entity name.
-	- [x] Allow specifying properties and types.
-	- [ ] Allow specifying SQL types.
-	- [ ] Name PKs in tables correctly e.g. `TodoId` instead of just `Id`.
 - [ ] Add delete command.
 - [ ] Scaffold validation.
 - [ ] Scaffold e2e tests.
@@ -38,6 +33,11 @@ Then you can use it anywhere by running `cleangen ...`.
 - [ ] Eliminate warnings when running dotnet pack.
 - [ ] Install dotnet ef tool locally.
 - [ ] Ensure that tool works cross platform, particularly path separators might need attention.
+- [x] Allow passing in entity properties and types.
+	- [x] Allow specifying entity name.
+	- [x] Allow specifying properties and types.
+	- [x] Allow specifying SQL types.
+	- [x] Name PKs in tables correctly e.g. `TodoId` instead of just `Id`.
 - [x] Dynamically resolve project name e.g. from <ProjectName>.WebApi.
 - [x] Allow specifying the initial entity name when running init.
 - [x] Dynamically resolve input directory (to tool root).
