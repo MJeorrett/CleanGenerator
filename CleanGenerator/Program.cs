@@ -8,7 +8,6 @@ using CleanGenerator.Templates.ListQuery;
 using CleanGenerator.Templates.UpdateCommand;
 using Microsoft.Extensions.Configuration;
 using System.CommandLine;
-using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 
 var outputDirectoryOption = new Option<string>("--output", "Root output path of scaffolded project.")
@@ -349,8 +348,9 @@ static string GetProjectName(string outputDirectory)
 static EntityConfiguration LoadAndValidateEntityConfiguration(string entityConfigurationPath)
 {
     var config = new ConfigurationBuilder()
-            .AddJsonFile(entityConfigurationPath)
-            .Build();
+        .SetBasePath(Environment.CurrentDirectory)
+        .AddJsonFile(entityConfigurationPath)
+        .Build();
 
     var entityConfig = new EntityConfiguration();
     config.Bind(entityConfig);
