@@ -125,8 +125,8 @@ static void CreateCrud(TemplateModel templateModel, CommandArgs args)
 }
 static void CreateMigration(CommandArgs args, string migrationName)
 {
-    RunCmd($"dotnet ef migrations add {migrationName} --startup-project {Path.Join(args.OutputDirectory, args.ProjectName)}.WebApi --project {Path.Join(args.OutputDirectory, args.ProjectName)}.Infrastructure -o Persistence/Migrations");
-    RunCmd($"dotnet ef database update --startup-project {Path.Join(args.OutputDirectory, args.ProjectName)}.WebApi --project {Path.Join(args.OutputDirectory, args.ProjectName)}.Infrastructure");
+    RunCmd($"dotnet ef migrations add {migrationName} --startup-project {Path.Join(args.OutputDirectory, args.ProjectName)}.Api --project {Path.Join(args.OutputDirectory, args.ProjectName)}.Infrastructure -o Persistence/Migrations");
+    RunCmd($"dotnet ef database update --startup-project {Path.Join(args.OutputDirectory, args.ProjectName)}.Api --project {Path.Join(args.OutputDirectory, args.ProjectName)}.Infrastructure");
 }
 
 static void RunCmd(string command)
@@ -295,7 +295,7 @@ static void GenerateAndWriteControllerFile(TemplateModel model, CommandArgs args
 
     var text = test.TransformText();
 
-    var commandOutputDirectory = Path.Join(args.OutputDirectory, $"{args.ProjectName}.WebApi", "Controllers");
+    var commandOutputDirectory = Path.Join(args.OutputDirectory, $"{args.ProjectName}.Api", "Controllers");
 
     File.WriteAllText(Path.Join(commandOutputDirectory, $"{model.EntityTypeName}sController.cs"), text);
 }
@@ -306,9 +306,9 @@ static void GenerateAndWriteEntityTypeConfigurationFile(TemplateModel model, Com
 
     var text = test.TransformText();
 
-    var commandOutputDirectory = Path.Join(args.OutputDirectory, $"{args.ProjectName}.Infrastructure", "Persistence", "EntityConfigurations");
+    var commandOutputDirectory = Path.Join(args.OutputDirectory, $"{args.ProjectName}.Infrastructure", "Persistence", "Configurations");
 
-    File.WriteAllText(Path.Join(commandOutputDirectory, $"{model.EntityTypeName}EntityTypeConfiguration.cs"), text);
+    File.WriteAllText(Path.Join(commandOutputDirectory, $"{model.EntityTypeName}Configuration.cs"), text);
 }
 
 static void UpdateDbContextInterface(TemplateModel model, CommandArgs args)
@@ -362,10 +362,10 @@ static string GetProjectName(string outputDirectory)
 {
     try
     {
-        var webApiDirectory = new DirectoryInfo(outputDirectory).GetDirectories().ToList()
-            .FirstOrDefault(_ => _.Name.Contains(".WebApi"));
+        var ApiDirectory = new DirectoryInfo(outputDirectory).GetDirectories().ToList()
+            .FirstOrDefault(_ => _.Name.Contains(".API"));
 
-        return webApiDirectory!.Name.Split(".").First();
+        return ApiDirectory!.Name.Split(".").First();
     }
     catch (Exception exception)
     {
