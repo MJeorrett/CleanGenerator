@@ -19,7 +19,10 @@ public record EntityPropertyConfiguration
     [Required]
     public string Type { get; init; } = null!;
 
-    public string DefaultValue => Type == "string" ? "\"\"" : "0";
-
     public string ColumnType { get; init; } = null!;
+
+    public string BuildPropertyDefault() => Type switch {
+        "string" => " = \"\";",
+        _ => "",
+    };
 }

@@ -94,14 +94,14 @@ namespace CleanGenerator.Templates.CreateCommand
             
             #line default
             #line hidden
-            this.Write(" { get; init; } = ");
+            this.Write(" { get; init; }");
             
             #line 18 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\CreateCommand\CreateCommandTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(propertyConfig.DefaultValue));
+            this.Write(this.ToStringHelper.ToStringWithCulture(propertyConfig.BuildPropertyDefault()));
             
             #line default
             #line hidden
-            this.Write(";\r\n");
+            this.Write("\r\n");
             
             #line 19 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\CreateCommand\CreateCommandTemplate.tt"
 

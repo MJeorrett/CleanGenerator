@@ -95,14 +95,14 @@ namespace CleanGenerator.Templates.UpdateCommand
             
             #line default
             #line hidden
-            this.Write(" { get; init; } = ");
+            this.Write(" { get; init; }");
             
             #line 21 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\UpdateCommand\UpdateCommandTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(propertyConfig.DefaultValue));
+            this.Write(this.ToStringHelper.ToStringWithCulture(propertyConfig.BuildPropertyDefault()));
             
             #line default
             #line hidden
-            this.Write(";\r\n");
+            this.Write("\r\n");
             
             #line 22 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\UpdateCommand\UpdateCommandTemplate.tt"
 

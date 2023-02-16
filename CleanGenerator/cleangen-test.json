@@ -1,17 +1,17 @@
 {
-  "EntityName": "Todo2",
+  "EntityName": "Todo4",
   "Properties": [
     {
-      "Name": "Title2",
+      "Name": "Title",
       "Type": "string",
       "ColumnType": "nvarchar(128)"
     },
     {
-      "Name": "Description2",
+      "Name": "Description",
       "Type": "string"
     },
     {
-      "Name": "StoryPoints2",
+      "Name": "StoryPoints",
       "Type": "int"
     }
   ]

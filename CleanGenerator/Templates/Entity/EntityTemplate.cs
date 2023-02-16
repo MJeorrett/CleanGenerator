@@ -66,7 +66,14 @@ namespace CleanGenerator.Templates.Entity
             
             #line default
             #line hidden
-            this.Write(" { get; set; } = default!;\r\n");
+            this.Write(" { get; set; }");
+            
+            #line 15 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Entity\EntityTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(propertyConfig.BuildPropertyDefault()));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n");
             
             #line 16 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\Entity\EntityTemplate.tt"
 
