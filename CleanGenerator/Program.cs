@@ -32,14 +32,19 @@ var entityConfigOption = new Option<string>("--entity-config", "Path to the enti
     IsRequired = true,
 };
 
+var createMigrationOption = new Option<bool>("--migrate", "Create migration and updated database")
+{
+    IsRequired = false,
+};
+
 var rootCommand = new RootCommand("App for scaffolding clean architecture projects.");
 
 var initCommand = new Command("init", "Initialise a clean architecture project.")
 {
-    outputDirectoryOption, projectNameOption, entityNameOption,
+    outputDirectoryOption, projectNameOption, entityNameOption, createMigrationOption,
 };
 
-initCommand.SetHandler((outputDirectory, projectName, entityName) =>
+initCommand.SetHandler((outputDirectory, projectName, entityName, createMigration) =>
 {
     var args = new CommandArgs
     {
@@ -49,16 +54,21 @@ initCommand.SetHandler((outputDirectory, projectName, entityName) =>
     };
 
     RunInit(args);
-}, outputDirectoryOption, projectNameOption, entityNameOption);
+
+    if (createMigration)
+    {
+        CreateMigration(args, "InitialCreate");
+    }
+}, outputDirectoryOption, projectNameOption, entityNameOption, createMigrationOption);
 
 rootCommand.AddCommand(initCommand);
 
 var addEntityCommand = new Command("add", "Add entity to existing clean architecture project.")
 {
-    outputDirectoryOption, entityConfigOption
+    outputDirectoryOption, entityConfigOption, createMigrationOption,
 };
 
-addEntityCommand.SetHandler((Action<string, string>)((outputDirectory, entityConfigurationPath) =>
+addEntityCommand.SetHandler(((outputDirectory, entityConfigurationPath, createMigration) =>
 {
     string projectName = GetProjectName(outputDirectory);
 
@@ -72,7 +82,13 @@ addEntityCommand.SetHandler((Action<string, string>)((outputDirectory, entityCon
     };
 
     RunAddEntity(args, entityConfig.Properties);
-}), outputDirectoryOption, entityConfigOption);
+
+    if (createMigration)
+    {
+        CreateMigration(args, $"Add{args.EntityName}Table");
+    }
+
+}), outputDirectoryOption, entityConfigOption, createMigrationOption);
 
 rootCommand.AddCommand(addEntityCommand);
 
@@ -90,8 +106,6 @@ static void RunInit(CommandArgs args)
     }
 
     CopyFilesRecursively(inputDirectory, args);
-
-    CreateMigration(args, "InitialCreate");
 }
 
 static void RunAddEntity(CommandArgs args, List<EntityPropertyConfiguration> propertyConfigs)
@@ -104,11 +118,6 @@ static void RunAddEntity(CommandArgs args, List<EntityPropertyConfiguration> pro
         PropertyConfigs = propertyConfigs,
     };
 
-    CreateCrud(templateModel, args);
-}
-
-static void CreateCrud(TemplateModel templateModel, CommandArgs args)
-{
     GenerateAndWriteCreateCommandFile(templateModel, args);
     GenerateAndWriteDeleteCommandFile(templateModel, args);
     GenerateAndWriteUpdateCommandFile(templateModel, args);
@@ -121,8 +130,8 @@ static void CreateCrud(TemplateModel templateModel, CommandArgs args)
 
     UpdateDbContextInterface(templateModel, args);
     UpdateDbContext(templateModel, args);
-    CreateMigration(args, $"Add{args.EntityName}Table");
 }
+
 static void CreateMigration(CommandArgs args, string migrationName)
 {
     RunCmd($"dotnet ef migrations add {migrationName} --startup-project {Path.Join(args.OutputDirectory, args.ProjectName)}.WebApi --project {Path.Join(args.OutputDirectory, args.ProjectName)}.Infrastructure -o Persistence/Migrations");
