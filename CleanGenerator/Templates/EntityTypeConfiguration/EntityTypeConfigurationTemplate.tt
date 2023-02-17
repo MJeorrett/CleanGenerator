@@ -21,11 +21,11 @@ public class <#= _model.EntityTypeName #>EntityTypeConfiguration : IEntityTypeCo
 <#
     foreach(var propertyConfig in _model.PropertyConfigs)
     {
-        if (!string.IsNullOrEmpty(propertyConfig.ColumnType))
+        if ((propertyConfig.Type == "string" || propertyConfig.Type == "string?") && propertyConfig.Length != null)
         {
 #>
         builder.Property(_ => _.<#= propertyConfig.Name #>)
-            .HasColumnType("<#= propertyConfig.ColumnType #>");
+            .HasColumnType("nvarchar(<#= propertyConfig.Length #>)");
 <#
         }
     }

@@ -84,7 +84,7 @@ namespace CleanGenerator.Templates.EntityTypeConfiguration
 
     foreach(var propertyConfig in _model.PropertyConfigs)
     {
-        if (!string.IsNullOrEmpty(propertyConfig.ColumnType))
+        if ((propertyConfig.Type == "string" || propertyConfig.Type == "string?") && propertyConfig.Length != null)
         {
 
             
@@ -97,14 +97,14 @@ namespace CleanGenerator.Templates.EntityTypeConfiguration
             
             #line default
             #line hidden
-            this.Write(")\r\n            .HasColumnType(\"");
+            this.Write(")\r\n            .HasColumnType(\"nvarchar(");
             
             #line 28 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\EntityTypeConfiguration\EntityTypeConfigurationTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(propertyConfig.ColumnType));
+            this.Write(this.ToStringHelper.ToStringWithCulture(propertyConfig.Length));
             
             #line default
             #line hidden
-            this.Write("\");\r\n");
+            this.Write(")\");\r\n");
             
             #line 29 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\EntityTypeConfiguration\EntityTypeConfigurationTemplate.tt"
 

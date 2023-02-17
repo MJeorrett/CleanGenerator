@@ -1,10 +1,10 @@
 {
-  "EntityName": "Todo4",
+  "EntityName": "Todo5",
   "Properties": [
     {
       "Name": "Title",
       "Type": "string",
-      "ColumnType": "nvarchar(128)"
+      "Length":  128
     },
     {
       "Name": "Description",

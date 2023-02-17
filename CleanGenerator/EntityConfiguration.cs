@@ -19,7 +19,9 @@ public record EntityPropertyConfiguration
     [Required]
     public string Type { get; init; } = null!;
 
-    public string ColumnType { get; init; } = null!;
+    public int? Length { get; init; }
+
+    public bool IsNullable => Type.EndsWith("?");
 
     public string BuildPropertyDefault() => Type switch {
         "string" => " = \"\";",

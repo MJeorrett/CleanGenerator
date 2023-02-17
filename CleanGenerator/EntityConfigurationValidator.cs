@@ -19,6 +19,11 @@ internal class EntityConfigurationValidator : AbstractValidator<EntityConfigurat
                 _.RuleFor(_ => _.Type)
                     .NotEmpty()
                     .WithMessage($"Property[{{CollectionIndex}}].Type must be provided.");
+
+                _.RuleFor(_ => _.Length)
+                    .Empty()
+                    .Unless(_ => _.Type != "string" || _.Type != "string?")
+                    .WithMessage($"Property[{{CollectionIndex}}].Length is only relevant when Type is `string` or `string?`.");
             });
     }
 }
