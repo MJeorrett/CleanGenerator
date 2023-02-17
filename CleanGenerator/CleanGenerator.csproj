@@ -40,6 +40,11 @@
 			<AutoGen>True</AutoGen>
 			<DependentUpon>CreateCommandTemplate.tt</DependentUpon>
 		</Compile>
+		<Compile Update="Templates\CreateCommand\CreateCommandValidatorTemplate.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>CreateCommandValidatorTemplate.tt</DependentUpon>
+		</Compile>
 		<Compile Update="Templates\DeleteCommand\DeleteCommandTemplate.cs">
 		  <DesignTime>True</DesignTime>
 		  <AutoGen>True</AutoGen>
@@ -88,6 +93,10 @@
 		<None Update="Templates\CreateCommand\CreateCommandTemplate.tt">
 			<Generator>TextTemplatingFilePreprocessor</Generator>
 			<LastGenOutput>CreateCommandTemplate.cs</LastGenOutput>
+		</None>
+		<None Update="Templates\CreateCommand\CreateCommandValidatorTemplate.tt">
+		  <Generator>TextTemplatingFilePreprocessor</Generator>
+		  <LastGenOutput>CreateCommandValidatorTemplate.cs</LastGenOutput>
 		</None>
 		<None Update="Templates\DeleteCommand\DeleteCommandTemplate.tt">
 		  <Generator>TextTemplatingFilePreprocessor</Generator>

@@ -27,4 +27,30 @@ public record EntityPropertyConfiguration
         "string" => " = \"\";",
         _ => "",
     };
+
+    public string BuildValidationRules()
+    {
+        List<string> components = new();
+
+        if (!IsNullable)
+        {
+            components.Add("            .NotNull()");
+
+            if (Type == "string")
+            {
+                components.Add("            .NotEmpty()");
+            }
+        }
+
+        if (Length is not null)
+        {
+            components.Add($"           .MaximumLength({Length})");
+        }
+
+        if (components.Count == 0) return "";
+
+        components[components.Count - 1] = components[components.Count - 1] + ";";
+
+        return $"RuleFor(_ => _.{Name}){Environment.NewLine}" + string.Join(Environment.NewLine, components);
+    }
 }

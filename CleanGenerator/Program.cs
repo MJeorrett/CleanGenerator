@@ -119,6 +119,7 @@ static void RunAddEntity(CommandArgs args, List<EntityPropertyConfiguration> pro
     };
 
     GenerateAndWriteCreateCommandFile(templateModel, args);
+    GenerateAndWriteCreateCommandValidatorFile(templateModel, args);
     GenerateAndWriteDeleteCommandFile(templateModel, args);
     GenerateAndWriteUpdateCommandFile(templateModel, args);
     GenerateAndWriteGetByIdQueryFile(templateModel, args);
@@ -220,6 +221,19 @@ static void GenerateAndWriteCreateCommandFile(TemplateModel model, CommandArgs a
     Directory.CreateDirectory(commandOutputDirectory);
 
     File.WriteAllText(Path.Join(commandOutputDirectory, $"Create{model.EntityTypeName}Command.cs"), text);
+}
+
+static void GenerateAndWriteCreateCommandValidatorFile(TemplateModel model, CommandArgs args)
+{
+    var test = new CreateCommandValidatorTemplate(model);
+
+    var text = test.TransformText();
+
+    var commandOutputDirectory = Path.Join(args.OutputDirectory, $"{args.ProjectName}.Application", model.EntityTypeName, "Commands", "Create");
+
+    Directory.CreateDirectory(commandOutputDirectory);
+
+    File.WriteAllText(Path.Join(commandOutputDirectory, $"Create{model.EntityTypeName}CommandValidator.cs"), text);
 }
 
 static void GenerateAndWriteDeleteCommandFile(TemplateModel model, CommandArgs args)

@@ -1,0 +1,25 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+
+using FluentValidation;
+
+namespace <#= _model.ProjectName #>.Application.<#= _model.EntityTypeName #>s.Commands.Create;
+
+public class Create<#= _model.EntityTypeName #>CommandValidator : AbstractValidator<Create<#= _model.EntityTypeName #>Command>
+{
+    public Create<#= _model.EntityTypeName #>CommandValidator()
+    {
+<#
+    foreach(var propertyConfig in _model.PropertyConfigs)
+    {
+#>
+        <#= propertyConfig.BuildValidationRules() #>
+
+<#
+    }
+#>
+    }
+}

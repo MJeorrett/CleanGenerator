@@ -1,14 +1,18 @@
 {
-  "EntityName": "Todo5",
+  "EntityName": "TodoList3",
   "Properties": [
     {
       "Name": "Title",
       "Type": "string",
-      "Length":  128
+      "Length": 128
     },
     {
       "Name": "Description",
       "Type": "string"
+    },
+    {
+      "Name": "Notes",
+      "Type": "string?"
     },
     {
       "Name": "StoryPoints",
