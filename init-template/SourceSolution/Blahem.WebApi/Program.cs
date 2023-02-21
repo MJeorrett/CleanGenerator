@@ -36,3 +36,5 @@ app.MapControllers();
 app.Run();
 
 #endregion
+
+public partial class Program { }

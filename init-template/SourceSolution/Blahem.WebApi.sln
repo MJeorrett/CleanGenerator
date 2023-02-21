@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blahem.Infrastructure", "Bl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blahem.WebApi", "Blahem.WebApi\Blahem.WebApi.csproj", "{DE6637C3-94C1-4756-ACAE-D7E0199EBF9D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blahem.E2eTests", "Blahem.E2eTests\Blahem.E2eTests.csproj", "{3D40FD5B-CCED-4E3E-BFCF-F850F9743819}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{DE6637C3-94C1-4756-ACAE-D7E0199EBF9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE6637C3-94C1-4756-ACAE-D7E0199EBF9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE6637C3-94C1-4756-ACAE-D7E0199EBF9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D40FD5B-CCED-4E3E-BFCF-F850F9743819}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D40FD5B-CCED-4E3E-BFCF-F850F9743819}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D40FD5B-CCED-4E3E-BFCF-F850F9743819}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D40FD5B-CCED-4E3E-BFCF-F850F9743819}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
