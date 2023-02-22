@@ -1,0 +1,68 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+using <#= _model.ProjectName #>.E2eTests.Shared.Dtos.<#= _model.EntityTypeName #>s;
+using <#= _model.ProjectName #>.E2eTests.Shared.Endpoints.Base;
+
+namespace <#= _model.ProjectName #>.E2eTests.Shared.Endpoints;
+
+internal static class <#= _model.EntityTypeName #>HttpClientExtensions
+{
+    public static Create<#= _model.EntityTypeName #>Endpoint Create<#= _model.EntityTypeName #>(this HttpClient httpClient) => new(httpClient);
+    public static Get<#= _model.EntityTypeName #>ByIdEndpoint Get<#= _model.EntityTypeName #>ById(this HttpClient httpClient) => new(httpClient);
+    public static List<#= _model.EntityTypeName #>sEndpoint List<#= _model.EntityTypeName #>s(this HttpClient httpClient) => new(httpClient);
+    public static Update<#= _model.EntityTypeName #>Endpoint Update<#= _model.EntityTypeName #>(this HttpClient httpClient) => new(httpClient);
+    public static Delete<#= _model.EntityTypeName #>Endpoint Delete<#= _model.EntityTypeName #>(this HttpClient httpClient) => new(httpClient);
+}
+
+internal class Create<#= _model.EntityTypeName #>Endpoint : PostApiEndpointWithDto<Create<#= _model.EntityTypeName #>Dto, int>
+{
+    internal Create<#= _model.EntityTypeName #>Endpoint(HttpClient httpClient) :
+        base(httpClient)
+    {
+    }
+
+    internal override string BuildPath(Create<#= _model.EntityTypeName #>Dto dto) => $"api/<#= _model.ApiBasePath #>";
+}
+
+internal class Get<#= _model.EntityTypeName #>ByIdEndpoint : GetApiEndpointWithDto<int, <#= _model.EntityTypeName #>Dto>
+{
+    internal Get<#= _model.EntityTypeName #>ByIdEndpoint(HttpClient httpClient) :
+        base(httpClient)
+    {
+    }
+
+    internal override string BuildPath(int <#= _model.EntityVariableName #>Id) => $"api/<#= _model.ApiBasePath #>/{<#= _model.EntityVariableName #>Id}";
+}
+
+internal class List<#= _model.EntityTypeName #>sEndpoint : GetApiEndpoint<List<<#= _model.EntityTypeName #>Dto>>
+{
+    internal List<#= _model.EntityTypeName #>sEndpoint(HttpClient httpClient) :
+        base(httpClient, "api/<#= _model.ApiBasePath #>")
+    {
+    }
+}
+
+internal class Update<#= _model.EntityTypeName #>Endpoint : PutApiEndpointWithDto<Update<#= _model.EntityTypeName #>Dto, int>
+{
+    internal Update<#= _model.EntityTypeName #>Endpoint(HttpClient httpClient) :
+        base(httpClient)
+    {
+    }
+
+    internal override string BuildPath(Update<#= _model.EntityTypeName #>Dto dto) => $"api/<#= _model.ApiBasePath #>/{dto.Id}";
+}
+
+internal class Delete<#= _model.EntityTypeName #>Endpoint : DeleteApiEndpoint
+{
+    public Delete<#= _model.EntityTypeName #>Endpoint(HttpClient httpClient) : base(httpClient)
+    {
+    }
+
+    public override async Task<HttpResponseMessage> Call(int <#= _model.EntityVariableName #>Id)
+    {
+        return await HttpClient.DeleteAsync($"api/<#= _model.ApiBasePath #>/{<#= _model.EntityVariableName #>Id}");
+    }
+}

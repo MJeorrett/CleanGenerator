@@ -55,6 +55,11 @@
 			<AutoGen>True</AutoGen>
 			<DependentUpon>DtoTemplate.tt</DependentUpon>
 		</Compile>
+		<Compile Update="Templates\E2eTests\E2eTestsTemplate.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>E2eTestsTemplate.tt</DependentUpon>
+		</Compile>
 		<Compile Update="Templates\EntityTypeConfiguration\EntityTypeConfigurationTemplate.cs">
 		  <DesignTime>True</DesignTime>
 		  <AutoGen>True</AutoGen>
@@ -74,6 +79,26 @@
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
 			<DependentUpon>ListQueryTemplate.tt</DependentUpon>
+		</Compile>
+		<Compile Update="Templates\TestDtos\TestDtoTemplate.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>TestDtoTemplate.tt</DependentUpon>
+		</Compile>
+		<Compile Update="Templates\TestDtos\CreateDtoTemplate.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>CreateDtoTemplate.tt</DependentUpon>
+		</Compile>
+		<Compile Update="Templates\TestDtos\UpdateBlaitemDtoTemplate.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>UpdateBlaitemDtoTemplate.tt</DependentUpon>
+		</Compile>
+		<Compile Update="Templates\TestEndpoints\TestEndpointsTemplate.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>TestEndpointsTemplate.tt</DependentUpon>
 		</Compile>
 		<Compile Update="Templates\UpdateCommand\UpdateCommandTemplate.cs">
 			<DesignTime>True</DesignTime>
@@ -106,6 +131,10 @@
 			<Generator>TextTemplatingFilePreprocessor</Generator>
 			<LastGenOutput>DtoTemplate.cs</LastGenOutput>
 		</None>
+		<None Update="Templates\E2eTests\E2eTestsTemplate.tt">
+		  <Generator>TextTemplatingFilePreprocessor</Generator>
+		  <LastGenOutput>E2eTestsTemplate.cs</LastGenOutput>
+		</None>
 		<None Update="Templates\EntityTypeConfiguration\EntityTypeConfigurationTemplate.tt">
 		  <Generator>TextTemplatingFilePreprocessor</Generator>
 		  <LastGenOutput>EntityTypeConfigurationTemplate.cs</LastGenOutput>
@@ -121,6 +150,22 @@
 		<None Update="Templates\ListQuery\ListQueryTemplate.tt">
 			<Generator>TextTemplatingFilePreprocessor</Generator>
 			<LastGenOutput>ListQueryTemplate.cs</LastGenOutput>
+		</None>
+		<None Update="Templates\TestDtos\TestDtoTemplate.tt">
+		  <Generator>TextTemplatingFilePreprocessor</Generator>
+		  <LastGenOutput>TestDtoTemplate.cs</LastGenOutput>
+		</None>
+		<None Update="Templates\TestDtos\CreateDtoTemplate.tt">
+		  <Generator>TextTemplatingFilePreprocessor</Generator>
+		  <LastGenOutput>CreateDtoTemplate.cs</LastGenOutput>
+		</None>
+		<None Update="Templates\TestDtos\UpdateBlaitemDtoTemplate.tt">
+		  <Generator>TextTemplatingFilePreprocessor</Generator>
+		  <LastGenOutput>UpdateBlaitemDtoTemplate.cs</LastGenOutput>
+		</None>
+		<None Update="Templates\TestEndpoints\TestEndpointsTemplate.tt">
+		  <Generator>TextTemplatingFilePreprocessor</Generator>
+		  <LastGenOutput>TestEndpointsTemplate.cs</LastGenOutput>
 		</None>
 		<None Update="Templates\UpdateCommand\UpdateCommandTemplate.tt">
 			<Generator>TextTemplatingFilePreprocessor</Generator>

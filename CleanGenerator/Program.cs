@@ -3,10 +3,13 @@ using CleanGenerator.Templates.Controller;
 using CleanGenerator.Templates.CreateCommand;
 using CleanGenerator.Templates.DeleteCommand;
 using CleanGenerator.Templates.Dto;
+using CleanGenerator.Templates.E2eTests;
 using CleanGenerator.Templates.Entity;
 using CleanGenerator.Templates.EntityTypeConfiguration;
 using CleanGenerator.Templates.GetByIdQuery;
 using CleanGenerator.Templates.ListQuery;
+using CleanGenerator.Templates.TestDtos;
+using CleanGenerator.Templates.TestEndpoints;
 using CleanGenerator.Templates.UpdateCommand;
 using Microsoft.Extensions.Configuration;
 using System.CommandLine;
@@ -128,6 +131,11 @@ static void RunAddEntity(CommandArgs args, List<EntityPropertyConfiguration> pro
     GenerateAndWriteEntityFile(templateModel, args);
     GenerateAndWriteEntityTypeConfigurationFile(templateModel, args);
     GenerateAndWriteControllerFile(templateModel, args);
+    GenerateAndWriteTestDtoFile(templateModel, args);
+    GenerateAndWriteTestCreateDtoFile(templateModel, args);
+    GenerateAndWriteTestUpdateDtoFile(templateModel, args);
+    GenerateAndWriteTestEndpointsFile(templateModel, args);
+    GenerateAndWriteE2eTestsFile(templateModel, args);
 
     UpdateDbContextInterface(templateModel, args);
     UpdateDbContext(templateModel, args);
@@ -332,6 +340,65 @@ static void GenerateAndWriteEntityTypeConfigurationFile(TemplateModel model, Com
     var commandOutputDirectory = Path.Join(args.OutputDirectory, $"{args.ProjectName}.Infrastructure", "Persistence", "EntityConfigurations");
 
     File.WriteAllText(Path.Join(commandOutputDirectory, $"{model.EntityTypeName}EntityTypeConfiguration.cs"), text);
+}
+
+static void GenerateAndWriteTestDtoFile(TemplateModel model, CommandArgs args)
+{
+    var test = new TestDtoTemplate(model);
+
+    var text = test.TransformText();
+
+    var commandOutputDirectory = Path.Join(args.OutputDirectory, $"{args.ProjectName}.E2eTests", "Shared", "Dtos", $"{model.EntityTypeName}s");
+
+    Directory.CreateDirectory(commandOutputDirectory);
+
+    File.WriteAllText(Path.Join(commandOutputDirectory, $"{model.EntityTypeName}Dto.cs"), text);
+}
+
+static void GenerateAndWriteTestCreateDtoFile(TemplateModel model, CommandArgs args)
+{
+    var test = new TestCreateDtoTemplate(model);
+
+    var text = test.TransformText();
+
+    var commandOutputDirectory = Path.Join(args.OutputDirectory, $"{args.ProjectName}.E2eTests", "Shared", "Dtos", $"{model.EntityTypeName}s");
+
+    File.WriteAllText(Path.Join(commandOutputDirectory, $"Create{model.EntityTypeName}Dto.cs"), text);
+}
+
+static void GenerateAndWriteTestUpdateDtoFile(TemplateModel model, CommandArgs args)
+{
+    var test = new TestUpdateDtoTemplate(model);
+
+    var text = test.TransformText();
+
+    var commandOutputDirectory = Path.Join(args.OutputDirectory, $"{args.ProjectName}.E2eTests", "Shared", "Dtos", $"{model.EntityTypeName}s");
+
+    File.WriteAllText(Path.Join(commandOutputDirectory, $"Update{model.EntityTypeName}Dto.cs"), text);
+}
+
+static void GenerateAndWriteTestEndpointsFile(TemplateModel model, CommandArgs args)
+{
+    var test = new TestEndpointsTemplate(model);
+
+    var text = test.TransformText();
+
+    var commandOutputDirectory = Path.Join(args.OutputDirectory, $"{args.ProjectName}.E2eTests", "Shared", "Endpoints");
+
+    File.WriteAllText(Path.Join(commandOutputDirectory, $"{model.EntityTypeName}Endpoints.cs"), text);
+}
+
+static void GenerateAndWriteE2eTestsFile(TemplateModel model, CommandArgs args)
+{
+    var test = new E2eTestsTemplate(model);
+
+    var text = test.TransformText();
+
+    var commandOutputDirectory = Path.Join(args.OutputDirectory, $"{args.ProjectName}.E2eTests", $"{model.EntityTypeName}s");
+
+    Directory.CreateDirectory(commandOutputDirectory);
+
+    File.WriteAllText(Path.Join(commandOutputDirectory, $"{model.EntityTypeName}E2eTests.cs"), text);
 }
 
 static void UpdateDbContextInterface(TemplateModel model, CommandArgs args)

@@ -1,0 +1,19 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+namespace <#= _model.ProjectName #>.E2eTests.Shared.Dtos.<#= _model.EntityTypeName #>s;
+
+public record Create<#= _model.EntityTypeName #>Dto
+{
+    public int Id { get; init; }
+<#
+    foreach(var propertyConfig in _model.PropertyConfigs)
+    {
+#>
+    public <#= propertyConfig.Type #> <#= propertyConfig.Name #> { get; init; }<#= propertyConfig.BuildPropertyDefault() #>
+<#
+    }
+#>
+}

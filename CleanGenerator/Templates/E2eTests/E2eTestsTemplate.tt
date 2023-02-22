@@ -1,0 +1,180 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+using <#= _model.ProjectName #>.E2eTests.Shared.Dtos.<#= _model.EntityTypeName #>s;
+using <#= _model.ProjectName #>.E2eTests.Shared.Endpoints;
+using <#= _model.ProjectName #>.E2eTests.Shared.Extensions;
+using <#= _model.ProjectName #>.E2eTests.Shared.WebApplicationFactory;
+using FluentAssertions;
+using Xunit.Abstractions;
+
+namespace <#= _model.ProjectName #>.E2eTests.<#= _model.EntityTypeName #>s;
+
+[Collection(CustomWebApplicationCollection.Name)]
+public class <#= _model.EntityTypeName #>E2eTests : TestBase
+{
+    public <#= _model.EntityTypeName #>E2eTests(
+        CustomWebApplicationFixture webApplicationFixture,
+        ITestOutputHelper testOutputHelper) :
+        base(webApplicationFixture, testOutputHelper)
+    {
+    }
+
+    [Fact]
+    public async Task ShouldReturnCreated<#= _model.EntityTypeName #>ById()
+    {
+        var createResponse = await HttpClient.Create<#= _model.EntityTypeName #>().Call(new() {
+<#
+    foreach(var propertyConfig in _model.PropertyConfigs)
+    {
+#>
+        <#= propertyConfig.Name #> = <#= propertyConfig.TestValue(0) #>,
+<#
+    }
+#>
+        });
+
+        await createResponse.Should().HaveStatusCode(201);
+
+        var created<#= _model.EntityTypeName #>Id = await createResponse.ReadResponseContentAs<int>();
+
+        var get<#= _model.EntityTypeName #>ByIdResponse = await HttpClient.Get<#= _model.EntityTypeName #>ById().Call(created<#= _model.EntityTypeName #>Id);
+
+        await get<#= _model.EntityTypeName #>ByIdResponse.Should().HaveStatusCode(200);
+
+        var returned<#= _model.EntityTypeName #> = await get<#= _model.EntityTypeName #>ByIdResponse.ReadResponseContentAs<<#= _model.EntityTypeName #>Dto>();
+
+<#
+    foreach(var propertyConfig in _model.PropertyConfigs)
+    {
+#>
+        returned<#= _model.EntityTypeName #>.<#= propertyConfig.Name #>.Should().Be(<#= propertyConfig.TestValue(0) #>);
+<#
+    }
+#>
+    }
+
+    [Fact]
+    public async Task ShouldListCreated<#= _model.EntityTypeName #>s()
+    {
+        var <#= _model.EntityVariableName #>1Id = await HttpClient.Create<#= _model.EntityTypeName #>().CallAndParseResponse(new() {
+<#
+    foreach(var propertyConfig in _model.PropertyConfigs)
+    {
+#>
+        <#= propertyConfig.Name #> = <#= propertyConfig.TestValue(0) #>,
+<#
+    }
+#>
+        });
+        var <#= _model.EntityVariableName #>2Id = await HttpClient.Create<#= _model.EntityTypeName #>().CallAndParseResponse(new() {
+<#
+    foreach(var propertyConfig in _model.PropertyConfigs)
+    {
+#>
+        <#= propertyConfig.Name #> = <#= propertyConfig.TestValue(1) #>,
+<#
+    }
+#>
+        });
+
+        var list<#= _model.EntityTypeName #>sResponse = await HttpClient.List<#= _model.EntityTypeName #>s().Call();
+
+        await list<#= _model.EntityTypeName #>sResponse.Should().HaveStatusCode(200);
+
+        var list<#= _model.EntityTypeName #>sResults = await list<#= _model.EntityTypeName #>sResponse.ReadResponseContentAs<List<<#= _model.EntityTypeName #>Dto>>();
+
+        list<#= _model.EntityTypeName #>sResults.Should().HaveCount(2);
+        list<#= _model.EntityTypeName #>sResults[0].Should().BeEquivalentTo(new <#= _model.EntityTypeName #>Dto() {
+            Id = <#= _model.EntityVariableName #>1Id,
+<#
+    foreach(var propertyConfig in _model.PropertyConfigs)
+    {
+#>
+            <#= propertyConfig.Name #> = <#= propertyConfig.TestValue(0) #>,
+<#
+    }
+#>
+        });
+        list<#= _model.EntityTypeName #>sResults[1].Id.Should().Be(<#= _model.EntityVariableName #>2Id);
+    }
+
+    [Fact]
+    public async Task ShouldUpdate<#= _model.EntityTypeName #>()
+    {
+        var <#= _model.EntityVariableName #>Id = await HttpClient.Create<#= _model.EntityTypeName #>().CallAndParseResponse(new() {
+<#
+    foreach(var propertyConfig in _model.PropertyConfigs)
+    {
+#>
+        <#= propertyConfig.Name #> = <#= propertyConfig.TestValue(0) #>,
+<#
+    }
+#>
+        });
+
+        var updateResponse = await HttpClient.Update<#= _model.EntityTypeName #>().Call(new() {
+            Id = <#= _model.EntityVariableName #>Id,
+<#
+    foreach(var propertyConfig in _model.PropertyConfigs)
+    {
+#>
+        <#= propertyConfig.Name #> = <#= propertyConfig.UpdatedTestValue(0) #>,
+<#
+    }
+#>
+        });
+
+        await updateResponse.Should().HaveStatusCode(200);
+
+        var updated<#= _model.EntityTypeName #> = await HttpClient.Get<#= _model.EntityTypeName #>ById().CallAndParseResponse(<#= _model.EntityVariableName #>Id);
+
+        updated<#= _model.EntityTypeName #>.Should().BeEquivalentTo(new <#= _model.EntityTypeName #>Dto() {
+            Id = <#= _model.EntityVariableName #>Id,
+<#
+    foreach(var propertyConfig in _model.PropertyConfigs)
+    {
+#>
+        <#= propertyConfig.Name #> = <#= propertyConfig.UpdatedTestValue(0) #>,
+<#
+    }
+#>
+        });
+    }
+
+    [Fact]
+    public async Task ShouldDelete<#= _model.EntityTypeName #>()
+    {
+        var <#= _model.EntityVariableName #>Id1 = await HttpClient.Create<#= _model.EntityTypeName #>().CallAndParseResponse(new() {
+<#
+    foreach(var propertyConfig in _model.PropertyConfigs)
+    {
+#>
+        <#= propertyConfig.Name #> = <#= propertyConfig.TestValue(0) #>,
+<#
+    }
+#>
+        });
+        var <#= _model.EntityVariableName #>Id2 = await HttpClient.Create<#= _model.EntityTypeName #>().CallAndParseResponse(new() {
+<#
+    foreach(var propertyConfig in _model.PropertyConfigs)
+    {
+#>
+        <#= propertyConfig.Name #> = <#= propertyConfig.TestValue(1) #>,
+<#
+    }
+#>
+        });
+
+        var delete<#= _model.EntityTypeName #>Response = await HttpClient.Delete<#= _model.EntityTypeName #>().Call(<#= _model.EntityVariableName #>Id1);
+
+        await delete<#= _model.EntityTypeName #>Response.Should().HaveStatusCode(200);
+
+        var list<#= _model.EntityTypeName #>sResponse = await HttpClient.List<#= _model.EntityTypeName #>s().CallAndParseResponse();
+
+        list<#= _model.EntityTypeName #>sResponse.Should().HaveCount(1);
+        list<#= _model.EntityTypeName #>sResponse[0].Id.Should().Be(<#= _model.EntityVariableName #>Id2);
+    }
+}

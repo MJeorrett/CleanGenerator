@@ -28,6 +28,20 @@ public record EntityPropertyConfiguration
         _ => "",
     };
 
+    public string TestValue(int index) => Type switch
+    {
+        "string" or "string?" => $"\"Test {Name} {index + 1}\"",
+        "int" or "int?" => Math.Pow(2, index).ToString(),
+        _ => throw new NotImplementedException($"No test value set up for type {Type}."),
+    };
+
+    public string UpdatedTestValue(int index) => Type switch
+    {
+        "string" or "string?" => $"\"Updated {Name} {index + 1}\"",
+        "int" or "int?" => (Math.Pow(2, index + 1) + 1).ToString(),
+        _ => throw new NotImplementedException($"No test value set up for type {Type}."),
+    };
+
     public string BuildValidationRules()
     {
         List<string> components = new();

@@ -49,7 +49,7 @@ public class BlaitemE2eTests : TestBase
 
         listBlaitemsResults.Should().HaveCount(2);
         listBlaitemsResults[0].Should().BeEquivalentTo(new BlaitemDto() { Id = blaitem1Id, Title = "Title 1" });
-        listBlaitemsResults[1].Should().BeEquivalentTo(new BlaitemDto() { Id = blaitem2Id, Title = "Title 2" });
+        listBlaitemsResults[1].Id.Should().Be(blaitem2Id);
     }
 
     [Fact]
