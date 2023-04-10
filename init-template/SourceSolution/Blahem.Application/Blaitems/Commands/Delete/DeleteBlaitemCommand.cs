@@ -2,7 +2,7 @@
 using Blahem.Application.Common.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace Blahem.Application.Blaitem.Commands.Delete;
+namespace Blahem.Application.Blaitems.Commands.Delete;
 
 public record DeleteBlaitemCommand
 {
