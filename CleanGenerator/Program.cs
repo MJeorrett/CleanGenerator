@@ -103,6 +103,12 @@ static void RunInit(CommandArgs args)
 
     Console.WriteLine("Loading template from " + inputDirectory);
 
+    if (!Directory.Exists(args.OutputDirectory))
+    {
+        Console.WriteLine($"Directory '{args.OutputDirectory}' does not exist. Creating now...");
+        Directory.CreateDirectory(args.OutputDirectory);
+    }
+
     if (Directory.EnumerateFileSystemEntries(args.OutputDirectory).Any())
     {
         throw new InvalidOperationException("Output directory is not empty.");
