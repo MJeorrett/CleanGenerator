@@ -6,6 +6,6 @@ public partial class CreateCommandValidatorTemplate
 
     public CreateCommandValidatorTemplate(TemplateModel model)
     {
-        _model = model;
+        _model = model.CloneWithoutIdPropertyConfig();
     }
 }

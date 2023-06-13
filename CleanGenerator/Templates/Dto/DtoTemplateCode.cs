@@ -6,6 +6,6 @@ public partial class DtoTemplate
 
     public DtoTemplate(TemplateModel model)
     {
-        _model = model;
+        _model = model.CloneWithoutIdPropertyConfig();
     }
 }

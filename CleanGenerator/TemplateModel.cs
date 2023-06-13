@@ -12,6 +12,14 @@ public record TemplateModel
 
     public required string ApiBasePath { get; init; }
 
+    public TemplateModel CloneWithoutIdPropertyConfig()
+    {
+        return this with
+        {
+            PropertyConfigs = PropertyConfigs.Where(_ => _.Name != "Id").ToList()
+        };
+    }
+
     public static string? FirstCharToLowerCase(string? str)
     {
         if (!string.IsNullOrEmpty(str) && char.IsUpper(str[0]))

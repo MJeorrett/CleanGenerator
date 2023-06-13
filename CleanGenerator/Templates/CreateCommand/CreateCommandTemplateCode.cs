@@ -6,6 +6,6 @@ public partial class CreateCommandTemplate
 
     public CreateCommandTemplate(TemplateModel model)
     {
-        _model = model;
+        _model = model.CloneWithoutIdPropertyConfig();
     }
 }
