@@ -21,9 +21,8 @@ To build and install the tool globally on your local machine run this from ./Cle
 Then you can use it anywhere by running `cleangen ...`.
 
 ## TODO
-- [ ] Create output folder if it doesn't exist.
+
 - [ ] Support `DateTime` and `bool` property types.
-- [ ] Scaffold from entity instead of config.
 - [ ] FK relationships.
 - [ ] Allow specifying what properties appear on detail and summary dtos.
 - [ ] Allow skipping adding migration when adding entity.
@@ -32,6 +31,8 @@ Then you can use it anywhere by running `cleangen ...`.
 - [ ] Eliminate warnings when running dotnet pack.
 - [ ] Install dotnet ef tool locally.
 - [ ] Ensure that tool works cross platform, particularly path separators might need attention.
+- [x] Create output folder if it doesn't exist.
+- [x] Scaffold from entity instead of config.
 - [x] Scaffold e2e tests.
 - [x] Scaffold validation.
 - [x] Add delete command.

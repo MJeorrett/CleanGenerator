@@ -6,6 +6,6 @@ public partial class E2eTestsTemplate
 
     public E2eTestsTemplate(TemplateModel model)
     {
-        _model = model;
+        _model = model.CloneWithoutIdPropertyConfig();
     }
 }

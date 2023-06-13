@@ -4,16 +4,16 @@ using CleanGenerator.Templates.CreateCommand;
 using CleanGenerator.Templates.DeleteCommand;
 using CleanGenerator.Templates.Dto;
 using CleanGenerator.Templates.E2eTests;
-using CleanGenerator.Templates.Entity;
 using CleanGenerator.Templates.EntityTypeConfiguration;
 using CleanGenerator.Templates.GetByIdQuery;
 using CleanGenerator.Templates.ListQuery;
 using CleanGenerator.Templates.TestDtos;
 using CleanGenerator.Templates.TestEndpoints;
 using CleanGenerator.Templates.UpdateCommand;
-using Microsoft.Extensions.Configuration;
 using System.CommandLine;
 using System.Reflection;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 var outputDirectoryOption = new Option<string>("--output", "Root output path of scaffolded project.")
 {
@@ -26,11 +26,6 @@ var projectNameOption = new Option<string>("--name", "Name of the project e.g. \
 };
 
 var entityNameOption = new Option<string>("--entity", "Name of the new entity e.g. \"Todo\".")
-{
-    IsRequired = true,
-};
-
-var entityConfigOption = new Option<string>("--entity-config", "Path to the entity configuration file.")
 {
     IsRequired = true,
 };
@@ -68,14 +63,16 @@ rootCommand.AddCommand(initCommand);
 
 var addEntityCommand = new Command("add", "Add entity to existing clean architecture project.")
 {
-    outputDirectoryOption, entityConfigOption, createMigrationOption,
+    outputDirectoryOption, entityNameOption, createMigrationOption,
 };
 
-addEntityCommand.SetHandler(((outputDirectory, entityConfigurationPath, createMigration) =>
+addEntityCommand.SetHandler((outputDirectory, entityName, createMigration) =>
 {
     string projectName = GetProjectName(outputDirectory);
 
-    var entityConfig = LoadAndValidateEntityConfiguration(entityConfigurationPath);
+    string entityFilePath = FindEntityFilePath(entityName, outputDirectory, projectName);
+
+    var entityConfig = LoadAndValidateEntityClass(entityFilePath);
 
     var args = new CommandArgs
     {
@@ -91,7 +88,7 @@ addEntityCommand.SetHandler(((outputDirectory, entityConfigurationPath, createMi
         CreateMigration(args, $"Add{args.EntityName}Table");
     }
 
-}), outputDirectoryOption, entityConfigOption, createMigrationOption);
+}, outputDirectoryOption, entityNameOption, createMigrationOption);
 
 rootCommand.AddCommand(addEntityCommand);
 
@@ -122,8 +119,8 @@ static void RunAddEntity(CommandArgs args, List<EntityPropertyConfiguration> pro
     var templateModel = new TemplateModel
     {
         ProjectName = args.ProjectName,
-        EntityTypeName = args.EntityName,
-        ApiBasePath = args.EntityName.ToLower(),
+        EntityTypeName = args.EntityName.Replace("Entity", ""),
+        ApiBasePath = args.EntityName.Replace("Entity", "").ToLower(),
         PropertyConfigs = propertyConfigs,
     };
 
@@ -134,7 +131,6 @@ static void RunAddEntity(CommandArgs args, List<EntityPropertyConfiguration> pro
     GenerateAndWriteGetByIdQueryFile(templateModel, args);
     GenerateAndWriteListQueryFile(templateModel, args);
     GenerateAndWriteDtoFile(templateModel, args);
-    GenerateAndWriteEntityFile(templateModel, args);
     GenerateAndWriteEntityTypeConfigurationFile(templateModel, args);
     GenerateAndWriteControllerFile(templateModel, args);
     GenerateAndWriteTestDtoFile(templateModel, args);
@@ -315,17 +311,6 @@ static void GenerateAndWriteDtoFile(TemplateModel model, CommandArgs args)
     File.WriteAllText(Path.Join(commandOutputDirectory, $"{model.EntityTypeName}Dto.cs"), text);
 }
 
-static void GenerateAndWriteEntityFile(TemplateModel model, CommandArgs args)
-{
-    var test = new EntityTemplate(model);
-
-    var text = test.TransformText();
-
-    var commandOutputDirectory = Path.Join(args.OutputDirectory, $"{args.ProjectName}.Core", "Entities");
-
-    File.WriteAllText(Path.Join(commandOutputDirectory, $"{model.EntityTypeName}Entity.cs"), text);
-}
-
 static void GenerateAndWriteControllerFile(TemplateModel model, CommandArgs args)
 {
     var test = new ControllerTemplate(model);
@@ -469,23 +454,58 @@ static string GetProjectName(string outputDirectory)
     }
 }
 
-static EntityConfiguration LoadAndValidateEntityConfiguration(string entityConfigurationPath)
+static EntityConfiguration LoadAndValidateEntityClass(string entityFilePath)
 {
-    var config = new ConfigurationBuilder()
-        .SetBasePath(Environment.CurrentDirectory)
-        .AddJsonFile(entityConfigurationPath)
-        .Build();
+    var sourceCode = File.ReadAllText(entityFilePath);
+    var syntaxTree = CSharpSyntaxTree.ParseText(sourceCode);
+    var root = syntaxTree.GetCompilationUnitRoot();
 
-    var entityConfig = new EntityConfiguration();
-    config.Bind(entityConfig);
+    var entityClass = root.DescendantNodes()
+        .OfType<ClassDeclarationSyntax>()
+        .FirstOrDefault();
+
+    if (entityClass == null)
+    {
+        throw new Exception("No class found in the provided entity file.");
+    }
+
+    var entityProperties = entityClass.DescendantNodes()
+        .OfType<PropertyDeclarationSyntax>();
+
+    var entityConfig = new EntityConfiguration
+    {
+        EntityName = entityClass.Identifier.Text,
+        Properties = entityProperties.Select(p => new EntityPropertyConfiguration
+        {
+            Name = p.Identifier.Text,
+            Type = p.Type.ToString()
+        }).ToList()
+    };
 
     var validator = new EntityConfigurationValidator();
     var validationResult = validator.Validate(entityConfig);
 
     if (!validationResult.IsValid)
     {
-        throw new Exception("Entity configuraiton is invalid:\n" + string.Join("\n", validationResult.Errors.Select(_ => "  - " + _.ToString())));
+        throw new Exception("Entity configuration is invalid:\n" + string.Join("\n", validationResult.Errors.Select(_ => "  - " + _.ToString())));
     }
 
     return entityConfig;
+}
+
+static string FindEntityFilePath(string entityName, string outputDirectory, string projectName)
+{
+    var entitiesFolderPath = Path.Combine(outputDirectory, $"{projectName}.Core", "Entities");
+    var entityFileName = entityName + "Entity.cs";
+
+    var entityFilePath = Directory
+        .EnumerateFiles(entitiesFolderPath, entityFileName, SearchOption.AllDirectories)
+        .FirstOrDefault();
+
+    if (entityFilePath == null)
+    {
+        throw new FileNotFoundException($"Entity file '{entityFileName}' not found in '{entitiesFolderPath}' or its subdirectories.");
+    }
+
+    return entityFilePath;
 }

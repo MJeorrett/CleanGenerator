@@ -6,6 +6,6 @@ public partial class TestDtoTemplate
 
     public TestDtoTemplate(TemplateModel model)
     {
-        _model = model;
+        _model = model.CloneWithoutIdPropertyConfig();
     }
 }
