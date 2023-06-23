@@ -1,4 +1,4 @@
-using Blahem.Application.Blaitem.Commands.Delete;
+using Blahem.Application.Blaitems.Commands.Delete;
 using Blahem.Application.Blaitems.Commands.Create;
 using Blahem.Application.Blaitems.Commands.Update;
 using Blahem.Application.Blaitems.Dtos;
