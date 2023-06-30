@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace Blahem.Application.Blaitems.Commands.Update;
 
-public class UpdateBlaitemCommandValidator : AbstractValidator<CreateBlaitemCommand>
+public class UpdateBlaitemCommandValidator : AbstractValidator<UpdateBlaitemCommand>
 {
     public UpdateBlaitemCommandValidator()
     {
