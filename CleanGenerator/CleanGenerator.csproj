@@ -9,6 +9,7 @@
 		<Nullable>enable</Nullable>
 		<PackageOutputPath>./nupkg</PackageOutputPath>
 		<Version>0.0.1</Version>
+		<NoDefaultExcludes>true</NoDefaultExcludes>
 	</PropertyGroup>
 
 	<ItemGroup>
