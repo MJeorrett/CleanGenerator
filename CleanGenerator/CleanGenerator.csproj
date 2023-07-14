@@ -8,7 +8,13 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<PackageOutputPath>./nupkg</PackageOutputPath>
-		<Version>0.0.1</Version>
+		<Version>0.0.2</Version>
+		<PackageId>CleanGen</PackageId>
+		<RepositoryUrl>https://github.com/MJeorrett/CleanGenerator</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<Authors>MJeorrett</Authors>
+		<Company>ClearSky Logic</Company>
+		<Description>Scaffolding tool for clean architecture project in dotnet.</Description>
 		<NoDefaultExcludes>true</NoDefaultExcludes>
 	</PropertyGroup>
 
