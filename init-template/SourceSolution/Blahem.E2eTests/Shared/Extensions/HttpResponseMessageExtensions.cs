@@ -1,8 +1,5 @@
 ﻿using Blahem.Application.Common.AppRequests;
-using System;
-using System.Net.Http;
 using System.Net.Http.Json;
-using System.Threading.Tasks;
 
 namespace Blahem.E2eTests.Shared.Extensions;
 

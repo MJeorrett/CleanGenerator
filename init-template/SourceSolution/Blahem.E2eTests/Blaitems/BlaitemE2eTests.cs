@@ -41,7 +41,11 @@ public class BlaitemE2eTests : TestBase
         var blaitem1Id = await HttpClient.CreateBlaitem().CallAndParseResponse(new() { Title = "Title 1" });
         var blaitem2Id = await HttpClient.CreateBlaitem().CallAndParseResponse(new() { Title = "Title 2" });
 
-        var listBlaitemsResponse = await HttpClient.ListBlaitems().Call();
+        var listBlaitemsResponse = await HttpClient.ListBlaitems().Call(new()
+        {
+            PageIndex = 1,
+            PageSize = 5,
+        });
 
         await listBlaitemsResponse.Should().HaveStatusCode(200);
 
@@ -76,9 +80,17 @@ public class BlaitemE2eTests : TestBase
 
         await deleteBlaitemResponse.Should().HaveStatusCode(200);
 
-        var listBlaitemsResponse = await HttpClient.ListBlaitems().CallAndParseResponse();
+        var listBlaitemsResponse = await HttpClient.ListBlaitems().Call(new()
+        {
+            PageIndex = 1,
+            PageSize = 5,
+        });
 
-        listBlaitemsResponse.Should().HaveCount(1);
-        listBlaitemsResponse[0].Id.Should().Be(blaitemId2);
+        await listBlaitemsResponse.Should().HaveStatusCode(200);
+
+        var listBlaitemsResults = await listBlaitemsResponse.ReadResponseContentAs<List<BlaitemDto>>();
+
+        listBlaitemsResults.Should().HaveCount(1);
+        listBlaitemsResults[0].Id.Should().Be(blaitemId2);
     }
 }

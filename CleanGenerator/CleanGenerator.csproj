@@ -8,7 +8,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<PackageOutputPath>./nupkg</PackageOutputPath>
-		<Version>0.0.2</Version>
+		<Version>0.0.3</Version>
 		<PackageId>CleanGen</PackageId>
 		<RepositoryUrl>https://github.com/MJeorrett/CleanGenerator</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>

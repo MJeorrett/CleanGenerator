@@ -18,7 +18,7 @@ namespace CleanGenerator.Templates.TestEndpoints
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
+    #line 1 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
     public partial class TestEndpointsTemplate : TestEndpointsTemplateBase
     {
@@ -30,262 +30,275 @@ namespace CleanGenerator.Templates.TestEndpoints
         {
             this.Write("using ");
             
-            #line 6 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
+            #line 6 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.ProjectName));
+            
+            #line default
+            #line hidden
+            this.Write(".Application.Common.AppRequests.Pagination;\r\nusing ");
+            
+            #line 7 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.ProjectName));
             
             #line default
             #line hidden
             this.Write(".E2eTests.Shared.Dtos.");
             
-            #line 6 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
+            #line 7 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("s;\r\nusing ");
             
-            #line 7 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
+            #line 8 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.ProjectName));
             
             #line default
             #line hidden
-            this.Write(".E2eTests.Shared.Endpoints.Base;\r\n\r\nnamespace ");
+            this.Write(".E2eTests.Shared.Endpoints.Base;\r\nusing System.Net.Http.Json;\r\n\r\nnamespace ");
             
-            #line 9 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
+            #line 11 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.ProjectName));
             
             #line default
             #line hidden
             this.Write(".E2eTests.Shared.Endpoints;\r\n\r\ninternal static class ");
             
-            #line 11 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
+            #line 13 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("HttpClientExtensions\r\n{\r\n    public static Create");
             
-            #line 13 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
+            #line 15 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("Endpoint Create");
             
-            #line 13 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
+            #line 15 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("(this HttpClient httpClient) => new(httpClient);\r\n    public static Get");
             
-            #line 14 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
+            #line 16 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("ByIdEndpoint Get");
             
-            #line 14 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
+            #line 16 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("ById(this HttpClient httpClient) => new(httpClient);\r\n    public static List");
             
-            #line 15 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
+            #line 17 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("sEndpoint List");
             
-            #line 15 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
+            #line 17 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("s(this HttpClient httpClient) => new(httpClient);\r\n    public static Update");
             
-            #line 16 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
+            #line 18 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("Endpoint Update");
             
-            #line 16 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
+            #line 18 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("(this HttpClient httpClient) => new(httpClient);\r\n    public static Delete");
             
-            #line 17 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
+            #line 19 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("Endpoint Delete");
             
-            #line 17 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
+            #line 19 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("(this HttpClient httpClient) => new(httpClient);\r\n}\r\n\r\ninternal class Create");
             
-            #line 20 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
+            #line 22 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
-            this.Write("Endpoint : PostApiEndpointWithDto<Create");
+            this.Write("Endpoint : ApiEndpointBase<Create");
             
-            #line 20 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
+            #line 22 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("Dto, int>\r\n{\r\n    internal Create");
             
-            #line 22 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
+            #line 24 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("Endpoint(HttpClient httpClient) :\r\n        base(httpClient)\r\n    {\r\n    }\r\n\r\n    " +
-                    "internal override string BuildPath(Create");
+                    "public override async Task<HttpResponseMessage> Call(Create");
             
-            #line 27 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
+            #line 29 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
-            this.Write("Dto dto) => $\"api/");
+            this.Write("Dto dto)\r\n    {\r\n        var path = $\"api/");
             
-            #line 27 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
+            #line 31 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.ApiBasePath));
             
             #line default
             #line hidden
-            this.Write("\";\r\n}\r\n\r\ninternal class Get");
+            this.Write("\";\r\n\r\n        return await HttpClient.PostAsJsonAsync(path, dto);\r\n    }\r\n}\r\n\r\nin" +
+                    "ternal class Get");
             
-            #line 30 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
+            #line 37 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
-            this.Write("ByIdEndpoint : GetApiEndpointWithDto<int, ");
+            this.Write("ByIdEndpoint : ApiEndpointBase<int, ");
             
-            #line 30 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
+            #line 37 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("Dto>\r\n{\r\n    internal Get");
             
-            #line 32 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
+            #line 39 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("ByIdEndpoint(HttpClient httpClient) :\r\n        base(httpClient)\r\n    {\r\n    }\r\n\r\n" +
-                    "    internal override string BuildPath(int ");
+                    "    public override async Task<HttpResponseMessage> Call(int ");
             
-            #line 37 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
+            #line 44 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityVariableName));
             
             #line default
             #line hidden
-            this.Write("Id) => $\"api/");
+            this.Write("Id)\r\n    {\r\n        var path = $\"api/");
             
-            #line 37 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
+            #line 46 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.ApiBasePath));
             
             #line default
             #line hidden
             this.Write("/{");
             
-            #line 37 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
+            #line 46 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityVariableName));
             
             #line default
             #line hidden
-            this.Write("Id}\";\r\n}\r\n\r\ninternal class List");
+            this.Write("Id}\";\r\n\r\n        return await HttpClient.GetAsync(path);\r\n    }\r\n}\r\n\r\ninternal cl" +
+                    "ass List");
             
-            #line 40 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
+            #line 52 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
-            this.Write("sEndpoint : GetApiEndpoint<List<");
+            this.Write("sEndpoint : ApiEndpointBase<PaginatedListQuery, PaginatedListResponse<");
             
-            #line 40 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
+            #line 52 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("Dto>>\r\n{\r\n    internal List");
             
-            #line 42 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
+            #line 54 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
-            this.Write("sEndpoint(HttpClient httpClient) :\r\n        base(httpClient, \"api/");
+            this.Write("sEndpoint(HttpClient httpClient) :\r\n        base(httpClient)\r\n    {\r\n    }\r\n\r\n   " +
+                    " public override async Task<HttpResponseMessage> Call(PaginatedListQuery dto)\r\n " +
+                    "   {\r\n        var path = $\"api/");
             
-            #line 43 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_model.ApiBasePath));
+            #line 61 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityVariableName));
             
             #line default
             #line hidden
-            this.Write("\")\r\n    {\r\n    }\r\n}\r\n\r\ninternal class Update");
+            this.Write("?{dto.ToQueryString()}\";\r\n\r\n        return await HttpClient.GetAsync(path);\r\n    " +
+                    "}\r\n}\r\n\r\ninternal class Update");
             
-            #line 48 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
+            #line 67 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
-            this.Write("Endpoint : PutApiEndpointWithDto<Update");
+            this.Write("Endpoint : ApiEndpointBase<Update");
             
-            #line 48 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
+            #line 67 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("Dto, int>\r\n{\r\n    internal Update");
             
-            #line 50 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
+            #line 69 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("Endpoint(HttpClient httpClient) :\r\n        base(httpClient)\r\n    {\r\n    }\r\n\r\n    " +
-                    "internal override string BuildPath(Update");
+                    "public override async Task<HttpResponseMessage> Call(Update");
             
-            #line 55 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
+            #line 74 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
-            this.Write("Dto dto) => $\"api/");
+            this.Write("Dto dto)\r\n    {\r\n        var path = $\"api/");
             
-            #line 55 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
+            #line 76 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.ApiBasePath));
             
             #line default
             #line hidden
-            this.Write("/{dto.Id}\";\r\n}\r\n\r\ninternal class Delete");
+            this.Write("/{dto.Id}\";\r\n\r\n        return await HttpClient.PutAsJsonAsync(path, dto);\r\n    }\r" +
+                    "\n}\r\n\r\ninternal class Delete");
             
-            #line 58 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
+            #line 82 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
-            this.Write("Endpoint : DeleteApiEndpoint\r\n{\r\n    public Delete");
+            this.Write("Endpoint : ApiEndpointBase<int, int>\r\n{\r\n    public Delete");
             
-            #line 60 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
+            #line 84 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
@@ -293,21 +306,21 @@ namespace CleanGenerator.Templates.TestEndpoints
             this.Write("Endpoint(HttpClient httpClient) : base(httpClient)\r\n    {\r\n    }\r\n\r\n    public ov" +
                     "erride async Task<HttpResponseMessage> Call(int ");
             
-            #line 64 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
+            #line 88 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityVariableName));
             
             #line default
             #line hidden
             this.Write("Id)\r\n    {\r\n        return await HttpClient.DeleteAsync($\"api/");
             
-            #line 66 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
+            #line 90 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.ApiBasePath));
             
             #line default
             #line hidden
             this.Write("/{");
             
-            #line 66 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
+            #line 90 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityVariableName));
             
             #line default
@@ -338,7 +351,7 @@ namespace CleanGenerator.Templates.TestEndpoints
         /// <summary>
         /// The string builder that generation-time code is using to assemble generated output
         /// </summary>
-        protected System.Text.StringBuilder GenerationEnvironment
+        public System.Text.StringBuilder GenerationEnvironment
         {
             get
             {

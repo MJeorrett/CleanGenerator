@@ -80,7 +80,11 @@ public class <#= _model.EntityTypeName #>E2eTests : TestBase
 #>
         });
 
-        var list<#= _model.EntityTypeName #>sResponse = await HttpClient.List<#= _model.EntityTypeName #>s().Call();
+        var list<#= _model.EntityTypeName #>sResponse = await HttpClient.List<#= _model.EntityTypeName #>s().Call(new()
+        {
+            PageIndex = 1,
+            PageSize = 5,
+        });
 
         await list<#= _model.EntityTypeName #>sResponse.Should().HaveStatusCode(200);
 
@@ -172,9 +176,17 @@ public class <#= _model.EntityTypeName #>E2eTests : TestBase
 
         await delete<#= _model.EntityTypeName #>Response.Should().HaveStatusCode(200);
 
-        var list<#= _model.EntityTypeName #>sResponse = await HttpClient.List<#= _model.EntityTypeName #>s().CallAndParseResponse();
+        var list<#= _model.EntityTypeName #>sResponse = await HttpClient.List<#= _model.EntityTypeName #>s().Call(new()
+        {
+            PageIndex = 1,
+            PageSize = 5,
+        });
 
-        list<#= _model.EntityTypeName #>sResponse.Should().HaveCount(1);
-        list<#= _model.EntityTypeName #>sResponse[0].Id.Should().Be(<#= _model.EntityVariableName #>Id2);
+        await list<#= _model.EntityTypeName #>sResponse.Should().HaveStatusCode(200);
+
+        var list<#= _model.EntityTypeName #>sResults = await list<#= _model.EntityTypeName #>sResponse.ReadResponseContentAs<List<<#= _model.EntityTypeName #>Dto>>();
+
+        list<#= _model.EntityTypeName #>sResults.Should().HaveCount(1);
+        list<#= _model.EntityTypeName #>sResults[0].Id.Should().Be(<#= _model.EntityVariableName #>Id2);
     }
 }
