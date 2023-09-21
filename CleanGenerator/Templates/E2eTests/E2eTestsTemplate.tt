@@ -80,14 +80,14 @@ public class <#= _model.EntityTypeName #>E2eTests : TestBase
 #>
         });
 
-        var list<#= _model.EntityTypeName #>sResponse = await HttpClient.List<#= _model.EntityTypeName #>s().Call();
+        var list<#= _model.EntityTypeName #>sResult = await HttpClient.List<#= _model.EntityTypeName #>s().CallAndParseResponse(new()
+        {
+            PageIndex = 1,
+            PageSize = 5,
+        });
 
-        await list<#= _model.EntityTypeName #>sResponse.Should().HaveStatusCode(200);
-
-        var list<#= _model.EntityTypeName #>sResults = await list<#= _model.EntityTypeName #>sResponse.ReadResponseContentAs<List<<#= _model.EntityTypeName #>Dto>>();
-
-        list<#= _model.EntityTypeName #>sResults.Should().HaveCount(2);
-        list<#= _model.EntityTypeName #>sResults[0].Should().BeEquivalentTo(new <#= _model.EntityTypeName #>Dto() {
+        list<#= _model.EntityTypeName #>sResult.Items.Should().HaveCount(2);
+        list<#= _model.EntityTypeName #>sResult.Items[0].Should().BeEquivalentTo(new <#= _model.EntityTypeName #>Dto() {
             Id = <#= _model.EntityVariableName #>1Id,
 <#
     foreach(var propertyConfig in _model.PropertyConfigs)
@@ -98,7 +98,7 @@ public class <#= _model.EntityTypeName #>E2eTests : TestBase
     }
 #>
         });
-        list<#= _model.EntityTypeName #>sResults[1].Id.Should().Be(<#= _model.EntityVariableName #>2Id);
+        list<#= _model.EntityTypeName #>sResult.Items[1].Id.Should().Be(<#= _model.EntityVariableName #>2Id);
     }
 
     [Fact]
@@ -172,9 +172,13 @@ public class <#= _model.EntityTypeName #>E2eTests : TestBase
 
         await delete<#= _model.EntityTypeName #>Response.Should().HaveStatusCode(200);
 
-        var list<#= _model.EntityTypeName #>sResponse = await HttpClient.List<#= _model.EntityTypeName #>s().CallAndParseResponse();
+        var list<#= _model.EntityTypeName #>sResult = await HttpClient.List<#= _model.EntityTypeName #>s().CallAndParseResponse(new()
+        {
+            PageIndex = 1,
+            PageSize = 5,
+        });
 
-        list<#= _model.EntityTypeName #>sResponse.Should().HaveCount(1);
-        list<#= _model.EntityTypeName #>sResponse[0].Id.Should().Be(<#= _model.EntityVariableName #>Id2);
+        list<#= _model.EntityTypeName #>sResult.Items.Should().HaveCount(1);
+        list<#= _model.EntityTypeName #>sResult.Items[0].Id.Should().Be(<#= _model.EntityVariableName #>Id2);
     }
 }

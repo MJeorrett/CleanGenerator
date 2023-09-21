@@ -29,6 +29,26 @@ public static class HttpResponseMessageAssertionsExtensions
         return new AndConstraint<HttpResponseMessageAssertions>(target);
     }
 
+    public static async Task<AndConstraint<HttpResponseMessageAssertions>> HaveSuccessStatusCode(
+        this HttpResponseMessageAssertions target)
+    {
+        var subject = target.Subject;
+
+        var responseContent = subject.IsSuccessStatusCode ?
+            "" :
+            await subject.Content.ReadAsStringAsync();
+
+        Execute.Assertion
+            .ForCondition(subject.IsSuccessStatusCode)
+            .FailWith($"Expected status code to be success but received status code {(int)subject.StatusCode} with " +
+                (string.IsNullOrEmpty(responseContent) ?
+                    "no content." :
+                    $"content:\n{responseContent.Replace("{", "{{").Replace("}", "}}")}"));
+
+        return new AndConstraint<HttpResponseMessageAssertions>(target);
+    }
+
+
     public static async Task<AndConstraint<HttpResponseMessageAssertions>> HaveMessage(
         this HttpResponseMessageAssertions target,
         string expectedMessage)

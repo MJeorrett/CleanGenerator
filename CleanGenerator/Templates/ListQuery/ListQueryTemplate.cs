@@ -18,7 +18,7 @@ namespace CleanGenerator.Templates.ListQuery
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
+    #line 1 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
     public partial class ListQueryTemplate : ListQueryTemplateBase
     {
@@ -30,71 +30,84 @@ namespace CleanGenerator.Templates.ListQuery
         {
             this.Write("using ");
             
-            #line 6 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
+            #line 6 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.ProjectName));
             
             #line default
             #line hidden
             this.Write(".Application.");
             
-            #line 6 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
+            #line 6 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("s.Dtos;\r\nusing ");
             
-            #line 7 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
+            #line 7 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.ProjectName));
             
             #line default
             #line hidden
             this.Write(".Application.Common.AppRequests;\r\nusing ");
             
-            #line 8 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
+            #line 8 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.ProjectName));
             
             #line default
             #line hidden
-            this.Write(".Application.Common.Interfaces;\r\nusing Microsoft.EntityFrameworkCore;\r\n\r\nnamespac" +
-                    "e ");
+            this.Write(".Application.Common.AppRequests.Pagination;\r\nusing ");
             
-            #line 11 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
+            #line 9 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.ProjectName));
+            
+            #line default
+            #line hidden
+            this.Write(".Application.Common.Interfaces;\r\nusing ");
+            
+            #line 10 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.ProjectName));
+            
+            #line default
+            #line hidden
+            this.Write(".Core.Entities;\r\n\r\nnamespace ");
+            
+            #line 12 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.ProjectName));
             
             #line default
             #line hidden
             this.Write(".Application.");
             
-            #line 11 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
+            #line 12 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("s.Queries.List;\r\n\r\npublic record List");
             
-            #line 13 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
+            #line 14 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
-            this.Write("sQuery\r\n{\r\n\r\n}\r\n\r\npublic class List");
+            this.Write("sQuery : PaginatedListQuery\r\n{\r\n\r\n}\r\n\r\npublic class List");
             
-            #line 18 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
+            #line 19 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("sQueryHandler : IRequestHandler<List");
             
-            #line 18 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
+            #line 19 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
-            this.Write("sQuery, List<");
+            this.Write("sQuery, PaginatedListResponse<");
             
-            #line 18 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
+            #line 19 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
@@ -102,43 +115,78 @@ namespace CleanGenerator.Templates.ListQuery
             this.Write("Dto>>\r\n{\r\n    private readonly IApplicationDbContext _dbContext;\r\n\r\n    public Li" +
                     "st");
             
-            #line 22 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
+            #line 23 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("sQueryHandler(IApplicationDbContext dbContext)\r\n    {\r\n        _dbContext = dbCon" +
-                    "text;\r\n    }\r\n\r\n    public async Task<AppResponse<List<");
+                    "text;\r\n    }\r\n\r\n    public async Task<AppResponse<PaginatedListResponse<");
             
-            #line 27 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
+            #line 28 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("Dto>>> Handle(\r\n        List");
             
-            #line 28 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
+            #line 29 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
-            this.Write("sQuery query,\r\n        CancellationToken cancellationToken)\r\n    {\r\n        var d" +
-                    "tos = await _dbContext.");
+            this.Write("sQuery query,\r\n        CancellationToken cancellationToken)\r\n    {\r\n        var ");
             
-            #line 31 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
+            #line 32 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityVariableName));
+            
+            #line default
+            #line hidden
+            this.Write("Queryable = BuildQueryable(query);\r\n\r\n        var result = await PaginatedListRes" +
+                    "ponse<");
+            
+            #line 34 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
-            this.Write("s\r\n            .Select(_ => ");
+            this.Write("Dto>.Create(\r\n            ");
             
-            #line 32 "C:\git\github\mjeorrett\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
+            #line 35 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityVariableName));
+            
+            #line default
+            #line hidden
+            this.Write("Queryable,\r\n            query,\r\n            entity => ");
+            
+            #line 37 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
-            this.Write("Dto.MapFromEntity(_))\r\n            .ToListAsync(cancellationToken);\r\n\r\n        re" +
-                    "turn new(200, dtos);\r\n    }\r\n}\r\n");
+            this.Write("Dto.MapFromEntity(entity),\r\n            cancellationToken);\r\n\r\n        return new" +
+                    "(200, result);\r\n    }\r\n\r\n    private IQueryable<");
+            
+            #line 43 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
+            
+            #line default
+            #line hidden
+            this.Write("Entity> BuildQueryable(List");
+            
+            #line 43 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
+            
+            #line default
+            #line hidden
+            this.Write("sQuery query)\r\n    {\r\n        var queryable = _dbContext.");
+            
+            #line 45 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\ListQuery\ListQueryTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
+            
+            #line default
+            #line hidden
+            this.Write("s;\r\n\r\n        return queryable;\r\n    }\r\n}\r\n");
             return this.GenerationEnvironment.ToString();
         }
     }
@@ -164,7 +212,7 @@ namespace CleanGenerator.Templates.ListQuery
         /// <summary>
         /// The string builder that generation-time code is using to assemble generated output
         /// </summary>
-        protected System.Text.StringBuilder GenerationEnvironment
+        public System.Text.StringBuilder GenerationEnvironment
         {
             get
             {

@@ -3,8 +3,10 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
+using <#= _model.ProjectName #>.Application.Common.AppRequests.Pagination;
 using <#= _model.ProjectName #>.E2eTests.Shared.Dtos.<#= _model.EntityTypeName #>s;
 using <#= _model.ProjectName #>.E2eTests.Shared.Endpoints.Base;
+using System.Net.Http.Json;
 
 namespace <#= _model.ProjectName #>.E2eTests.Shared.Endpoints;
 
@@ -17,45 +19,67 @@ internal static class <#= _model.EntityTypeName #>HttpClientExtensions
     public static Delete<#= _model.EntityTypeName #>Endpoint Delete<#= _model.EntityTypeName #>(this HttpClient httpClient) => new(httpClient);
 }
 
-internal class Create<#= _model.EntityTypeName #>Endpoint : PostApiEndpointWithDto<Create<#= _model.EntityTypeName #>Dto, int>
+internal class Create<#= _model.EntityTypeName #>Endpoint : ApiEndpointBase<Create<#= _model.EntityTypeName #>Dto, int>
 {
     internal Create<#= _model.EntityTypeName #>Endpoint(HttpClient httpClient) :
         base(httpClient)
     {
     }
 
-    internal override string BuildPath(Create<#= _model.EntityTypeName #>Dto dto) => $"api/<#= _model.ApiBasePath #>";
+    public override async Task<HttpResponseMessage> Call(Create<#= _model.EntityTypeName #>Dto dto)
+    {
+        var path = $"api/<#= _model.ApiBasePath #>";
+
+        return await HttpClient.PostAsJsonAsync(path, dto);
+    }
 }
 
-internal class Get<#= _model.EntityTypeName #>ByIdEndpoint : GetApiEndpointWithDto<int, <#= _model.EntityTypeName #>Dto>
+internal class Get<#= _model.EntityTypeName #>ByIdEndpoint : ApiEndpointBase<int, <#= _model.EntityTypeName #>Dto>
 {
     internal Get<#= _model.EntityTypeName #>ByIdEndpoint(HttpClient httpClient) :
         base(httpClient)
     {
     }
 
-    internal override string BuildPath(int <#= _model.EntityVariableName #>Id) => $"api/<#= _model.ApiBasePath #>/{<#= _model.EntityVariableName #>Id}";
-}
-
-internal class List<#= _model.EntityTypeName #>sEndpoint : GetApiEndpoint<List<<#= _model.EntityTypeName #>Dto>>
-{
-    internal List<#= _model.EntityTypeName #>sEndpoint(HttpClient httpClient) :
-        base(httpClient, "api/<#= _model.ApiBasePath #>")
+    public override async Task<HttpResponseMessage> Call(int <#= _model.EntityVariableName #>Id)
     {
+        var path = $"api/<#= _model.ApiBasePath #>/{<#= _model.EntityVariableName #>Id}";
+
+        return await HttpClient.GetAsync(path);
     }
 }
 
-internal class Update<#= _model.EntityTypeName #>Endpoint : PutApiEndpointWithDto<Update<#= _model.EntityTypeName #>Dto, int>
+internal class List<#= _model.EntityTypeName #>sEndpoint : ApiEndpointBase<PaginatedListQuery, PaginatedListResponse<<#= _model.EntityTypeName #>Dto>>
+{
+    internal List<#= _model.EntityTypeName #>sEndpoint(HttpClient httpClient) :
+        base(httpClient)
+    {
+    }
+
+    public override async Task<HttpResponseMessage> Call(PaginatedListQuery dto)
+    {
+        var path = $"api/<#= _model.EntityVariableName #>?{dto.ToQueryString()}";
+
+        return await HttpClient.GetAsync(path);
+    }
+}
+
+internal class Update<#= _model.EntityTypeName #>Endpoint : ApiEndpointBaseWithoutResponse<Update<#= _model.EntityTypeName #>Dto>
 {
     internal Update<#= _model.EntityTypeName #>Endpoint(HttpClient httpClient) :
         base(httpClient)
     {
     }
 
-    internal override string BuildPath(Update<#= _model.EntityTypeName #>Dto dto) => $"api/<#= _model.ApiBasePath #>/{dto.Id}";
+    public override async Task<HttpResponseMessage> Call(Update<#= _model.EntityTypeName #>Dto dto)
+    {
+        var path = $"api/<#= _model.ApiBasePath #>/{dto.Id}";
+
+        return await HttpClient.PutAsJsonAsync(path, dto);
+    }
 }
 
-internal class Delete<#= _model.EntityTypeName #>Endpoint : DeleteApiEndpoint
+internal class Delete<#= _model.EntityTypeName #>Endpoint : ApiEndpointBaseWithoutResponse<int>
 {
     public Delete<#= _model.EntityTypeName #>Endpoint(HttpClient httpClient) : base(httpClient)
     {
