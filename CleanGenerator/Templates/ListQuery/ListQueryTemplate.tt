@@ -5,17 +5,18 @@
 <#@ import namespace="System.Collections.Generic" #>
 using <#= _model.ProjectName #>.Application.<#= _model.EntityTypeName #>s.Dtos;
 using <#= _model.ProjectName #>.Application.Common.AppRequests;
+using <#= _model.ProjectName #>.Application.Common.AppRequests.Pagination;
 using <#= _model.ProjectName #>.Application.Common.Interfaces;
-using Microsoft.EntityFrameworkCore;
+using <#= _model.ProjectName #>.Core.Entities;
 
 namespace <#= _model.ProjectName #>.Application.<#= _model.EntityTypeName #>s.Queries.List;
 
-public record List<#= _model.EntityTypeName #>sQuery
+public record List<#= _model.EntityTypeName #>sQuery : PaginatedListQuery
 {
 
 }
 
-public class List<#= _model.EntityTypeName #>sQueryHandler : IRequestHandler<List<#= _model.EntityTypeName #>sQuery, List<<#= _model.EntityTypeName #>Dto>>
+public class List<#= _model.EntityTypeName #>sQueryHandler : IRequestHandler<List<#= _model.EntityTypeName #>sQuery, PaginatedListResponse<<#= _model.EntityTypeName #>Dto>>
 {
     private readonly IApplicationDbContext _dbContext;
 
@@ -24,14 +25,25 @@ public class List<#= _model.EntityTypeName #>sQueryHandler : IRequestHandler<Lis
         _dbContext = dbContext;
     }
 
-    public async Task<AppResponse<List<<#= _model.EntityTypeName #>Dto>>> Handle(
+    public async Task<AppResponse<PaginatedListResponse<<#= _model.EntityTypeName #>Dto>>> Handle(
         List<#= _model.EntityTypeName #>sQuery query,
         CancellationToken cancellationToken)
     {
-        var dtos = await _dbContext.<#= _model.EntityTypeName #>s
-            .Select(_ => <#= _model.EntityTypeName #>Dto.MapFromEntity(_))
-            .ToListAsync(cancellationToken);
+        var <#= _model.EntityVariableName #>Queryable = BuildQueryable(query);
 
-        return new(200, dtos);
+        var result = await PaginatedListResponse<<#= _model.EntityTypeName #>Dto>.Create(
+            <#= _model.EntityVariableName #>Queryable,
+            query,
+            entity => <#= _model.EntityTypeName #>Dto.MapFromEntity(entity),
+            cancellationToken);
+
+        return new(200, result);
+    }
+
+    private IQueryable<<#= _model.EntityTypeName #>Entity> BuildQueryable(List<#= _model.EntityTypeName #>sQuery query)
+    {
+        var queryable = _dbContext.<#= _model.EntityTypeName #>s;
+
+        return queryable;
     }
 }

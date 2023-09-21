@@ -7,6 +7,7 @@ using Blahem.Application.Blaitems.Queries.List;
 using Blahem.Application.Common.AppRequests;
 using Blahem.WebApi.Extensions;
 using Microsoft.AspNetCore.Mvc;
+using Blahem.Application.Common.AppRequests.Pagination;
 
 namespace Blahem.WebApi.Controllers;
 
@@ -25,11 +26,12 @@ public class BlaitemController : ControllerBase
     }
 
     [HttpGet("api/blaitems")]
-    public async Task<ActionResult<AppResponse<List<BlaitemDto>>>> ListBlaitems(
+    public async Task<ActionResult<AppResponse<PaginatedListResponse<BlaitemDto>>>> ListBlaitems(
+        [FromQuery] ListBlaitemsQuery query,
         [FromServices] ListBlaitemsQueryHandler handler,
         CancellationToken cancellationToken)
     {
-        var appResponse = await handler.Handle(new(), cancellationToken);
+        var appResponse = await handler.Handle(query, cancellationToken);
 
         return appResponse.ToActionResult();
     }

@@ -347,73 +347,45 @@ namespace CleanGenerator.Templates.E2eTests
             
             #line default
             #line hidden
-            this.Write("sResponse = await HttpClient.List");
+            this.Write("sResult = await HttpClient.List");
             
             #line 83 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
-            this.Write("s().Call(new()\r\n        {\r\n            PageIndex = 1,\r\n            PageSize = 5,\r" +
-                    "\n        });\r\n\r\n        await list");
+            this.Write("s().CallAndParseResponse(new()\r\n        {\r\n            PageIndex = 1,\r\n          " +
+                    "  PageSize = 5,\r\n        });\r\n\r\n        list");
             
             #line 89 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
-            this.Write("sResponse.Should().HaveStatusCode(200);\r\n\r\n        var list");
+            this.Write("sResult.Items.Should().HaveCount(2);\r\n        list");
             
-            #line 91 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 90 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
-            this.Write("sResults = await list");
+            this.Write("sResult.Items[0].Should().BeEquivalentTo(new ");
             
-            #line 91 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
-            
-            #line default
-            #line hidden
-            this.Write("sResponse.ReadResponseContentAs<List<");
-            
-            #line 91 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
-            
-            #line default
-            #line hidden
-            this.Write("Dto>>();\r\n\r\n        list");
-            
-            #line 93 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
-            
-            #line default
-            #line hidden
-            this.Write("sResults.Should().HaveCount(2);\r\n        list");
-            
-            #line 94 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
-            
-            #line default
-            #line hidden
-            this.Write("sResults[0].Should().BeEquivalentTo(new ");
-            
-            #line 94 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 90 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("Dto() {\r\n            Id = ");
             
-            #line 95 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 91 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityVariableName));
             
             #line default
             #line hidden
             this.Write("1Id,\r\n");
             
-            #line 96 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 92 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
 
     foreach(var propertyConfig in _model.PropertyConfigs)
     {
@@ -423,21 +395,21 @@ namespace CleanGenerator.Templates.E2eTests
             #line hidden
             this.Write("            ");
             
-            #line 100 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 96 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(propertyConfig.Name));
             
             #line default
             #line hidden
             this.Write(" = ");
             
-            #line 100 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 96 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(propertyConfig.TestValue(0)));
             
             #line default
             #line hidden
             this.Write(",\r\n");
             
-            #line 101 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 97 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
 
     }
 
@@ -446,42 +418,42 @@ namespace CleanGenerator.Templates.E2eTests
             #line hidden
             this.Write("        });\r\n        list");
             
-            #line 105 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 101 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
-            this.Write("sResults[1].Id.Should().Be(");
+            this.Write("sResult.Items[1].Id.Should().Be(");
             
-            #line 105 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 101 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityVariableName));
             
             #line default
             #line hidden
             this.Write("2Id);\r\n    }\r\n\r\n    [Fact]\r\n    public async Task ShouldUpdate");
             
-            #line 109 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 105 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("()\r\n    {\r\n        var ");
             
-            #line 111 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 107 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityVariableName));
             
             #line default
             #line hidden
             this.Write("Id = await HttpClient.Create");
             
-            #line 111 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 107 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("().CallAndParseResponse(new() {\r\n");
             
-            #line 112 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 108 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
 
     foreach(var propertyConfig in _model.PropertyConfigs)
     {
@@ -491,21 +463,21 @@ namespace CleanGenerator.Templates.E2eTests
             #line hidden
             this.Write("        ");
             
-            #line 116 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 112 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(propertyConfig.Name));
             
             #line default
             #line hidden
             this.Write(" = ");
             
-            #line 116 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 112 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(propertyConfig.TestValue(0)));
             
             #line default
             #line hidden
             this.Write(",\r\n");
             
-            #line 117 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 113 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
 
     }
 
@@ -514,21 +486,21 @@ namespace CleanGenerator.Templates.E2eTests
             #line hidden
             this.Write("        });\r\n\r\n        var updateResponse = await HttpClient.Update");
             
-            #line 122 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 118 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("().Call(new() {\r\n            Id = ");
             
-            #line 123 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 119 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityVariableName));
             
             #line default
             #line hidden
             this.Write("Id,\r\n");
             
-            #line 124 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 120 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
 
     foreach(var propertyConfig in _model.PropertyConfigs)
     {
@@ -538,21 +510,21 @@ namespace CleanGenerator.Templates.E2eTests
             #line hidden
             this.Write("        ");
             
-            #line 128 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 124 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(propertyConfig.Name));
             
             #line default
             #line hidden
             this.Write(" = ");
             
-            #line 128 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 124 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(propertyConfig.UpdatedTestValue(0)));
             
             #line default
             #line hidden
             this.Write(",\r\n");
             
-            #line 129 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 125 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
 
     }
 
@@ -562,49 +534,49 @@ namespace CleanGenerator.Templates.E2eTests
             this.Write("        });\r\n\r\n        await updateResponse.Should().HaveStatusCode(200);\r\n\r\n    " +
                     "    var updated");
             
-            #line 136 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 132 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write(" = await HttpClient.Get");
             
-            #line 136 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 132 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("ById().CallAndParseResponse(");
             
-            #line 136 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 132 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityVariableName));
             
             #line default
             #line hidden
             this.Write("Id);\r\n\r\n        updated");
             
-            #line 138 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 134 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write(".Should().BeEquivalentTo(new ");
             
-            #line 138 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 134 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("Dto() {\r\n            Id = ");
             
-            #line 139 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 135 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityVariableName));
             
             #line default
             #line hidden
             this.Write("Id,\r\n");
             
-            #line 140 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 136 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
 
     foreach(var propertyConfig in _model.PropertyConfigs)
     {
@@ -614,21 +586,21 @@ namespace CleanGenerator.Templates.E2eTests
             #line hidden
             this.Write("        ");
             
-            #line 144 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 140 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(propertyConfig.Name));
             
             #line default
             #line hidden
             this.Write(" = ");
             
-            #line 144 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 140 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(propertyConfig.UpdatedTestValue(0)));
             
             #line default
             #line hidden
             this.Write(",\r\n");
             
-            #line 145 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 141 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
 
     }
 
@@ -637,28 +609,28 @@ namespace CleanGenerator.Templates.E2eTests
             #line hidden
             this.Write("        });\r\n    }\r\n\r\n    [Fact]\r\n    public async Task ShouldDelete");
             
-            #line 152 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 148 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("()\r\n    {\r\n        var ");
             
-            #line 154 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 150 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityVariableName));
             
             #line default
             #line hidden
             this.Write("Id1 = await HttpClient.Create");
             
-            #line 154 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 150 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("().CallAndParseResponse(new() {\r\n");
             
-            #line 155 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 151 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
 
     foreach(var propertyConfig in _model.PropertyConfigs)
     {
@@ -668,21 +640,21 @@ namespace CleanGenerator.Templates.E2eTests
             #line hidden
             this.Write("        ");
             
-            #line 159 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 155 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(propertyConfig.Name));
             
             #line default
             #line hidden
             this.Write(" = ");
             
-            #line 159 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 155 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(propertyConfig.TestValue(0)));
             
             #line default
             #line hidden
             this.Write(",\r\n");
             
-            #line 160 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 156 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
 
     }
 
@@ -691,21 +663,21 @@ namespace CleanGenerator.Templates.E2eTests
             #line hidden
             this.Write("        });\r\n        var ");
             
-            #line 164 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 160 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityVariableName));
             
             #line default
             #line hidden
             this.Write("Id2 = await HttpClient.Create");
             
-            #line 164 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 160 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("().CallAndParseResponse(new() {\r\n");
             
-            #line 165 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 161 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
 
     foreach(var propertyConfig in _model.PropertyConfigs)
     {
@@ -715,21 +687,21 @@ namespace CleanGenerator.Templates.E2eTests
             #line hidden
             this.Write("        ");
             
-            #line 169 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 165 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(propertyConfig.Name));
             
             #line default
             #line hidden
             this.Write(" = ");
             
-            #line 169 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 165 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(propertyConfig.TestValue(1)));
             
             #line default
             #line hidden
             this.Write(",\r\n");
             
-            #line 170 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 166 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
 
     }
 
@@ -738,92 +710,64 @@ namespace CleanGenerator.Templates.E2eTests
             #line hidden
             this.Write("        });\r\n\r\n        var delete");
             
-            #line 175 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 171 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("Response = await HttpClient.Delete");
             
-            #line 175 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 171 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("().Call(");
             
-            #line 175 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 171 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityVariableName));
             
             #line default
             #line hidden
             this.Write("Id1);\r\n\r\n        await delete");
             
-            #line 177 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 173 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
             this.Write("Response.Should().HaveStatusCode(200);\r\n\r\n        var list");
             
-            #line 179 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 175 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
-            this.Write("sResponse = await HttpClient.List");
+            this.Write("sResult = await HttpClient.List");
             
-            #line 179 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 175 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
-            this.Write("s().Call(new()\r\n        {\r\n            PageIndex = 1,\r\n            PageSize = 5,\r" +
-                    "\n        });\r\n\r\n        await list");
+            this.Write("s().CallAndParseResponse(new()\r\n        {\r\n            PageIndex = 1,\r\n          " +
+                    "  PageSize = 5,\r\n        });\r\n\r\n        list");
             
-            #line 185 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 181 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
-            this.Write("sResponse.Should().HaveStatusCode(200);\r\n\r\n        var list");
+            this.Write("sResult.Items.Should().HaveCount(1);\r\n        list");
             
-            #line 187 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 182 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
-            this.Write("sResults = await list");
+            this.Write("sResult.Items[0].Id.Should().Be(");
             
-            #line 187 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
-            
-            #line default
-            #line hidden
-            this.Write("sResponse.ReadResponseContentAs<List<");
-            
-            #line 187 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
-            
-            #line default
-            #line hidden
-            this.Write("Dto>>();\r\n\r\n        list");
-            
-            #line 189 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
-            
-            #line default
-            #line hidden
-            this.Write("sResults.Should().HaveCount(1);\r\n        list");
-            
-            #line 190 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
-            
-            #line default
-            #line hidden
-            this.Write("sResults[0].Id.Should().Be(");
-            
-            #line 190 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
+            #line 182 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\E2eTests\E2eTestsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityVariableName));
             
             #line default

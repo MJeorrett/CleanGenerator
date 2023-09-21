@@ -59,7 +59,7 @@ internal class ListBlaitemsEndpoint : ApiEndpointBase<PaginatedListQuery, Pagina
     }
 }
 
-internal class UpdateBlaitemEndpoint : ApiEndpointBase<UpdateBlaitemDto, int>
+internal class UpdateBlaitemEndpoint : ApiEndpointBaseWithoutResponse<UpdateBlaitemDto>
 {
     internal UpdateBlaitemEndpoint(HttpClient httpClient) :
         base(httpClient)
@@ -74,7 +74,7 @@ internal class UpdateBlaitemEndpoint : ApiEndpointBase<UpdateBlaitemDto, int>
     }
 }
 
-internal class DeleteBlaitemEndpoint : ApiEndpointBase<int, int>
+internal class DeleteBlaitemEndpoint : ApiEndpointBaseWithoutResponse<int>
 {
     public DeleteBlaitemEndpoint(HttpClient httpClient) : base(httpClient)
     {

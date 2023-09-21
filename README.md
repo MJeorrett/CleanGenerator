@@ -15,7 +15,7 @@ Developed and tested on Windows. May or may not work on Mac & Linux yet.
 ## Build and install
 To build and install the tool globally on your local machine run this from ./CleanGenerator:
 ```
-> rm .\nupkg\CleanGen.0.0.3.nupkg; dotnet tool uninstall --global CleanGen; dotnet pack; dotnet tool install --global --add-source .\nupkg\ CleanGen
+> rm .\nupkg\CleanGen.1.0.0.nupkg; dotnet tool uninstall --global CleanGen; dotnet pack; dotnet tool install --global --add-source .\nupkg\ CleanGen
 ```
 
 Then you can use it anywhere by running `cleangen ...`.

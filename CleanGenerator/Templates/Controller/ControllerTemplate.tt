@@ -10,6 +10,7 @@ using <#= _model.ProjectName #>.Application.<#= _model.EntityTypeName #>s.Dtos;
 using <#= _model.ProjectName #>.Application.<#= _model.EntityTypeName #>s.Queries.GetById;
 using <#= _model.ProjectName #>.Application.<#= _model.EntityTypeName #>s.Queries.List;
 using <#= _model.ProjectName #>.Application.Common.AppRequests;
+using <#= _model.ProjectName #>.Application.Common.AppRequests.Pagination;
 using <#= _model.ProjectName #>.WebApi.Extensions;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,11 +31,12 @@ public class <#= _model.EntityTypeName #>Controller : ControllerBase
     }
 
     [HttpGet("api/<#= _model.ApiBasePath #>")]
-    public async Task<ActionResult<AppResponse<List<<#= _model.EntityTypeName #>Dto>>>> List<#= _model.EntityTypeName #>s(
+    public async Task<ActionResult<AppResponse<PaginatedListResponse<<#= _model.EntityTypeName #>Dto>>>> List<#= _model.EntityTypeName #>s(
+        [FromQuery] List<#= _model.EntityTypeName #>sQuery query,
         [FromServices] List<#= _model.EntityTypeName #>sQueryHandler handler,
         CancellationToken cancellationToken)
     {
-        var appResponse = await handler.Handle(new(), cancellationToken);
+        var appResponse = await handler.Handle(query, cancellationToken);
 
         return appResponse.ToActionResult();
     }

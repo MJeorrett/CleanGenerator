@@ -259,14 +259,14 @@ namespace CleanGenerator.Templates.TestEndpoints
             
             #line default
             #line hidden
-            this.Write("Endpoint : ApiEndpointBase<Update");
+            this.Write("Endpoint : ApiEndpointBaseWithoutResponse<Update");
             
             #line 67 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
             
             #line default
             #line hidden
-            this.Write("Dto, int>\r\n{\r\n    internal Update");
+            this.Write("Dto>\r\n{\r\n    internal Update");
             
             #line 69 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));
@@ -296,7 +296,7 @@ namespace CleanGenerator.Templates.TestEndpoints
             
             #line default
             #line hidden
-            this.Write("Endpoint : ApiEndpointBase<int, int>\r\n{\r\n    public Delete");
+            this.Write("Endpoint : ApiEndpointBaseWithoutResponse<int>\r\n{\r\n    public Delete");
             
             #line 84 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityTypeName));

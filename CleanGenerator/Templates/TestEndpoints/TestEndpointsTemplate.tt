@@ -64,7 +64,7 @@ internal class List<#= _model.EntityTypeName #>sEndpoint : ApiEndpointBase<Pagin
     }
 }
 
-internal class Update<#= _model.EntityTypeName #>Endpoint : ApiEndpointBase<Update<#= _model.EntityTypeName #>Dto, int>
+internal class Update<#= _model.EntityTypeName #>Endpoint : ApiEndpointBaseWithoutResponse<Update<#= _model.EntityTypeName #>Dto>
 {
     internal Update<#= _model.EntityTypeName #>Endpoint(HttpClient httpClient) :
         base(httpClient)
@@ -79,7 +79,7 @@ internal class Update<#= _model.EntityTypeName #>Endpoint : ApiEndpointBase<Upda
     }
 }
 
-internal class Delete<#= _model.EntityTypeName #>Endpoint : ApiEndpointBase<int, int>
+internal class Delete<#= _model.EntityTypeName #>Endpoint : ApiEndpointBaseWithoutResponse<int>
 {
     public Delete<#= _model.EntityTypeName #>Endpoint(HttpClient httpClient) : base(httpClient)
     {
