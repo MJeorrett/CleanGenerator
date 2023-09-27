@@ -120,7 +120,7 @@ static void RunAddEntity(CommandArgs args, List<EntityPropertyConfiguration> pro
     {
         ProjectName = args.ProjectName,
         EntityTypeName = args.EntityName.Replace("Entity", ""),
-        ApiBasePath = args.EntityName.Replace("Entity", "").ToLower(),
+        ApiBasePath = args.EntityName.Replace("Entity", "").ToLower() + "s",
         PropertyConfigs = propertyConfigs,
     };
 
