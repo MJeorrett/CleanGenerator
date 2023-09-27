@@ -58,7 +58,7 @@ internal class List<#= _model.EntityTypeName #>sEndpoint : ApiEndpointBase<Pagin
 
     public override async Task<HttpResponseMessage> Call(PaginatedListQuery dto)
     {
-        var path = $"api/<#= _model.EntityVariableName #>?{dto.ToQueryString()}";
+        var path = $"api/<#= _model.ApiBasePath #>?{dto.ToQueryString()}";
 
         return await HttpClient.GetAsync(path);
     }

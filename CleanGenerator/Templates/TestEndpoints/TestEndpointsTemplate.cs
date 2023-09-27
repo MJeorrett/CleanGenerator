@@ -247,7 +247,7 @@ namespace CleanGenerator.Templates.TestEndpoints
                     "   {\r\n        var path = $\"api/");
             
             #line 61 "C:\Users\JonoTassia\source\ClearSkyLogic\CleanGenerator\CleanGenerator\Templates\TestEndpoints\TestEndpointsTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_model.EntityVariableName));
+            this.Write(this.ToStringHelper.ToStringWithCulture(_model.ApiBasePath));
             
             #line default
             #line hidden
